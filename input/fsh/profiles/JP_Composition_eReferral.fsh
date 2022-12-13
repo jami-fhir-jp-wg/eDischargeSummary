@@ -112,10 +112,19 @@ Description:  "処方情報のリソース構成情報と文書日付に関す�
 * date ^definition = "このリソースを作成または最後に編集した日時。ISO8601に準拠し、秒の精度まで記録し、タイムゾーンも付記する。\r\n午前0時を\"24:00\"と記録することはできないため\"00:00\"と記録すること。　\r\n例：\"2020_08_21T12:28:21+09:00\""
 * date 1..1 MS
 
+* author ^slicing.discriminator.type = #profile
+* author ^slicing.discriminator.path = "resolve()"
+* author ^slicing.rules = #open
 
 * author ^short = "文書作成責任者と文書作成機関とへの参照。"
 * author ^definition = "文書作成責任者を表すPractitionerリソースへの参照、および,文書作成機関か、または文書作成機関の診療科と文書作成機関を表すOrganizationリソースへの参照の2つのReferenceを繰り返す。"
-* author only Reference(JP_Organization_eClinicalSummary or JP_Practitioner_eClinicalSummary or JP_Organization_eClinicalSummary_department)
+* author contains
+    authorPractitioner 1..1 MS 
+and authorOrganization 1..1 MS
+and authorDepartment 0..1 MS
+* author[authorPractitioner] only  Reference(JP_Practitioner_eClinicalSummary)
+* author[authorOrganization] only  Reference(JP_Organization_eClinicalSummary)
+* author[authorDepartment] only  Reference(JP_Organization_eClinicalSummary_department)
 
 * title 1..1 MS
 * title = "診療情報提供書" (exactly)
@@ -196,16 +205,16 @@ Description:  "処方情報のリソース構成情報と文書日付に関す�
 * section[referralToSection].entry  ^slicing.discriminator.path = "resolve()"
 * section[referralToSection].entry  ^slicing.rules = #open
 * section[referralToSection].entry contains
-    referralToOrganizaiton  1..1 MS
+    referralToOrganization  1..1 MS
     and referralToDepartment    0..1 MS
     and referralToDoctor    0..1 MS
-* section[referralToSection].entry[referralToOrganizaiton] only Reference(JP_Organization_eClinicalSummary)
-* section[referralToSection].entry[referralToOrganizaiton] ^short = "紹介先医療機関"
-* section[referralToSection].entry[referralToOrganizaiton] ^definition = "紹介先医療機関"
+* section[referralToSection].entry[referralToOrganization] only Reference(JP_Organization_eClinicalSummary)
+* section[referralToSection].entry[referralToOrganization] ^short = "紹介先医療機関"
+* section[referralToSection].entry[referralToOrganization] ^definition = "紹介先医療機関"
 * section[referralToSection].entry[referralToDepartment] only Reference(JP_Organization_eClinicalSummary_department)
 * section[referralToSection].entry[referralToDepartment] ^short = "紹介先医療機関の診療科"
 * section[referralToSection].entry[referralToDepartment] ^definition = "紹介先医療機関の診療科"
-* section[referralToSection].entry[referralToDoctor] only Reference(JP_Practitioner)
+* section[referralToSection].entry[referralToDoctor] only Reference(JP_Practitioner_eClinicalSummary)
 * section[referralToSection].entry[referralToDoctor] ^short = "紹介先医師"
 * section[referralToSection].entry[referralToDoctor] ^definition = "紹介先医師"
 * section[referralToSection].emptyReason ..0
@@ -252,16 +261,17 @@ Description:  "処方情報のリソース構成情報と文書日付に関す�
 * section[referralFromSection].entry  ^slicing.discriminator.path = "resolve()"
 * section[referralFromSection].entry  ^slicing.rules = #open
 * section[referralFromSection].entry contains
-    referralFromOrganizaiton  1..1 MS
+    referralFromOrganization  1..1 MS
     and referralFromDepartment    0..1 MS
     and referralFromDoctor    0..1 MS
-* section[referralFromSection].entry[referralFromOrganizaiton] only Reference(JP_Organization_eClinicalSummary)
-* section[referralFromSection].entry[referralFromOrganizaiton] ^short = "紹介元医療機関"
-* section[referralFromSection].entry[referralFromOrganizaiton] ^definition = "紹介元医療機関"
+//* section[referralFromSection].entry[referralFromOrganization] only Reference(JP_Organization_eClinicalSummary_issuer)
+* section[referralFromSection].entry[referralFromOrganization] only Reference(JP_Organization_eClinicalSummary)
+* section[referralFromSection].entry[referralFromOrganization] ^short = "紹介元医療機関"
+* section[referralFromSection].entry[referralFromOrganization] ^definition = "紹介元医療機関"
 * section[referralFromSection].entry[referralFromDepartment] only Reference(JP_Organization_eClinicalSummary_department)
 * section[referralFromSection].entry[referralFromDepartment] ^short = "紹介元医療機関の診療科"
 * section[referralFromSection].entry[referralFromDepartment] ^definition = "紹介元医療機関の診療科"
-* section[referralFromSection].entry[referralFromDoctor] only Reference(JP_Practitioner)
+* section[referralFromSection].entry[referralFromDoctor] only Reference(JP_Practitioner_eClinicalSummary)
 * section[referralFromSection].entry[referralFromDoctor] ^short = "紹介元医師"
 * section[referralFromSection].entry[referralFromDoctor] ^definition = "紹介元医師"
 * section[referralFromSection].emptyReason ..0
