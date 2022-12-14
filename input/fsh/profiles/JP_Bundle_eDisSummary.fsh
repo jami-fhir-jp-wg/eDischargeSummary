@@ -1,11 +1,11 @@
-Profile: JP_Bundle_eReferral
+Profile: JP_Bundle_eDischargeSummary
 Parent: Bundle
-Id: JP-Bundle-eReferral
-Description: "診療情報提供書のための文書 Bundleリソース"
-* ^url = "http://jpfhir.jp/fhir/eReferral/StructureDefinition/JP_Bundle_eReferral"
+Id: JP-Bundle-eDischargeSummary
+Description: "退院時サマリーのための文書 Bundleリソース"
+* ^url = "http://jpfhir.jp/fhir/eDischargeSummary/StructureDefinition/JP_Bundle_eDischargeSummary"
 * ^status = #active
-* . ^short = "診療情報提供書のための文書 Bundleリソース"
-* . ^definition = "診療情報提供書のための文書 Bundleリソース"
+* . ^short = "退院時サマリーのための文書 Bundleリソース"
+* . ^definition = "退院時サマリーのための文書 Bundleリソース"
 
 * identifier 1.. MS
 * identifier ^short = "この文書Bundleの固定識別番号。Bundle作成時にシステムが設定し、サーバ間で移動、コピーされても変更されないID。"
@@ -60,7 +60,7 @@ and binaryData 0..* MS  // その他の添付バイナリーデータ
 * entry[composition].fullUrl ^short = "埋め込まれているCompositionリソースを一意に識別するためのUUID"
 * entry[composition].fullUrl ^definition = "埋め込まれているCompositionリソースを一意に識別するためのUUID。"
 * entry[composition].resource 1.. MS
-* entry[composition].resource only  JP_Composition_eReferral
+* entry[composition].resource only  JP_Composition_eDischargeSummary
 * entry[composition].resource ^short = "Compositionリソースのインスタンス本体"
 * entry[composition].resource ^definition = "Compositionリソースのインスタンス本体。"
 * entry[composition].search ..0

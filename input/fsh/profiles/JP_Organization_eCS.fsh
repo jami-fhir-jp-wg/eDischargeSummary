@@ -80,6 +80,6 @@ Description: "処方を発行した医療機関の情報　JP_Organizationの派
 * telecom.value MS
 * telecom.value ^definition = "電話番号。半角数字列で、適宜、ハイフンや括弧を含んでもよいが、使用時間帯などの説明は含めない。\r\n\"0123_456_7890\""
 * address 1..1 MS
-* address ^short = "医療機関住所 診療情報提供書の発行組織では必須"
-* address ^definition = "医療機関住所 診療情報提供書の発行組織では必須"
+* address ^short = "医療機関住所 退院時サマリーの発行組織では必須"
+* address ^definition = "医療機関住所 退院時サマリーの発行組織では必須"
 */
