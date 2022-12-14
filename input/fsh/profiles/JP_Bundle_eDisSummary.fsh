@@ -28,20 +28,20 @@ Description: "退院時サマリーのための文書 Bundleリソース"
     composition 1..1 MS  // 文書構成情報
 and patient 1..1 MS  //  患者情報
 and practitioners 1..2 MS
-and organization 2..2 MS
-//and organizationFrom 1..* MS
-and department 0..2 MS
-//and departmentOfissuer  0..* MS
-//and referralDoctor 1..* MS
-//and cdaDocument 0..1 MS
-and referralEncounter 0..2 MS
-and problem 1..* MS
+and organization 1..3 MS
+and department 0..1 MS
+and encounter 1..1 MS
+and location 0..* MS
+and condition 0..* MS
 and allergy 0..* MS
+and familyHistory 0..* MS
 and familyHistory 0..* MS
 and observation 0..* MS
 and immunization 0..* MS
 and procedure 0..* MS
+and medicationStatement 0..* MS
 and medicationRequest 0..* MS
+and medicationBundle 0..* MS
 and documentReference 0..* MS
 and carePlan 0..* MS
 and medicalDeviceUse 0..* MS
@@ -51,7 +51,6 @@ and diagReport 0..* MS
 and advancedDirective 0..* MS
 and researchSubject 0..* MS   // 臨床研究情報
 and researchStudy 0..* MS   // 臨床研究参加情報
-and relatedPerson 0..* MS   // 関係者情報                       
 and binaryData 0..* MS  // その他の添付バイナリーデータ
 
 * entry[composition] ^short = "documentタイプのBundleリソースの先頭entryはCompositionリソース。"
