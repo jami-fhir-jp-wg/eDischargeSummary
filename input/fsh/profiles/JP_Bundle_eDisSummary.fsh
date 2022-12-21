@@ -35,7 +35,6 @@ and location 0..* MS
 and condition 0..* MS
 and allergy 0..* MS
 and familyHistory 0..* MS
-and familyHistory 0..* MS
 and observation 0..* MS
 and immunization 0..* MS
 and procedure 0..* MS
@@ -129,13 +128,6 @@ and binaryData 0..* MS  // その他の添付バイナリーデータ
 //* entry[cdaDocument] ^short = "CDA規約文書ファイルへの参照"
 //* entry[cdaDocument] ^definition = "CDA規約文書ファイルへの参照"
 
-* entry[referralEncounter].resource only JP_Encounter_eClinicalSummary
-* entry[referralEncounter] ^short = "紹介目的や受診時状況のEncounterリソースを参照"
-* entry[referralEncounter] ^definition = "紹介目的や受診時状況のEncounterリソースを参照。"
-
-* entry[problem].resource only  JP_Condition_eClinicalSummary
-* entry[problem] ^short = "必須。傷病名・主訴／現病歴／既往歴を１個以上必ず記述する。"
-* entry[problem] ^definition = "必須。傷病名・主訴／現病歴／既往歴を１個以上必ず記述する。1つにつき1つのConditionで記述されたものを参照する。"
 
 * entry[allergy].resource only  JP_AllergyIntolerance_eClinicalSummary
 * entry[allergy] ^short = "アレルギー・不耐性反応情報を記述したAllergyIntoleranceリソースを参照"
@@ -197,10 +189,6 @@ and binaryData 0..* MS  // その他の添付バイナリーデータ
 * entry[researchStudy].resource only  JP_ResearchStudy
 * entry[researchStudy] ^short = "臨床研究情報を記述したResearchStudyリソースを参照"
 * entry[researchStudy] ^definition = "臨床研究情報を記述して参照する。"
-
-* entry[relatedPerson].resource only  JP_RelatedPerson
-* entry[relatedPerson] ^short = "親族情報を記述したRelatedPersonリソースを参照"
-* entry[relatedPerson] ^definition = "親族情報を記述して参照する。"
 
 * entry[binaryData].resource only  JP_Binary
 * entry[binaryData] ^short = "各種備考参照情報を記述したBinaryリソースを参照"

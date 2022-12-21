@@ -134,7 +134,7 @@ and authorDepartment 0..1 MS
 * section ^slicing.discriminator.path = "code.coding.code"
 * section ^slicing.rules = #open
 * section contains
-    and cdaSection   0..1 MS // CDA参照セクション    cdaSection
+    cdaSection   0..1 MS // CDA参照セクション    cdaSection
     and compositionSection     0..1 MS // 構造情報セクション   compositionSection
 	and attachmentSection    0..*    MS  //  添付情報セクション	attachmentSection
     and pdfSection    0..*    MS  //  PDFセクション	pdfSection
@@ -152,7 +152,7 @@ and authorDepartment 0..1 MS
 * section[cdaSection].code ^definition = "セクション区分コード"
 * section[cdaSection].code.coding 1..1 MS
 * section[cdaSection].code.coding.system 1.. MS
-* section[cdaSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[cdaSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[cdaSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[cdaSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[cdaSection].code.coding.code 1.. MS
@@ -197,7 +197,7 @@ and authorDepartment 0..1 MS
 * section[attachmentSection].code ^definition = "セクション区分コード"
 * section[attachmentSection].code.coding 1..1 MS
 * section[attachmentSection].code.coding.system 1.. MS
-* section[attachmentSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[attachmentSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[attachmentSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[attachmentSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[attachmentSection].code.coding.code 1.. MS
@@ -240,7 +240,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].code ^definition = "セクション区分コード"
 * section[compositionSection].code.coding 1..1 MS
 * section[compositionSection].code.coding.system 1.. MS
-* section[compositionSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].code.coding.code 1.. MS
@@ -272,7 +272,7 @@ and authorDepartment 0..1 MS
     and chiefComplaintSection    1..1    MS  // 入院時主訴セクション
     and reasonForAdmissionSection      1..1    MS  // 入院理由セクション
     and presentIllnessSection     1..1    MS  // 入院時現病歴セクション
-    and pastIllnessOnAdmissionSection    0..1    MS  // 入院時既往歴セクション
+    and pastIllnessSection    0..1    MS  // 入院時既往歴セクション
     and admissionMedicationsSection   0..1    MS  //  入院時服薬セクション
     and socialHistorySection      0..1    MS  //  入院時社会歴セクション
 	and admissionPhysicalStatusSection   0..1    MS  //  入院時身体所見セクション
@@ -280,7 +280,7 @@ and authorDepartment 0..1 MS
 	and hospitalCourseSection     1..1    MS  //  入院中経過セクション
 	and dischargeDetailsSection     1..1    MS  //  退院時詳細セクション
 	and dischargeDiagnosesSection     1..1    MS  //  退院時診断セクション
-	and dischargedischargeMedicationSection     1..1    MS  //  退院時投薬指示セクション 
+	and dischargeMedicationSection     1..1    MS  //  退院時投薬指示セクション 
 	and dischargeInstructionSection     1..1    MS  //  退院時方針指示セクション
 	and dischargePhysicalStatusSection    0..1    MS  //  退院時身体所見セクション
 	and hospitalProcedureSection 0..1 MS // 入院中治療セクション
@@ -290,7 +290,6 @@ and authorDepartment 0..1 MS
 	and advanceDirectiveSection   0..1    MS  //  事前指示セクション
 	and researchParticipationSection      0..1    MS  //  臨床研究参加セクション
 //
-* section[compositionSection].section[admissionDetailsSection]
 * section[compositionSection].section[admissionDetailsSection] ^short = "入院詳細セクション"
 * section[compositionSection].section[admissionDetailsSection] ^definition = "入院詳細セクション"
 * section[compositionSection].section[admissionDetailsSection].title 1.. MS
@@ -302,7 +301,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[admissionDetailsSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[admissionDetailsSection].code.coding 1..1 MS
 * section[compositionSection].section[admissionDetailsSection].code.coding.system 1.. MS
-* section[compositionSection].section[admissionDetailsSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[admissionDetailsSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[admissionDetailsSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[admissionDetailsSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[admissionDetailsSection].code.coding.code 1.. MS
@@ -334,7 +333,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[admissionDetailsSection].section ..0
 //
 //
-* section[compositionSection].section[admissionDiagnosesSection]
 * section[compositionSection].section[admissionDiagnosesSection] ^short = "入院時診断セクション"
 * section[compositionSection].section[admissionDiagnosesSection] ^definition = "入院時診断セクション"
 * section[compositionSection].section[admissionDiagnosesSection].title 1.. MS
@@ -378,7 +376,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[admissionDiagnosesSection].section ..0
 //
 //
-* section[compositionSection].section[allergiesIIntoleranceSection]
 * section[compositionSection].section[allergiesIIntoleranceSection] ^short = "アレルギー・不耐性反応セクション"
 * section[compositionSection].section[allergiesIIntoleranceSection] ^definition = "アレルギー・不耐性反応セクション"
 * section[compositionSection].section[allergiesIIntoleranceSection].title 1.. MS
@@ -390,7 +387,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[allergiesIIntoleranceSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[allergiesIIntoleranceSection].code.coding 1..1 MS
 * section[compositionSection].section[allergiesIIntoleranceSection].code.coding.system 1.. MS
-* section[compositionSection].section[allergiesIIntoleranceSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[allergiesIIntoleranceSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[allergiesIIntoleranceSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[allergiesIIntoleranceSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[allergiesIIntoleranceSection].code.coding.code 1.. MS
@@ -427,7 +424,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[allergiesIIntoleranceSection].section ..0
 //
 ////
-* section[compositionSection].section[chiefComplaintSection]
 * section[compositionSection].section[chiefComplaintSection] ^short = "入院時主訴セクション"
 * section[compositionSection].section[chiefComplaintSection] ^definition = "入院時主訴セクション"
 * section[compositionSection].section[chiefComplaintSection].title 1.. MS
@@ -439,7 +435,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[chiefComplaintSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[chiefComplaintSection].code.coding 1..1 MS
 * section[compositionSection].section[chiefComplaintSection].code.coding.system 1.. MS
-* section[compositionSection].section[chiefComplaintSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[chiefComplaintSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[chiefComplaintSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[chiefComplaintSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[chiefComplaintSection].code.coding.code 1.. MS
@@ -470,7 +466,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[chiefComplaintSection].emptyReason ..1
 * section[compositionSection].section[chiefComplaintSection].section ..0
 //
-* section[compositionSection].section[reasonForAdmissionSection]
 * section[compositionSection].section[reasonForAdmissionSection] ^short = "入院理由セクション"
 * section[compositionSection].section[reasonForAdmissionSection] ^definition = "入院理由セクション"
 * section[compositionSection].section[reasonForAdmissionSection].title 1.. MS
@@ -482,7 +477,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[reasonForAdmissionSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[reasonForAdmissionSection].code.coding 1..1 MS
 * section[compositionSection].section[reasonForAdmissionSection].code.coding.system 1.. MS
-* section[compositionSection].section[reasonForAdmissionSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[reasonForAdmissionSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[reasonForAdmissionSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[reasonForAdmissionSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[reasonForAdmissionSection].code.coding.code 1.. MS
@@ -507,14 +502,13 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[reasonForAdmissionSection].mode ..0
 * section[compositionSection].section[reasonForAdmissionSection].orderedBy ..0
 * section[compositionSection].section[reasonForAdmissionSection].entry 0..1 MS
-* section[compositionSection].section[reasonForAdmissionSection].entry only Reference(JP_Encouter)
+* section[compositionSection].section[reasonForAdmissionSection].entry only Reference(JP_Encounter)
 * section[compositionSection].section[reasonForAdmissionSection].entry ^short = "入院理由をEncounter.reasonCodeに記述する"
 * section[compositionSection].section[reasonForAdmissionSection].entry ^definition = "CodeableConceptであるEncounter.reasonCodeに病名あるいはtextで記述できる"
 * section[compositionSection].section[reasonForAdmissionSection].emptyReason ..1
 * section[compositionSection].section[reasonForAdmissionSection].section ..0
 ////
 //
-* section[compositionSection].section[presentIllnessSection]
 * section[compositionSection].section[presentIllnessSection] ^short = "入院時現病歴セクション"
 * section[compositionSection].section[presentIllnessSection] ^definition = "入院時現病歴セクション"
 * section[compositionSection].section[presentIllnessSection].title 1.. MS
@@ -526,7 +520,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[presentIllnessSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[presentIllnessSection].code.coding 1..1 MS
 * section[compositionSection].section[presentIllnessSection].code.coding.system 1.. MS
-* section[compositionSection].section[presentIllnessSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[presentIllnessSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[presentIllnessSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[presentIllnessSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[presentIllnessSection].code.coding.code 1.. MS
@@ -560,7 +554,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[presentIllnessSection].emptyReason ..0
 * section[compositionSection].section[presentIllnessSection].section ..0
 ////
-* section[compositionSection].section[pastIllnessSection]
 * section[compositionSection].section[pastIllnessSection] ^short = "入院時既往歴セクション"
 * section[compositionSection].section[pastIllnessSection] ^definition = "入院時既往歴セクション"
 * section[compositionSection].section[pastIllnessSection].title 1.. MS
@@ -572,7 +565,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[pastIllnessSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[pastIllnessSection].code.coding 1..1 MS
 * section[compositionSection].section[pastIllnessSection].code.coding.system 1.. MS
-* section[compositionSection].section[pastIllnessSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[pastIllnessSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[pastIllnessSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[pastIllnessSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[pastIllnessSection].code.coding.code 1.. MS
@@ -609,7 +602,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[pastIllnessSection].section ..0
 ////
 
-* section[compositionSection].section[admissionMedicationsSection]
 * section[compositionSection].section[admissionMedicationsSection] ^short = "入院時服薬セクション"
 * section[compositionSection].section[admissionMedicationsSection] ^definition = "入院時服薬セクション"
 * section[compositionSection].section[admissionMedicationsSection].title 1.. MS
@@ -621,7 +613,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[admissionMedicationsSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[admissionMedicationsSection].code.coding 1..1 MS
 * section[compositionSection].section[admissionMedicationsSection].code.coding.system 1.. MS
-* section[compositionSection].section[admissionMedicationsSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[admissionMedicationsSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[admissionMedicationsSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[admissionMedicationsSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[admissionMedicationsSection].code.coding.code 1.. MS
@@ -655,7 +647,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[admissionMedicationsSection].section ..0
 ////
 ////
-* section[compositionSection].section[socialHistorySection]
 * section[compositionSection].section[socialHistorySection] ^short = "入院時社会歴セクション"
 * section[compositionSection].section[socialHistorySection] ^definition = "入院時社会歴セクション"
 * section[compositionSection].section[socialHistorySection].title 1.. MS
@@ -667,7 +658,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[socialHistorySection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[socialHistorySection].code.coding 1..1 MS
 * section[compositionSection].section[socialHistorySection].code.coding.system 1.. MS
-* section[compositionSection].section[socialHistorySection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[socialHistorySection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[socialHistorySection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[socialHistorySection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[socialHistorySection].code.coding.code 1.. MS
@@ -705,7 +696,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[socialHistorySection].section ..0
 //
 //
-* section[compositionSection].section[admissionPhysicalStatusSection]
 * section[compositionSection].section[admissionPhysicalStatusSection] ^short = "入院時身体所見セクション"
 * section[compositionSection].section[admissionPhysicalStatusSection] ^definition = "入院時身体所見セクション"
 * section[compositionSection].section[admissionPhysicalStatusSection].title 1.. MS
@@ -717,7 +707,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[admissionPhysicalStatusSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[admissionPhysicalStatusSection].code.coding 1..1 MS
 * section[compositionSection].section[admissionPhysicalStatusSection].code.coding.system 1.. MS
-* section[compositionSection].section[admissionPhysicalStatusSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[admissionPhysicalStatusSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[admissionPhysicalStatusSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[admissionPhysicalStatusSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[admissionPhysicalStatusSection].code.coding.code 1.. MS
@@ -753,7 +743,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[admissionPhysicalStatusSection].emptyReason ..1
 * section[compositionSection].section[admissionPhysicalStatusSection].section ..0
 ////
-* section[compositionSection].section[familiyHistorySection]
 * section[compositionSection].section[familiyHistorySection] ^short = "入院時家族歴セクション"
 * section[compositionSection].section[familiyHistorySection] ^definition = "入院時家族歴セクション"
 * section[compositionSection].section[familiyHistorySection].title 1.. MS
@@ -765,7 +754,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[familiyHistorySection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[familiyHistorySection].code.coding 1..1 MS
 * section[compositionSection].section[familiyHistorySection].code.coding.system 1.. MS
-* section[compositionSection].section[familiyHistorySection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[familiyHistorySection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[familiyHistorySection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[familiyHistorySection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[familiyHistorySection].code.coding.code 1.. MS
@@ -803,7 +792,6 @@ and authorDepartment 0..1 MS
 //
 //
 
-* section[compositionSection].section[hospitalCourseSection]
 * section[compositionSection].section[hospitalCourseSection] ^short = "入院中経過セクション"
 * section[compositionSection].section[hospitalCourseSection] ^definition = "入院中経過セクション"
 * section[compositionSection].section[hospitalCourseSection].title 1.. MS
@@ -815,7 +803,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[hospitalCourseSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[hospitalCourseSection].code.coding 1..1 MS
 * section[compositionSection].section[hospitalCourseSection].code.coding.system 1.. MS
-* section[compositionSection].section[hospitalCourseSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[hospitalCourseSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[hospitalCourseSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[hospitalCourseSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[hospitalCourseSection].code.coding.code 1.. MS
@@ -850,7 +838,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[hospitalCourseSection].section ..0
 ////
 ////
-* section[compositionSection].section[dischargeDetailsSection]
 * section[compositionSection].section[dischargeDetailsSection] ^short = "退院時詳細セクション"
 * section[compositionSection].section[dischargeDetailsSection] ^definition = "退院時詳細セクション"
 * section[compositionSection].section[dischargeDetailsSection].title 1.. MS
@@ -862,7 +849,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[dischargeDetailsSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[dischargeDetailsSection].code.coding 1..1 MS
 * section[compositionSection].section[dischargeDetailsSection].code.coding.system 1.. MS
-* section[compositionSection].section[dischargeDetailsSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[dischargeDetailsSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[dischargeDetailsSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[dischargeDetailsSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[dischargeDetailsSection].code.coding.code 1.. MS
@@ -894,54 +881,52 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[dischargeDetailsSection].section ..0
 //
 //
-* section[compositionSection].section[dischargeDiagnosesSection ]
-* section[compositionSection].section[dischargeDiagnosesSection ] ^short = "退院時診断セクション"
-* section[compositionSection].section[dischargeDiagnosesSection ] ^definition = "退院時診断セクション"
-* section[compositionSection].section[dischargeDiagnosesSection ].title 1.. MS
-* section[compositionSection].section[dischargeDiagnosesSection ].title = "退院時診断"
-* section[compositionSection].section[dischargeDiagnosesSection ].title ^short = "セクションタイトル"
-* section[compositionSection].section[dischargeDiagnosesSection ].title ^definition = "セクションタイトル。固定値。"
-* section[compositionSection].section[dischargeDiagnosesSection ].code 1.. MS
-* section[compositionSection].section[dischargeDiagnosesSection ].code ^short = "セクション区分コード"
-* section[compositionSection].section[dischargeDiagnosesSection ].code ^definition = "セクション区分コード"
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding 1..1 MS
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.system 1.. MS
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.system ^short = "セクション区分コードのコード体系"
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.code 1.. MS
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.code = #344 (exactly)
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.code ^short = "セクション区分のコード値"
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.display = "退院時診断セクション" (exactly)
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.display ^short = "セクション区分コードの表示名"
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.display ^definition = "セクション区分コードの表示名。"
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.display MS
-* section[compositionSection].section[dischargeDiagnosesSection ].code.coding.userSelected ..0
-* section[compositionSection].section[dischargeDiagnosesSection ].code.text ..0
-* section[compositionSection].section[dischargeDiagnosesSection ].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
-* section[compositionSection].section[dischargeDiagnosesSection ].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
-* section[compositionSection].section[dischargeDiagnosesSection ].text MS
-* section[compositionSection].section[dischargeDiagnosesSection ].text.status MS
-* section[compositionSection].section[dischargeDiagnosesSection ].text.status = #additional (exactly)
-* section[compositionSection].section[dischargeDiagnosesSection ].text.status ^short = "セクションの内容作成状態コード"
-* section[compositionSection].section[dischargeDiagnosesSection ].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
-* section[compositionSection].section[dischargeDiagnosesSection ].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
-* section[compositionSection].section[dischargeDiagnosesSection ].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
-* section[compositionSection].section[dischargeDiagnosesSection ].mode ..0
-* section[compositionSection].section[dischargeDiagnosesSection ].orderedBy ..0
-* section[compositionSection].section[dischargeDiagnosesSection ].entry 1..* MS
-* section[compositionSection].section[dischargeDiagnosesSection ].entry only Reference(JP_Condition)
-* section[compositionSection].section[dischargeDiagnosesSection ].entry ^short = "必須。傷病名・主訴を１個以上必ず記述する。"
-* section[compositionSection].section[dischargeDiagnosesSection ].entry ^definition = """傷病名・主訴を１個以上必ず記述する。1つにつき1つのConditionで記述されたものを参照する。
+* section[compositionSection].section[dischargeDiagnosesSection] ^short = "退院時診断セクション"
+* section[compositionSection].section[dischargeDiagnosesSection] ^definition = "退院時診断セクション"
+* section[compositionSection].section[dischargeDiagnosesSection].title 1.. MS
+* section[compositionSection].section[dischargeDiagnosesSection].title = "退院時診断"
+* section[compositionSection].section[dischargeDiagnosesSection].title ^short = "セクションタイトル"
+* section[compositionSection].section[dischargeDiagnosesSection].title ^definition = "セクションタイトル。固定値。"
+* section[compositionSection].section[dischargeDiagnosesSection].code 1.. MS
+* section[compositionSection].section[dischargeDiagnosesSection].code ^short = "セクション区分コード"
+* section[compositionSection].section[dischargeDiagnosesSection].code ^definition = "セクション区分コード"
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding 1..1 MS
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.system 1.. MS
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.system ^short = "セクション区分コードのコード体系"
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.code 1.. MS
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.code = #344 (exactly)
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.code ^short = "セクション区分のコード値"
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.display = "退院時診断セクション" (exactly)
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.display ^short = "セクション区分コードの表示名"
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.display ^definition = "セクション区分コードの表示名。"
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.display MS
+* section[compositionSection].section[dischargeDiagnosesSection].code.coding.userSelected ..0
+* section[compositionSection].section[dischargeDiagnosesSection].code.text ..0
+* section[compositionSection].section[dischargeDiagnosesSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
+* section[compositionSection].section[dischargeDiagnosesSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
+* section[compositionSection].section[dischargeDiagnosesSection].text MS
+* section[compositionSection].section[dischargeDiagnosesSection].text.status MS
+* section[compositionSection].section[dischargeDiagnosesSection].text.status = #additional (exactly)
+* section[compositionSection].section[dischargeDiagnosesSection].text.status ^short = "セクションの内容作成状態コード"
+* section[compositionSection].section[dischargeDiagnosesSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
+* section[compositionSection].section[dischargeDiagnosesSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
+* section[compositionSection].section[dischargeDiagnosesSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
+* section[compositionSection].section[dischargeDiagnosesSection].mode ..0
+* section[compositionSection].section[dischargeDiagnosesSection].orderedBy ..0
+* section[compositionSection].section[dischargeDiagnosesSection].entry 1..* MS
+* section[compositionSection].section[dischargeDiagnosesSection].entry only Reference(JP_Condition)
+* section[compositionSection].section[dischargeDiagnosesSection].entry ^short = "必須。傷病名・主訴を１個以上必ず記述する。"
+* section[compositionSection].section[dischargeDiagnosesSection].entry ^definition = """傷病名・主訴を１個以上必ず記述する。1つにつき1つのConditionで記述されたものを参照する。
     フリーテキストでしか記述できない場合には、Condition.code.text に記述する。
     """
-* section[compositionSection].section[dischargeDiagnosesSection ].emptyReason ..1 MS
-* section[compositionSection].section[dischargeDiagnosesSection ].section ..0
+* section[compositionSection].section[dischargeDiagnosesSection].emptyReason ..1 MS
+* section[compositionSection].section[dischargeDiagnosesSection].section ..0
 ////
 //
 
-* section[compositionSection].section[dischargeMedicationSection]
 * section[compositionSection].section[dischargeMedicationSection] ^short = "退院時投薬指示セクション"
 * section[compositionSection].section[dischargeMedicationSection] ^definition = "退院時投薬指示セクション"
 * section[compositionSection].section[dischargeMedicationSection].title 1.. MS
@@ -953,7 +938,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[dischargeMedicationSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[dischargeMedicationSection].code.coding 1..1 MS
 * section[compositionSection].section[dischargeMedicationSection].code.coding.system 1.. MS
-* section[compositionSection].section[dischargeMedicationSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[dischargeMedicationSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[dischargeMedicationSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[dischargeMedicationSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[dischargeMedicationSection].code.coding.code 1.. MS
@@ -990,7 +975,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[dischargeMedicationSection].emptyReason ..1
 * section[compositionSection].section[dischargeMedicationSection].section ..0
 ////
-* section[compositionSection].section[dischargeInstructionSection]
 * section[compositionSection].section[dischargeInstructionSection] ^short = "退院時方針指示セクション"
 * section[compositionSection].section[dischargeInstructionSection] ^definition = "退院時方針指示セクション"
 * section[compositionSection].section[dischargeInstructionSection].title 1.. MS
@@ -1002,7 +986,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[dischargeInstructionSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[dischargeInstructionSection].code.coding 1..1 MS
 * section[compositionSection].section[dischargeInstructionSection].code.coding.system 1.. MS
-* section[compositionSection].section[dischargeInstructionSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[dischargeInstructionSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[dischargeInstructionSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[dischargeInstructionSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[dischargeInstructionSection].code.coding.code 1.. MS
@@ -1038,7 +1022,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[dischargeInstructionSection].section ..0
 ////
 //
-* section[compositionSection].section[dischargePhysicalStatusSection]
 * section[compositionSection].section[dischargePhysicalStatusSection] ^short = "退院時身体所見セクション"
 * section[compositionSection].section[dischargePhysicalStatusSection] ^definition = "退院時身体所見セクション"
 * section[compositionSection].section[dischargePhysicalStatusSection].title 1.. MS
@@ -1050,7 +1033,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[dischargePhysicalStatusSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[dischargePhysicalStatusSection].code.coding 1..1 MS
 * section[compositionSection].section[dischargePhysicalStatusSection].code.coding.system 1.. MS
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[dischargePhysicalStatusSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[dischargePhysicalStatusSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[dischargePhysicalStatusSection].code.coding.code 1.. MS
@@ -1087,7 +1070,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[dischargePhysicalStatusSection].section ..0
 
 ////
-* section[compositionSection].section[hospitalProcedureSection]
 * section[compositionSection].section[hospitalProcedureSection] ^short = "入院中治療セクション"
 * section[compositionSection].section[hospitalProcedureSection] ^definition = "入院中治療セクション"
 * section[compositionSection].section[hospitalProcedureSection].title 1.. MS
@@ -1099,7 +1081,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[hospitalProcedureSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[hospitalProcedureSection].code.coding 1..1 MS
 * section[compositionSection].section[hospitalProcedureSection].code.coding.system 1.. MS
-* section[compositionSection].section[hospitalProcedureSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[hospitalProcedureSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[hospitalProcedureSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[hospitalProcedureSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[hospitalProcedureSection].code.coding.code 1.. MS
@@ -1137,56 +1119,54 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[hospitalProcedureSection].section ..0
 //
 
-* section[compositionSection].section[dischargePhysicalStatusSection]
-* section[compositionSection].section[dischargePhysicalStatusSection] ^short = "入院中検査結果セクション"
-* section[compositionSection].section[dischargePhysicalStatusSection] ^definition = "入院中検査結果セクション"
-* section[compositionSection].section[dischargePhysicalStatusSection].title 1.. MS
-* section[compositionSection].section[dischargePhysicalStatusSection].title = "入院中検査結果"
-* section[compositionSection].section[dischargePhysicalStatusSection].title ^short = "セクションタイトル"
-* section[compositionSection].section[dischargePhysicalStatusSection].title ^definition = "セクションタイトル。固定値。"
-* section[compositionSection].section[dischargePhysicalStatusSection].code 1.. MS
-* section[compositionSection].section[dischargePhysicalStatusSection].code ^short = "セクション区分コード"
-* section[compositionSection].section[dischargePhysicalStatusSection].code ^definition = "セクション区分コード"
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding 1..1 MS
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.system 1.. MS
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.system ^short = "セクション区分コードのコード体系"
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.code 1.. MS
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.code = #623 (exactly)
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.code ^short = "セクション区分のコード値"
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.display = "入院中検査結果セクション" (exactly)
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.display ^short = "セクション区分コードの表示名"
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.display ^definition = "セクション区分コードの表示名。"
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.display MS
-* section[compositionSection].section[dischargePhysicalStatusSection].code.coding.userSelected ..0
-* section[compositionSection].section[dischargePhysicalStatusSection].code.text ..0
-* section[compositionSection].section[dischargePhysicalStatusSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
-* section[compositionSection].section[dischargePhysicalStatusSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
-* section[compositionSection].section[dischargePhysicalStatusSection].text MS
-* section[compositionSection].section[dischargePhysicalStatusSection].text.status MS
-* section[compositionSection].section[dischargePhysicalStatusSection].text.status = #additional (exactly)
-* section[compositionSection].section[dischargePhysicalStatusSection].text.status ^short = "セクションの内容作成状態コード"
-* section[compositionSection].section[dischargePhysicalStatusSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
-* section[compositionSection].section[dischargePhysicalStatusSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
-* section[compositionSection].section[dischargePhysicalStatusSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
-* section[compositionSection].section[dischargePhysicalStatusSection].mode ..0
-* section[compositionSection].section[dischargePhysicalStatusSection].orderedBy ..0
-* section[compositionSection].section[dischargePhysicalStatusSection].entry 0..* MS
-* section[compositionSection].section[dischargePhysicalStatusSection].entry only Reference(JP_Observation_Common or JP_Imaging_study or JP_DiagnosticReport_Common or JP_Bundle)
-* section[compositionSection].section[dischargePhysicalStatusSection].entry ^short = "入院中検査結果を記述したObservationリソースなどを参照"
-* section[compositionSection].section[dischargePhysicalStatusSection].entry ^definition = """入院中検査結果を記述して参照する。記述すべき結果が存在しないことを明示的に記述する（「特になし」など）場合にはentry要素は出現せず、emptyReasonに nilknown を記述する。
+* section[compositionSection].section[hospitalStudySection] ^short = "入院中検査結果セクション"
+* section[compositionSection].section[hospitalStudySection] ^definition = "入院中検査結果セクション"
+* section[compositionSection].section[hospitalStudySection].title 1.. MS
+* section[compositionSection].section[hospitalStudySection].title = "入院中検査結果"
+* section[compositionSection].section[hospitalStudySection].title ^short = "セクションタイトル"
+* section[compositionSection].section[hospitalStudySection].title ^definition = "セクションタイトル。固定値。"
+* section[compositionSection].section[hospitalStudySection].code 1.. MS
+* section[compositionSection].section[hospitalStudySection].code ^short = "セクション区分コード"
+* section[compositionSection].section[hospitalStudySection].code ^definition = "セクション区分コード"
+* section[compositionSection].section[hospitalStudySection].code.coding 1..1 MS
+* section[compositionSection].section[hospitalStudySection].code.coding.system 1.. MS
+* section[compositionSection].section[hospitalStudySection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
+* section[compositionSection].section[hospitalStudySection].code.coding.system ^short = "セクション区分コードのコード体系"
+* section[compositionSection].section[hospitalStudySection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
+* section[compositionSection].section[hospitalStudySection].code.coding.code 1.. MS
+* section[compositionSection].section[hospitalStudySection].code.coding.code = #623 (exactly)
+* section[compositionSection].section[hospitalStudySection].code.coding.code ^short = "セクション区分のコード値"
+* section[compositionSection].section[hospitalStudySection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
+* section[compositionSection].section[hospitalStudySection].code.coding.display = "入院中検査結果セクション" (exactly)
+* section[compositionSection].section[hospitalStudySection].code.coding.display ^short = "セクション区分コードの表示名"
+* section[compositionSection].section[hospitalStudySection].code.coding.display ^definition = "セクション区分コードの表示名。"
+* section[compositionSection].section[hospitalStudySection].code.coding.display MS
+* section[compositionSection].section[hospitalStudySection].code.coding.userSelected ..0
+* section[compositionSection].section[hospitalStudySection].code.text ..0
+* section[compositionSection].section[hospitalStudySection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
+* section[compositionSection].section[hospitalStudySection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
+* section[compositionSection].section[hospitalStudySection].text MS
+* section[compositionSection].section[hospitalStudySection].text.status MS
+* section[compositionSection].section[hospitalStudySection].text.status = #additional (exactly)
+* section[compositionSection].section[hospitalStudySection].text.status ^short = "セクションの内容作成状態コード"
+* section[compositionSection].section[hospitalStudySection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
+* section[compositionSection].section[hospitalStudySection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
+* section[compositionSection].section[hospitalStudySection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
+* section[compositionSection].section[hospitalStudySection].mode ..0
+* section[compositionSection].section[hospitalStudySection].orderedBy ..0
+* section[compositionSection].section[hospitalStudySection].entry 0..* MS
+* section[compositionSection].section[hospitalStudySection].entry only Reference(JP_Observation_Common or JP_ImagingStudy_Radiology or JP_DiagnosticReport_Common or Bundle)
+* section[compositionSection].section[hospitalStudySection].entry ^short = "入院中検査結果を記述したObservationリソースなどを参照"
+* section[compositionSection].section[hospitalStudySection].entry ^definition = """入院中検査結果を記述して参照する。記述すべき結果が存在しないことを明示的に記述する（「特になし」など）場合にはentry要素は出現せず、emptyReasonに nilknown を記述する。
                                                                 結果データを取得しようとしていない場合でそれを明示的に記述する（「取得せず」など）場合にはentry要素は出現せず、emptyReasonに notasked を記述する。
                                                                 情報が患者やシステムから取得できない状況でそれを明示的に記述する（「取得できず」「不明」など）場合にはentry要素は出現せず、emptyReasonに unavailable を記述する。
                                                                 """
-* section[compositionSection].section[dischargePhysicalStatusSection].emptyReason ..1
-* section[compositionSection].section[dischargePhysicalStatusSection].section ..0
+* section[compositionSection].section[hospitalStudySection].emptyReason ..1
+* section[compositionSection].section[hospitalStudySection].section ..0
 
 ////
 //
 
-* section[compositionSection].section[medicalDeviceSection]
 * section[compositionSection].section[medicalDeviceSection] ^short = "医療機器セクション"
 * section[compositionSection].section[medicalDeviceSection] ^definition = "医療機器セクション"
 * section[compositionSection].section[medicalDeviceSection].title 1.. MS
@@ -1198,7 +1178,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[medicalDeviceSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[medicalDeviceSection].code.coding 1..1 MS
 * section[compositionSection].section[medicalDeviceSection].code.coding.system 1.. MS
-* section[compositionSection].section[medicalDeviceSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[medicalDeviceSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[medicalDeviceSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[medicalDeviceSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[medicalDeviceSection].code.coding.code 1.. MS
@@ -1234,7 +1214,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[medicalDeviceSection].section ..0
 ////
 //
-* section[compositionSection].section[immunizationSection]
 * section[compositionSection].section[immunizationSection] ^short = "予防接種歴セクション"
 * section[compositionSection].section[immunizationSection] ^definition = "予防接種歴セクション"
 * section[compositionSection].section[immunizationSection].title 1.. MS
@@ -1246,7 +1225,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[immunizationSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[immunizationSection].code.coding 1..1 MS
 * section[compositionSection].section[immunizationSection].code.coding.system 1.. MS
-* section[compositionSection].section[immunizationSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[immunizationSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[immunizationSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[immunizationSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[immunizationSection].code.coding.code 1.. MS
@@ -1283,7 +1262,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[immunizationSection].emptyReason ..1
 * section[compositionSection].section[immunizationSection].section ..0
 //
-* section[compositionSection].section[advanceDirectiveSection]
 * section[compositionSection].section[advanceDirectiveSection] ^short = "事前指示セクション"
 * section[compositionSection].section[advanceDirectiveSection] ^definition = "事前指示セクション"
 * section[compositionSection].section[advanceDirectiveSection].title 1.. MS
@@ -1295,7 +1273,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[advanceDirectiveSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[advanceDirectiveSection].code.coding 1..1 MS
 * section[compositionSection].section[advanceDirectiveSection].code.coding.system 1.. MS
-* section[compositionSection].section[advanceDirectiveSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[advanceDirectiveSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[advanceDirectiveSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[advanceDirectiveSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[advanceDirectiveSection].code.coding.code 1.. MS
@@ -1330,7 +1308,6 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[advanceDirectiveSection].emptyReason ..1
 * section[compositionSection].section[advanceDirectiveSection].section ..0
 ////
-* section[compositionSection].section[researchParticipationSection]
 * section[compositionSection].section[researchParticipationSection] ^short = "臨床研究参加セクション"
 * section[compositionSection].section[researchParticipationSection] ^definition = "臨床研究参加セクション"
 * section[compositionSection].section[researchParticipationSection].title 1.. MS
@@ -1342,7 +1319,7 @@ and authorDepartment 0..1 MS
 * section[compositionSection].section[researchParticipationSection].code ^definition = "セクション区分コード"
 * section[compositionSection].section[researchParticipationSection].code.coding 1..1 MS
 * section[compositionSection].section[researchParticipationSection].code.coding.system 1.. MS
-* section[compositionSection].section[researchParticipationSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section " (exactly)
+* section[compositionSection].section[researchParticipationSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
 * section[compositionSection].section[researchParticipationSection].code.coding.system ^short = "セクション区分コードのコード体系"
 * section[compositionSection].section[researchParticipationSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
 * section[compositionSection].section[researchParticipationSection].code.coding.code 1.. MS
