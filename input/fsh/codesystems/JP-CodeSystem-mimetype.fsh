@@ -1,9 +1,11 @@
 // Mime typeコード
 CodeSystem: JP_codeSystem_mimetype
-Id: jp-codeSystem-eDischargeSummary-mimetype
+Id: jp-codeSystem-eReferral-mimetype
 Description: "mime type"
 * ^url = "urn:ietf:bcp:13"
+* ^title = "eReferral-mimetype"
 * ^status = #active
+* ^experimental = false
 * ^content = #complete
 * ^caseSensitive = false
 * #text/html
