@@ -6,6 +6,7 @@ Expression: "(telecom.where(value.exists())).exists()"
 
 
 Profile: JP_Organization_eClinicalSummary
+
 Parent: JP_Organization
 Id: JP-Organization-eClinicalSummary
 Description: "処方を発行した医療機関の情報　JP_Organizationの派生プロファイル"
