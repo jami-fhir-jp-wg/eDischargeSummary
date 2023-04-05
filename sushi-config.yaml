@@ -6,59 +6,46 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: eDischarge
 canonical: http://jpfhir.jp/fhir/eDischarge
-name: "JAMIeDischargeImplementationGuide"
-title: "JAMI eDischarge ImplementationGuide"
-description: "JAMI eDischarge ImplementationGuide"
-status: draft # draft | active | retired | unknown 
-version: 0.9.0
+name: "HL7Japan-JAMIeDischargeImplementationGuide"
+title: "HL7 Japan-JAMI eDischarge ImplementationGuide"
+description: "HL7 Japan-JAMI eDischarge ImplementationGuide"
+status: active # draft | active | retired | unknown 
+version: 1.1.2
+date: 2023-03-31
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html 
 copyrightYear: 2022+
 
-releaseLabel: ci-build # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
+releaseLabel: release # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
 # license: CC0-1.0 #  https://www.hl7.org/fhir/valueset-spdx-license.html
-# jurisdiction: urn:iso:std:iso:3166#US "United States of America"
 # https://www.hl7.org/fhir/valueset-jurisdiction.html 
 publisher:
-  name: Kazuhiko Ohe@JAMI
+  name: Kazuhiko Ohe@JAMI/HL7Japan and The University of Tokyo
   url: http://jpfhir.jp
-  # email: test@example.org
+  # email: office@hlfhir.jp
+copyright: Copyright HL7Japan and Japan Association of Medical Informatics (JAMI), CC(Creative Commons license) BY-ND CC表示・改変禁止
+jurisdiction: 'urn:iso:std:iso:3166#JP'
 
 dependencies:
   jp-core.r4:
     uri: http://jpfhir.jp/fhir/core/ImplementationGuide/jp-core.r4
     version: 1.1.1-snap
 
-
-# The dependencies property corresponds to IG.dependsOn. The key is the
-# package id and the value is the version (or dev/current). For advanced
-# use cases, the value can be an object with keys for id, uri, and version.
-#
-# dependencies:
-#   hl7.fhir.us.core: 3.1.0
-#   hl7.fhir.us.mcode:
-#     id: mcode
-#     uri: http://hl7.org/fhir/us/mcode/ImplementationGuide/hl7.fhir.us.mcode
-#     version: 1.0.0
-#
-#
-# The pages property corresponds to IG.definition.page. SUSHI can
-# auto-generate the page list, but if the author includes pages in
-# this file, it is assumed that the author will fully manage the
-# pages section and SUSHI will not generate any page entries.
-# The page file name is used as the key. If title is not provided,
-# then the title will be generated from the file name.  If a
-# generation value is not provided, it will be inferred from the
-# file name extension.  Any subproperties that are valid filenames
-# with supported extensions (e.g., .md/.xml) will be treated as
-# sub-pages. 
-#
+#----------------------------------------
+# ページタイトル名称設定
+#----------------------------------------
 
 pages:
   index.md:
-    title: 退院時サマリーHL7 FHIR記述仕様書 第1版
+    title: 退院時サマリーHL7 FHIR記述仕様書 第1版 V1.1.2
   eClinicalSummaryTables.md:
     title: 各表一覧
-
+  namespace.md:
+    title: 名前空間一覧
+  #updateHistory.md:
+  #  title: 履歴情報
+#-----------------------------------------
+# メニュー設定
+#-----------------------------------------
 menu:
   Home: index.html
   Artifacts: artifacts.html
@@ -75,6 +62,7 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
     #- input/intro-notes
     - fsh-generated/includes
     #- input/summaries
+    - input/fsh/eClinicalSummary/pagecontent
   path-expansion-params: '../../input/_resources/exp-params.json'
   active-tables: 'false'
   apply-version: 'true'
@@ -92,4 +80,84 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
   excludeexample: 'false'
   generate: #what does this do - todo: remove and see
     - json
-#  special-url:
+  no-validate:
+    - '*/hl7.fhir.jp.core'
+  special-url:
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_AllergyIntolerance_eClinicalSummary
+    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_Binary
+    - http://jpfhir.jp/fhir/eReferral/StructureDefinition/JP_Bundle_eDischargeSummary
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_CarePlan_eClinicalSummary
+    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_CarePlan
+    - http://jpfhir.jp/fhir/eReferral/StructureDefinition/JP_Composition_eDischargeSummary
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Condition_eClinicalSummary
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Consent_eClinicalSummary
+    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_Consent
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Device_eClinicalSummary
+    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_Device
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_DeviceUseStatement_eClinicalSummary
+    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_DeviceUseStatement
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_DocumentReference_CDAdocument
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_DocumentReference_eClinicalSummary
+    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_DocumentReference
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Encounter_eClinicalSummary
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_FamilyMemberHistory_eClinicalSummary
+    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_ImagingStudy_Radiology_eClinicalSummary
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Immunization_eClinicalSummary
+    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_Immunization
+    - http://jpfhir.jp/fhir/ePrescription/StructureDefinition/JP_MedicationRequest_ePrescriptionData
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_MedicationStatement_eClinicalSummary
+    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_MedicationStatement
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Observation_Common_eClinicalSummary
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Organization_eClinicalSummary_department
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Organization_eClinicalSummary
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Patient_eClinicalSummary
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Practitioner_eClinicalSummary_author
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Practitioner_eClinicalSummary
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_PractitionerRole_eClinicalSummary_author
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Procedure_eClinicalSummary
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_RelatedPerson_eClinicalSummary
+    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_RelatedPerson
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_ResearchStudy_eClinicalSummary
+    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_ResearchStudy
+    - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_ResearchSubject_eClinicalSummary
+    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_ResearchSubject
+    - http://jpfhir.jp/fhir/eReferral/Extension/StructureDefinition/JP_Communication_CommunicationContent
+    - http://jpfhir.jp/fhir/core/Extension/StructureDefinition/JP_MedicationRequest_DispenseRequest_InstructionForDispense
+    - urn:oid:1.2.392.200250.2.2.20.30
+    - urn:oid:1.2.392.200250.2.2.20.40
+    - urn:oid:1.2.392.200250.2.2.30.10
+    - urn:oid:1.2.392.200250.2.2.20.22
+    - urn:oid:1.2.392.200250.2.2.20.32
+    - http://jpfhir.jp/fhir/ePrescription/CodeSystem/route-codes
+    - http://jpfhir.jp/fhir/CarePlan/CodeSystem/category
+    - http://jpfhir.jp/fhir/Common/CodeSystem/doc-typecodes
+    - http://jpfhir.jp/fhir/ePrescription/CodeSystem/communication-category
+    - http://jpfhir.jp/fhir/ePrescription/CodeSystem/prescription-section
+    - http://jpfhir.jp/fhir/eReferral/CodeSystem/document-section
+    - urn:ietf:bcp:13
+    - urn:oid:1.2.392.100495.20.3.61
+    - http://jpfhir.jp/fhir/core/CodeSystem/practitioner-certificate-category
+    - urn:oid:1.2.392.100495.20.3.21
+    - http://jpfhir.jp/fhir/ePrescription/CodeSystem/prescription-category
+    - urn:oid:1.2.392.100495.20.3.71
+    - urn:oid:1.2.392.100495.20.3.22
+    - urn:oid:1.2.392.100495.20.1.23
+    - urn:oid:1.2.392.100495.20.2.101
+    - urn:oid:1.2.392.100495.20.2.51
+    - urn:oid:1.2.392.100495.20.2.11
+    - urn:oid:1.2.392.100495.20.2.22
+    - urn:oid:1.2.392.100495.20.2.21
+    - urn:oid:1.2.392.100495.20.2.42
+    - urn:oid:1.2.392.100495.20.2.61
+    - urn:oid:1.2.392.100495.20.2.63
+    - urn:oid:1.2.392.100495.20.2.62
+    - urn:oid:1.2.392.100495.20.2.12
+    - urn:oid:1.2.392.100495.20.2.41
+    - http://jpfhir.jp/fhir/CarePlan/ValueSet/category
+    - http://jpfhir.jp/fhir/ePrescription/ValueSet/jami-ePreDispenseInstruction
+    - http://jpfhir.jp/fhir/ePrescription/ValueSet/jami-ePreOrderUsageCode
+    - http://jpfhir.jp/fhir/ePrescription/ValueSet/jp-medicationcode
+    - http://jpfhir.jp/fhir/Common/ValueSet/doc-typecodes
+    - http://jpfhir.jp/fhir/ePrescription/ValueSet/jp-medicationcode-gs1-14
+    - http://jpfhir.jp/fhir/Common/ValueSet/mhlw-ePreCDA-insuranceCategory
+
