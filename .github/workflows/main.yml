@@ -8,6 +8,7 @@ on:
       - 'sushi-config.yaml'
       - 'input/**'
       - '.github/workflows/main.yml'
+      - 'script/*.py'
   pull_request:
     branches: [ develop1.0 ]
   repository_dispatch:
