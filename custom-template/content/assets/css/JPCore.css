@@ -1,6 +1,10 @@
-#segment-footer > 
-.container {background-color: #138BAE;}
-.navbar-inverse {background-color: #138BAE;}
+#segment-footer>.container {
+    background-color: #58045285;
+}
+
+.navbar-inverse {
+    background-color: #58045285;
+}
 
 table.colsd td {
     background-color: #ffffe6;
