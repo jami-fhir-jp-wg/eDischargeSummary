@@ -1,0 +1,195 @@
+<style type="text/css">
+
+table {
+  border: solid 1px black;
+  border-collapse: collapse;
+}
+ 
+table td {
+  border: solid 1px black;
+
+}
+
+table th {
+  border: solid 1px black;
+}
+   h1 {
+      counter-reset: chapter;
+    }
+
+    h2 {
+      counter-reset: sub-chapter;
+    }
+
+    h3 {
+      counter-reset: section;
+    }
+
+    h4 {
+      counter-reset: sub-section;
+    }
+
+    h5 {
+      counter-reset: composite;
+    }
+
+    h6 {
+      counter-reset: sub-composite;
+    }
+
+    h1:before {
+      color: black;
+      counter-increment: bchapter;
+      content:  " ";
+    }
+
+    h2:before {
+      color: black;
+      counter-increment: chapter;
+      content: counter(chapter) ". ";
+    }
+
+    h3:before {
+      color: black;
+      counter-increment: sub-chapter;
+      content: counter(chapter) "."counter(sub-chapter) ". ";
+    }
+
+
+    h4:before {
+      color: black;
+      counter-increment: section;
+      content: counter(chapter) "."counter(sub-chapter) "."counter(section) " ";
+    }
+
+    h5:before {
+      color: black;
+      counter-increment: sub-section;
+      content: counter(chapter) "."counter(sub-chapter) "."counter(section) "."counter(sub-section) " ";
+    }
+
+    h6:before {
+      color: black;
+      counter-increment: sub-sub-section;
+      content: "　　"counter(sub-sub-section) "）";
+    }
+
+</style>
+
+# 改訂履歴　（新しい順）
+## 2023.03.31	Ver.1.1.2	(V1.1.0/V1.1.1は欠番)
+　- 参照する仕様にJp Core実装ガイドを追加
+　- P6-7 Bundle表:PDF情報エントリーの記載漏れを追加
+### セクション構成の表：
+  - セクション333 入院中経過セクションのリソース種別に誤記があり、ClinicalImpressionからDocumentReferenceに修正。
+###　セクション構成の表： 多重度と任意・必須欄
+　- セクション200と300とは「どちらか一方必須」に修正
+　- セクション300 section.entryの多重度を1..1に修正
+　- セクション342 section.entryの多重度を0..1に修正
+  - セクション510 任意に変更
+### セクション構成の表：日本語セクション名、英語セクションIDの修正。
+####  これに伴い各セクションの説明である4.5節以降の表題と説明も一部修正。また4.5節以降の各セクションの説明にセクションコードを明記
+　- セクション322 入院詳細セクション→入院時詳細セクション
+　- セクション352入院時主訴セクション→主訴セクション
+　　　　　chiefProblemOnAdmissionSection
+　　　→ chiefComplaintsSection
+　- セクション362 入院時現病歴セクション→現病歴セクション
+　　　　　presentIllnessOnAdmissionSection
+　　　→ presentIllnessSection
+　- セクション372 入院時既往歴セクション→既往歴セクション
+　　　　　pastIllnessOnAdmissionSection
+　　　→ pastIllnessSection
+　- セクション642 入院時社会歴セクション→社会歴・生活習慣セクション
+　　　　　socialHistoryOnAdmissionSection
+　　　→ socialHistorySection
+　- セクション552 入院時家族歴セクション→家族歴セクション
+　　　　　familiyHistoOnAdmissionrySection
+　　　→ familiyHistorySection
+　- セクション344 退院時診断セクションの記載漏れを追加
+        diagnosesOnDischargeSection
+### 4.18 退院時診断セクションを導入し、説明を追加
+
+### 共通リソース表の修正、変更
+    - http://jpfhir.jp/fhir/core/IdSystem/resourceInstance-identifier へ変更
+        - 表1 AllergyIntolerance
+        - 表4 CarePlan
+        - 表5-1と5-2 Composition
+        - 表6 Condition
+        - 表7 Consent
+        - 表8 DeviceUseStatement
+        - 表9 Device
+        - 表10 DiagnosticReport
+        - 表12 Encounter
+        - 表13 FamilyMemberHistory
+        - 表14 ImagingStudy
+        - 表15 Immunization
+        - 表17 MedicationStatement
+        - 表18 Observation
+        - 表19 Organization
+        - 表25 ResearchStudy
+        - 表26 ResearchSubject
+    
+        の各 identifier （JP-Core V1.1 対応）
+
+    - 表1 AllergyIntolerance.code（JP-Core V1.1 対応）
+        - http://jpfhir.jp/fhir/core/CodeSystem/JP_JfagyFoodAllergen_CS　
+        - code要素に使用できるコード表を追記
+        - AllergyIntolerance.reaction.substance.code同上
+    - 表3 Binaryエントリーの説明にPDFセクションを追加
+    - 表4 CarePlan.category
+        - http://jpfhir.jp/fhir/core/CodeSystem/care-plan-category
+    - 表5-1 
+        - Composition.extension.valueString 文書バージョンの例として"1.0" から "1"に修正
+        - Composition.type.coding.code退院時サマリーのコードに修正
+        - 入院中経過セクションのリソースをClinicalImpressionからDocumentReferenceに修正
+        - Composition.authoｒ 診療科も記述できるよう行を追加
+        - Composition.event 要素に入院期間を設定することを必須で追加
+        - sectionをひとつ追加し、退院時診断セクションを追加
+        - 添付情報セクションとPDFセクションの英語セクション名の最初の1文字をを小文字に変更
+    - 表5-2
+        - Composition.extension.valueString 文書バージョンの例として"1.0" から "1"に修正
+        - Composition.type.coding.code 診療情報提供書のコードに修正
+        - Composition.authoｒ 診療科も記述できるよう行を追加
+        - 臨床経過セクションのリソースをClinicalImpressionからDocumentReferenceに修正
+        - アレルギー、家族歴、身体所見、感染症の各セクションのcardinality を1..*から0..*に修正（必須から任意に修正）
+        - 備考・連絡情報セクションの記載がもれていたので追加
+        - 添付情報セクションとPDFセクションの英語セクション名の最初の1文字をを小文字に変更
+    - 表10 DiagnosticReport.meta.profile
+        - http://jpfhir.jp/fhir/core/StructureDefinition/JP_DiagnosticReport_Commonに変更（JP-Core v1.1対応）
+    - 表11 DocumentReference.meta.profile  
+        - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_DocumentReference_eClinicalSummary に修正
+        - classHistory.period  cardinlityを1..1から0..1に変更
+    - 表14 ImagingStudy.meta.profile
+        - http://jpfhir.jp/fhir/core/StructureDefinition/JP_ImagingStudy_Radiology に変更（JP-Core v1.1対応）
+    - 表16 MedicationRequest.meta.profile
+        - http://jpfhir.jp/fhir/ePrescription/StructureDefinition/JP_MedicationRequest_ePrescriptionData　に修正
+    - 表16 MedicationRequest.dispenseRequest.quantity.system  urn:oid:1.2.392.100495.20.2.101 に修正
+        - MedicationRequest.dosageInstruction.extension.url 
+        http://jpfhir.jp/fhir/core/Extension/StructureDefinition/JP_MedicationDosage_PeriodOfUse　に変更（JP-Core v1.1対応）
+    - 表16-1 MedicationRequest.dosageInstruction.timing.code.coding.system
+        urn:oid:1.2.392.200250.2.2.20 に修正
+    - 表17-1 MedicationStatement.dosage.timing.code.coding.system  urn:oid:1.2.392.200250.2.2.20に修正
+    - 表18 Observation.meta.profile http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Observation_Common_eClinicalSummary （JP-Core v1.1対応し、適切な値を使うことを記載）
+    - 表19　Organization 医療機関情報
+        - Organization.meta.profile  http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Organization_eClinicalSummary
+          に変更（発行元と先でprofileを同じにした）
+        - Organization.extension.valueCoding  および同.code修正
+        - Organization.type  cardinality を0..1 に修正
+        - Organization.telecom.system    cardinality を0..1 に修正
+        - Organization.country    cardinality を0..1 に修正
+    - 表20  Organization 診療科情報
+        - Organization.meta.profile
+            - http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Organization_eClinicalSummary_department に変更（発行元と先でprofileを同じにした）
+        - Organization.partOf　cardinalityを0..1に変更
+    - 表21　Patient　患者情報
+        - Patient.telecom.system    cardinality を0..1 に修正　
+        - Patient.telecom.use    cardinality を0..1 に修正
+        - Patient.address.postalCode    cardinality を0..1 に修正
+    - 表22 Practitioner 文書作成責任者情報／文書法的責任者情報
+        - meta.profile http://jpfhir.jp/fhir/eClinicalSummary/StructureDefinition/JP_Practitioner_eClinicalSummary に変更（発行元と先でprofileを同じにした）
+    - 表23 Procedure 入院中治療処置情報
+        - Procedure.category カテゴリーのsystem値http://jpfhir.jp/fhir/core/CodeSystem/JP_ProcedureCategory_CS に変更し、説明を変更（JP-Core v1.1対応）
+        - Procedure.code system=http://jpfhir.jp/fhir/core/CodeSystem/JP_ProcedureCodesMedical_CSに変更し、説明を変更
+        - Procedure.bodySite STEM７のsystem値を変    （JP-Core v1.1に対応）
+        - Procedure.outcome カテゴリーのsystem値　http://jpfhir.jp/fhir/core/CodeSystem/JP_ProcedureOutcome_CS　に変更し、説明を変更（JP-Core v1.1対応）
+

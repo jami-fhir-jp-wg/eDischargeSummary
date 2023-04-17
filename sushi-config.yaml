@@ -36,11 +36,11 @@ pages:
   index.md:
     title: 退院時サマリーHL7 FHIR記述仕様書 第1版 V1.1.2
   eClinicalSummaryTables.md:
-    title: 各表一覧
+    title: リソース表 各表一覧
   namespace.md:
     title: 名前空間一覧
-  #updateHistory.md:
-  #  title: 履歴情報
+  updateHistory.md:
+    title: 履歴情報
 #-----------------------------------------
 # メニュー設定
 #-----------------------------------------

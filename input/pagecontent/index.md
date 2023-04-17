@@ -183,7 +183,7 @@ Bundleリソースは図のように、Compositionリソースにてセクショ
 
 Bundleリソース全体の構造を以下の表に示す。
 
-＜[表3　　Bundleリソース　文書情報]()＞
+＜[表3　　Bundleリソース　文書情報](eReferralTables.html#tbl-3)＞
 
 この表で示すように、documentタイプのBundleリソースでは、管理的な情報を格納する要素としてtimestamp、 signature などがあり、文書自体の内容情報を格納する要素として、ひとつのentry要素（エントリリスト）がある。このentry要素の値には、複数のresource要素を含むブロックが繰り返される。<br>
 この表では様々なentryが列挙されているが、先にも述べたように、entry要素自体は1度だけ出現し、その値がリストとなることに注意されたい。 
@@ -194,11 +194,13 @@ entryの最初のresource は、先に述べたように、構成リソース一
 
 以下では、まずentryの値である各リソースについて詳述する。
 
+<br>[→topへ](index.html)<br>
+
 ### Compositionリソース
 Compositionリソースは、退院時サマリーFHIR documentにentry として格納される複数のリソースのうちの最初に出現するもので、この文書全体の構成目次に相当する情報や、セクションの構成を記述したものである。<br>
 退院時サマリーFHIR documentでの Compositionリソースの仕様を次の表に示す。
 
-＜[表5　　Compositionリソース　文書構成情報]()＞
+＜[表5-1　　Compositionリソース　文書構成情報](eReferralTables.html#tbl-5)＞
 
 退院時サマリーは、あとで説明するように4つのセクション（CDA参照セクション、構造情報セクション、PDFセクション、添付情報セクション）から構成され、さらにそのうち構造情報セクションには子となるセクションが複数配置されている。<br>
 Compositionリソースは患者や作成者など文書情報管理用の情報を記述するいわゆるヘッダ部、および退院時サマリー文書の本体内容を記述するボディー部から構成される。<br>
@@ -265,14 +267,16 @@ Composition.identifier要素には、その医療機関が発行した退院時�
 
 Patientリソースの仕様は次の表で示す。
 
-＜[表21　　Patientリソース　患者情報]()＞
+＜[表21　　Patientリソース　患者情報](eReferralTables.html#tbl-21)＞
+<br>[→topへ](index.html)<br>
 
 #### Composition.encounter要素
 この退院時サマリーを作成する元となった入院情報を表すEncounterリソースを、そのEncounterリソースのリソースIDである"urn:uuid: ..... "　を記述することにより内部参照する。<br>
 任意要素である。<br>
 Encounterリソースの仕様は次の表で示す。
 
-＜[表12　　Encounterリソース　入院詳細情報]()＞
+＜[表12　　Encounterリソース 受診時情報（診療情報提供書）/入院詳細情報(退院時サマリー)＞](eReferralTables.html#tbl-12)＞
+<br>[→topへ](index.html)<br>
 
 #### Composition.author要素
 この退院時サマリー文書の作成責任者を表すPractitionerリソースを、そのPractitionerリソースのリソースIDである"urn:uuid: ..... "　を記述することにより内部参照する。<br>
@@ -280,9 +284,9 @@ Encounterリソースの仕様は次の表で示す。
 文書作成責任者（Practitionerリソース）と文書作成医療機関情報（Organizationリソース）は共に必須である。診療科情報（Organizationリソース）は任意である。<br>
 Practitionerリソース、Organizationリソースの仕様はそれぞれ次の表で示す。
 
-＜[表22　　Practitionerリソース　　文書作成責任者情報/文書法的責任者情報]()＞
-＜[表19　　Organizationリソース　文書作成医療機関情報]()＞
-＜[表20　　Organizationリソース　診療科情報]()＞
+＜[表22　　Practitionerリソース　　文書作成責任者情報/文書法的責任者情報](eReferralTables.html#tbl-22)＞<br>
+＜[表19　　Organizationリソース　文書作成医療機関情報](eReferralTables.html#tbl-19)＞<br>
+＜[表20　　Organizationリソース　診療科情報](eReferralTables.html#tbl-20)＞
 
 #### Composition.custodian要素
 この退院時サマリー文書の作成・修正を行い、文書の管理責任を持つ機関を表す。<br>
@@ -296,7 +300,7 @@ Practitionerリソース、Organizationリソースの仕様はそれぞれ次�
 #### Composition.section要素
 すべてのComposition.section要素は、以下の構造をとる。
 
-＜[表5-3* *Composition_sectionの情報構造]()＞
+＜[表5-3* *Composition_sectionの情報構造](eReferralTables.html#tbl-5-3)＞
 
 Composition.sectionの直下には、4つのsectionが子要素として存在している。
 1) CDA参照セクション
@@ -331,7 +335,7 @@ Composition.sectionの直下には、4つのsectionが子要素として存在�
 入院期間中の詳細情報を記述したEncounterリソースを参照する。<br>
 セクションコード：322<br>
 
-＜[表12　　Encounterリソース　入院詳細情報]()＞
+＜[表12　　Encounterリソース　入院詳細情報](eReferralTables.html#tbl-12)＞
 
 入院期間、入院時主訴・入院理由、入退院詳細情報、退院時転帰コード情報などが必須情報として記述される。<br>
 Encounter リソースから参照することがあるリソース：<br>
@@ -345,7 +349,7 @@ Encounter リソースから参照することがあるリソース：<br>
 セクションコード：342<br>
 Conditionリソースの仕様は次の表である。
 
-＜[表6　　Conditionリソース　患者状態情報]()＞
+＜[表6　　Conditionリソース　患者状態情報](eReferralTables.html#tbl-6)＞
 
 ##   19. アレルギー・不耐性反応セクション
 アレルギー・不耐性反応情報を記述したAllergyIntoleranceリソースで記述される。<br>
@@ -353,7 +357,7 @@ Conditionリソースの仕様は次の表である。
 アレルゲンコードは、R2厚生科研研究班と日本医療情報学会NeXEHRS研究会HL7FHIR日本実装検討WG関係者とで共同策定した「JPFHIRアレルゲンコード表」を使用する。<br>
 このコード表は、医薬品以外のアレルゲンにコードをアサインして策定したJFAGYコードと、医薬品（YJコードまたはWHO-ATCコードまたは厚労省一般医薬品コード）のいずれかのコードを使用できる新たなコード体系JPFHIRアレルゲンコード表である。
 
-＜[表1　　AllergyIntoleranceリソース　アレルギー情報]()＞
+＜[表1　　AllergyIntoleranceリソース　アレルギー情報](eReferralTables.html#tbl-1)＞
 
 ##   20. 主訴セクション
 入院時主訴は、入院期間中の詳細情報を記述したEncounterリソースから、入院中診断情報ConditionリソースのリストとしてEncounter.diagnosisで参照されている情報の一部である。Encounter.diagnosis.use要素（患者状態の診断位置付け区分）が「CC:入院時主訴」となっているリソースインスタンスが入院時主訴であるから、そのConditionのリストを、本セクションのentryから参照する。<br>
@@ -361,13 +365,13 @@ Conditionリソースの仕様は次の表である。
 セクションコード：352<br>
 Conditionリソースの仕様は次の表である。
 
-＜[表6　　Conditionリソース　患者状態情報]()＞
+＜[表6　　Conditionリソース　患者状態情報](eReferralTables.html#tbl-6)＞
 
 ##   21. 入院理由セクション
 入院理由は、入院期間中の詳細情報を記述したEncounterリソースで、reasonCode要素として記述されているので、本セクションでは同じEncounterリソースインスタンスを参照するだけでよい。<br>
 セクションコード：312<br>
 
-＜[表12　　Encounterリソース　入院詳細情報]()＞（再掲）
+＜[表12　　Encounterリソース　入院時詳細情報](eReferralTables.html#tbl-12)＞（再掲）
 
 ##   22. 現病歴セクション
 病歴は、すべてConditionリソースのリストで記述できるため、これをentryから参照することで記述する。<br>
@@ -376,7 +380,7 @@ Conditionリソースの仕様は次の表である。
 セクションコード：362<br>
 Conditionリソースの仕様は次の表である。
 
-＜[表6　　Conditionリソース　患者状態情報＞]()（再掲）
+＜[表6　　Conditionリソース　患者状態情報＞](eReferralTables.html#tbl-6)（再掲）
 
 ##   23. 既往歴セクション
 現病歴セクションと同仕様である。<br>
@@ -388,8 +392,8 @@ Conditionリソースの仕様は次の表である。
 セクションコード：432<br>
 仕様は次の表である。
 
-＜[表17　　MedicationStatementリソース　　服薬情報]()＞<br>
-＜[表17-1 MedicationStatement* *dosage　処方依頼情報の服薬用法情報]()＞
+＜[表17　　MedicationStatementリソース　　服薬情報](eReferralTables.html#tbl-17)＞<br>
+＜[表17-1 MedicationStatement* *dosage　処方依頼情報の服薬用法情報](eReferralTables.html#tbl-17-1)＞
 
 ##   25. 社会歴・生活習慣セクション
 社会（生活）歴情報は観察調査の一種として、1項目ごとに1つのObservationリソースを使用して記述する。Observationのcategory要素に"social-history"を設定する。<br>
@@ -397,7 +401,7 @@ Conditionリソースの仕様は次の表である。
 セクションコード：642<br>
 仕様は次の表である。
 
-＜[表18　　Observationリソース　　検査・観察情報]()＞
+＜[表18　　Observationリソース　　検査・観察情報](eReferralTables.html#tbl-18)＞
 
 ##   26. 入院時身体所見セクション
 入院時の身体所見は観察や検査所見の一種として、1項目ごとに1つのObservationリソースを使用して記述する。Observationのcategory要素に"exam"を設定する。<br>
@@ -405,14 +409,14 @@ Conditionリソースの仕様は次の表である。
 セクションコード：612<br>
 仕様は次の表である。
 
-＜[表18　　Observationリソース　　検査・観察情報]()＞　（再掲）
+＜[表18　　Observationリソース　　検査・観察情報](eReferralTables.html#tbl-18)＞　（再掲）
 
 ##   27. 家族歴セクション
 入院時に取得する家族歴情報は、家族一人について1つのFamilyMemberHistoryリソースを使用して記述する。<br>
 セクションコード：552<br>
 仕様は次の表である。
 
-＜[表13　　FamiliMemberHistoryリソース　家族歴情報]()＞
+＜[表13　　FamiliMemberHistoryリソース　家族歴情報](eReferralTables.html#tbl-13)＞
 
 ##   28. 入院中経過セクション
 入院中の経過は、ほとんどの場合、叙述的に記述することが必要である。経過中の主訴、診断や検査、投薬、治療などは他のセクションにおいて、Observation、ImagingStudy、DiagnositcReport 、Procedure、MedicationRequest、MedicationStatement、Encounter　などの各リソースで記述される。<br>
@@ -420,14 +424,14 @@ Conditionリソースの仕様は次の表である。
 セクションコード：333<br>
 仕様は次の表に示す。
 
-＜[表11*　　*DocumentReferenceリソース　 文書参照情報]()＞
+＜[表11　　DocumentReferenceリソース　 文書参照情報](eReferralTables.html#tbl-11)＞
 
 ##   29. 退院時詳細セクション
 退院時の詳細情報は、入院期間中の詳細情報を記述したEncounterリソースに、hospitalization 要素として、退院時転帰、退院先、退院日などの情報が記述されている。また退院時診断は同じくdiagnosis要素にdiagnosis.use要素が"DD"(退院時診断)　として記述されている。<br>
 従って本セクションでは同じEncounterリソースインスタンスを参照するだけでよい。<br>
 セクションコード：324<br>
 
-＜[表12　　Encounterリソース　入院詳細情報]()＞　（再掲）
+＜[表12　　Encounterリソース　入院詳細情報](eReferralTables.html#tbl-12)＞　（再掲）
 
 ##   30. 退院時診断セクション
 退院時診断は、入院期間中の詳細情報を記述したEncounterリソースから、退院時診断情報ConditionリソースのリストとしてEncounter.diagnosisで参照されている情報の一部である。<br>
@@ -435,15 +439,15 @@ Encounter.diagnosis.use要素（患者状態の診断位置付け区分）が「
 セクションコード：344<br>
 Conditionリソースの仕様は次の表である。
 
-＜表6　　Conditionリソース　患者状態情報＞　（再掲）
+＜[表6　　Conditionリソース　患者状態情報](eReferralTables.html#tbl-6)＞　（再掲）
 
 ##   31. 退院時投薬指示セクション
 退院時処方は、1医薬品ごとに1つのMedicationReauestリソースを使用して記述する。MedicationReauestでは、1医薬品ごとに用法を記述しており、MedicationRequest.dosaggInstruction要素に記述する。<br>
 セクションコード：444<br>
 仕様は次の表である。
 
-＜[表16　　MedicationRequestリソース　処方依頼情報]()＞<br>
-＜[表16-1 MedicationRequest dosageInstruction　処方情報の用法指示情報]()＞
+＜[表16　　MedicationRequestリソース　処方依頼情報](eReferralTables.html#tbl-16)＞<br>
+＜[表16-1 MedicationRequest dosageInstruction　処方情報の用法指示情報](eReferralTables.html#tbl-16-1)＞
 
 記述方法の詳細は、処方箋データFHIR記述仕様を参照のこと。<br>
 なお、処方箋データFHIR記述仕様にもとづいた処方箋文書（Bundleリソースインスタンス）を直接参照する方法でも記述できる。<br>
@@ -454,7 +458,7 @@ Conditionリソースの仕様は次の表である。
 セクションコード：424<br>
 仕様は次の表である。
 
-＜[表4　　CarePlanリソース　診療方針指示情報]()＞
+＜[表4　　CarePlanリソース　診療方針指示情報](eReferralTables.html#tbl-4)＞
 
 ##   33. 退院時身体所見セクション
 入院時の身体所見と同仕様である。<br>
@@ -466,7 +470,7 @@ note要素に叙述的記述はできるが、entry.textに記述してもよい
 他のセクションで記述できない治療処置を記述するのに用いる。いわゆる治療・処置以外の、たとえばカウンセリングや支援サービスなども記述して差し支えない。<br>
 セクションコード：713
 
-＜[表23　　Procedureリソース　　入院中治療処置情報]()＞
+＜[表23　　Procedureリソース　　入院中治療処置情報](eReferralTables.html#tbl-23)＞
 
 ##   35. 入院中検査結果セクション
 入院中の検査結果は、検査室の検査や観察などはObservationリソースで、画像検査はその実施記録をImagingStudy、診断報告はDiagnosticReportで、それぞれ記述する。<br>
@@ -474,24 +478,24 @@ note要素に叙述的記述はできるが、entry.textに記述してもよい
 セクションコード：623<br>
 仕様はそれぞれ次の表に示す。
 
-＜[表18　　Observationリソース　　検査・観察情報]()＞　（再掲）<br>
-＜[表14　　ImagingStudyリソース　画像検査実施情報]()＞<br>
-＜[表10　　DiagnosticReportリソース　診断報告書情報]()＞
+＜[表18　　Observationリソース　　検査・観察情報](eReferralTables.html#tbl-18)＞　（再掲）<br>
+＜[表14　　ImagingStudyリソース　画像検査実施情報](eReferralTables.html#tbl-14)＞<br>
+＜[表10　　DiagnosticReportリソース　診断報告書情報](eReferralTables.html#tbl-10)＞
 
 ##   36. 医療機器セクション
 入院中あるいは入院前後に患者が使用、装着、離脱した医療機器に関する情報を記述したい場合には、DeviceUseStatementリソースを使用して記述する。このリソースからは使用するデバイスを参照するので、あわせてDeviceリソースも記述して格納する。<br>
 セクションコード：810<br>
 仕様をそれぞれ次の表に示す。
 
-＜[表8　　DeviceUseStatementリソース　医療機器使用歴情報]()＞<br>
-＜[表9　　Deviceリソース　医療機器情報]()＞
+＜[表8　　DeviceUseStatementリソース　医療機器使用歴情報](eReferralTables.html#tbl-8)＞<br>
+＜[表9　　Deviceリソース　医療機器情報](eReferralTables.html#tbl-9)＞
 
 ##   37. 予防接種歴セクション
 予防接種の履歴は、入院にかかわらずImmunaizaionリソースを使用して記述する。<br>
 セクションコード：530<br>
 仕様を次の表に示す。
 
-＜[表15　　Immunizationリソース　ワクチン接種情報]()＞
+＜[表15　　Immunizationリソース　ワクチン接種情報](eReferralTables.html#tbl-15)＞
 
 ##   38. 事前指示セクション
 患者や家族の治療意思と治療方針への同意情報は、事前指示に限らず同意情報としてConsentリソースを使用して記述する。<br>
@@ -499,16 +503,16 @@ Consent.scope 要素に"adr"　を設定（Advanced Care Directive）するこ�
 セクションコード：410<br>
 仕様を次の表に示す。
 
-＜[表7　　Consentリソース　同意情報]()＞
+＜[表7　　Consentリソース　同意情報](eReferralTables.html#tbl-7)＞
 
 ##   39. 臨床研究参加セクション
 患者が臨床研究に参加している、あるいは参加予定である場合など、研究参加情報は、ResearchSubjectリソースを使用して記述する。<br>ResearchSubjectリソースは対象となるResearchStudyリソースを参照するので、あわせてResearchStudyリソースも記述して格納する。<br>
 セクションコード：830<br>
 仕様を次の表に示す。
 
-＜[表26　　ResearchSubjectリソース　　研究対象情報]()＞<br>
-＜[表25　　ResearchStudyリソース　　研究対象情報]()＞<br>
-＜[表7　　Consentリソース　同意情報]()＞　（再掲）
+＜[表26　　ResearchSubjectリソース　　研究対象情報](eReferralTables.html#tbl-26)＞<br>
+＜[表25　　ResearchStudyリソース　　研究対象情報](eReferralTables.html#tbl-25)＞<br>
+＜[表7　　Consentリソース　同意情報](eReferralTables.html#tbl-7)＞　（再掲）
 
 ##   40. 添付情報セクション
 添付情報は、DocumentReferenceリソース、またはBinaryリソースにより記述して格納する。<br>
@@ -517,8 +521,8 @@ Consent.scope 要素に"adr"　を設定（Advanced Care Directive）するこ�
 また複数の外部ファイルがある場合には、たとえば厚生労働省標準HS009で使用されているIHE 統合プロファイル「可搬型医用画像」で規定しているIHE:PDI方式に準拠したフォルダ構成で各ファイルを格納した上でZIP形式などでアーカイブ してひとつのファイルとして、それを外部参照するとよい。<br>
 DocumentReferenceリソース、およびBinaryリソースの仕様は次の表にそれぞれ示す。
 
-＜[表11*　　*DocumentReferenceリソース　 文書参照情報]()＞<br>
-＜[表2　　Binaryリソース　 バイナリーデータ情報]()＞
+＜[表11*　　*DocumentReferenceリソース　 文書参照情報](eReferralTables.html#tbl-11)＞<br>
+＜[表2　　Binaryリソース　 バイナリーデータ情報](eReferralTables.html#tbl-2)＞
 
 ##   41. セクションから直接参照されないリソース
 各セクションのentry要素から直接参照されるリソースは、通常さらに別のリソースを参照する構造（間接的参照リソース）をとる。ここではそれら、間接的参照リソースのうち主要なリソースの仕様を記述する。<br>
@@ -531,15 +535,15 @@ DocumentReferenceリソース、およびBinaryリソースの仕様は次の表
 
 仕様は次の表に示す。この仕様では文書作成医療機関を想定して表が作成されているが、これに限らず他の施設、機関にも適用できる。
 
-＜[表19　　Organizationリソース　文書作成医療機関情報]()＞（再掲）<br>
-＜[表20　　Organizationリソース　診療科情報]()＞（再掲）
+＜[表19　　Organizationリソース　文書作成医療機関情報](eReferralTables.html#tbl-19)＞（再掲）<br>
+＜[表20　　Organizationリソース　診療科情報](eReferralTables.html#tbl-20)＞（再掲）
 
 ###   43. 　RelatedPersonリソース
 患者の関係者（親族や同居者、あるいは友人なども含む）のリソースとしてRelatedPersonリソースが参照される。
 たとえば同意取得や第三者確認などで使用されることがある。
 仕様を次の表に示す。
 
-＜[表24　　RelatedPersonリソース　　患者関係者情報]()＞
+＜[表24　　RelatedPersonリソース　　患者関係者情報](eReferralTables.html#tbl-24)＞
 
 
 #   44. データタイプ
