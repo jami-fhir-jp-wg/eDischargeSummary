@@ -107,8 +107,8 @@ HL7 FHIR Jp Core Implementation Guide(Jp Core実装ガイド) [[https://jpfhir.j
 FHIR では、医療情報はFHIRリソースと呼ばれる単位で記述される。退院時サマリーは文書形式のデータの一種であり、また退院時サマリー文書本体に必要なら電子署名ができ、またそれを利用して改ざん検知及び否認防止ができることが必要であると考えられる。<br>
 Bundleリソースは、複数のFHIRリソースの集合を、あるコンテクストに関する情報（この場合には、退院時サマリーの交付と取得に関する日付情報や発行者、発行機関情報など）とともにひとまとまりの情報にまとめあげたものを記述するのに使われるFHIRリソースであり、以下のような要素から構成される。あるシステムから別のシステムに退院時サマリーを送信する場合は、このBundleリソースの単位で行われる。
 
-![](media/image1.png)
-図 1 Bundleリソース（http://hl7.org/fhir/bundle.html）
+<img src="media/image1.png" width="60%"><br clear="all">
+図1 Bundleリソース（http://hl7.org/fhir/bundle.html）
 
 そして、このBundleリソースのtype要素（上図左段の2つめの要素）の値を"document"とすることにより、Bundleリソースのひとつのタイプである、FHIR Documentを記述できる。<br>
 そこで、本仕様書では、退院時サマリー文書ひとつを、FHIRにおけるBundleリソース のひとつのタイプであるFHIR Documentにより記述することとする。[[http://hl7.org/fhir/documents.html](http://hl7.org/fhir/documents.html)]
