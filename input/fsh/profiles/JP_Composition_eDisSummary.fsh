@@ -266,17 +266,17 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section ^slicing.rules = #open
 
 * section[structuredSection].section   contains 
-        detailsOnAdmissionSection	  1..1    MS  // 入院詳細セクション
+        detailsOnAdmissionSection	  1..1    MS  // 入院時詳細セクション
     and admissionDiagnosesSection    1..1    MS  // 入院時診断セクション
     and allergiesIIntoleranceSection     0..1    MS  // アレルギー・不耐性反応セクション
-    and chiefComplaintsSection    1..1    MS  // 入院時主訴セクション
+    and chiefComplaintsSection    1..1    MS  // 主訴セクション
     and reasonForAdmissionSection      1..1    MS  // 入院理由セクション
-    and presentIllnessSection     1..1    MS  // 入院時現病歴セクション
-    and pastIllnessSection    0..1    MS  // 入院時既往歴セクション
+    and presentIllnessSection     1..1    MS  // 現病歴セクション
+    and pastIllnessSection    0..1    MS  // 既往歴セクション
     and medicationsOnAdmissionSection   0..1    MS  //  入院時服薬セクション
     and socialHistorySection      0..1    MS  //  入院時社会歴セクション
 	and physicalStatusOnAdmissionSection   0..1    MS  //  入院時身体所見セクション
-	and familiyHistorySection      0..1    MS  //  入院時家族歴セクション
+	and familiyHistorySection      0..1    MS  //  家族歴セクション
 	and hospitalCourseSection     1..1    MS  //  入院中経過セクション
 	and dischargeDetailsSection     1..1    MS  //  退院時詳細セクション
 	and dischargeDiagnosesSection     1..1    MS  //  退院時診断セクション
@@ -290,10 +290,10 @@ and authorDepartment 0..1 MS
 	and advanceDirectiveSection   0..1    MS  //  事前指示セクション
 	and researchParticipationSection      0..1    MS  //  臨床研究参加セクション
 //
-* section[structuredSection].section[detailsOnAdmissionSection] ^short = "入院詳細セクション"
-* section[structuredSection].section[detailsOnAdmissionSection] ^definition = "入院詳細セクション"
+* section[structuredSection].section[detailsOnAdmissionSection] ^short = "入院時詳細セクション"
+* section[structuredSection].section[detailsOnAdmissionSection] ^definition = "入院時詳細セクション"
 * section[structuredSection].section[detailsOnAdmissionSection].title 1.. MS
-* section[structuredSection].section[detailsOnAdmissionSection].title = "入院詳細"
+* section[structuredSection].section[detailsOnAdmissionSection].title = "入院時詳細"
 * section[structuredSection].section[detailsOnAdmissionSection].title ^short = "セクションタイトル"
 * section[structuredSection].section[detailsOnAdmissionSection].title ^definition = "セクションタイトル。固定値。"
 * section[structuredSection].section[detailsOnAdmissionSection].code 1.. MS
@@ -308,7 +308,7 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[detailsOnAdmissionSection].code.coding.code = #322 (exactly)
 * section[structuredSection].section[detailsOnAdmissionSection].code.coding.code ^short = "セクション区分のコード値"
 * section[structuredSection].section[detailsOnAdmissionSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[detailsOnAdmissionSection].code.coding.display = "入院詳細セクション" (exactly)
+* section[structuredSection].section[detailsOnAdmissionSection].code.coding.display = "入院時詳細セクション" (exactly)
 * section[structuredSection].section[detailsOnAdmissionSection].code.coding.display ^short = "セクション区分コードの表示名"
 * section[structuredSection].section[detailsOnAdmissionSection].code.coding.display ^definition = "セクション区分コードの表示名。"
 * section[structuredSection].section[detailsOnAdmissionSection].code.coding.display MS
@@ -370,8 +370,8 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[admissionDiagnosesSection].orderedBy ..0
 * section[structuredSection].section[admissionDiagnosesSection].entry 0..* MS
 * section[structuredSection].section[admissionDiagnosesSection].entry only Reference(JP_Condition)
-* section[structuredSection].section[admissionDiagnosesSection].entry ^short = "必須。入院時の傷病名・主訴を１個以上必ず記述する。"
-* section[structuredSection].section[admissionDiagnosesSection].entry ^definition = "入院時の傷病名"
+* section[structuredSection].section[admissionDiagnosesSection].entry ^short = "必須。（入院時の）傷病名・主訴を１個以上必ず記述する。"
+* section[structuredSection].section[admissionDiagnosesSection].entry ^definition = "（入院時の）傷病名"
 * section[structuredSection].section[admissionDiagnosesSection].emptyReason ..1 MS
 * section[structuredSection].section[admissionDiagnosesSection].section ..0
 //
@@ -424,10 +424,10 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[allergiesIIntoleranceSection].section ..0
 //
 ////
-* section[structuredSection].section[chiefComplaintsSection] ^short = "入院時主訴セクション"
-* section[structuredSection].section[chiefComplaintsSection] ^definition = "入院時主訴セクション"
+* section[structuredSection].section[chiefComplaintsSection] ^short = "主訴セクション"
+* section[structuredSection].section[chiefComplaintsSection] ^definition = "主訴セクション"
 * section[structuredSection].section[chiefComplaintsSection].title 1.. MS
-* section[structuredSection].section[chiefComplaintsSection].title = "入院時主訴"
+* section[structuredSection].section[chiefComplaintsSection].title = "主訴"
 * section[structuredSection].section[chiefComplaintsSection].title ^short = "セクションタイトル"
 * section[structuredSection].section[chiefComplaintsSection].title ^definition = "セクションタイトル。固定値。"
 * section[structuredSection].section[chiefComplaintsSection].code 1.. MS
@@ -442,7 +442,7 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[chiefComplaintsSection].code.coding.code = #352 (exactly)
 * section[structuredSection].section[chiefComplaintsSection].code.coding.code ^short = "セクション区分のコード値"
 * section[structuredSection].section[chiefComplaintsSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[chiefComplaintsSection].code.coding.display = "入院時主訴セクション" (exactly)
+* section[structuredSection].section[chiefComplaintsSection].code.coding.display = "主訴セクション" (exactly)
 * section[structuredSection].section[chiefComplaintsSection].code.coding.display ^short = "セクション区分コードの表示名"
 * section[structuredSection].section[chiefComplaintsSection].code.coding.display ^definition = "セクション区分コードの表示名。"
 * section[structuredSection].section[chiefComplaintsSection].code.coding.display MS
@@ -484,7 +484,7 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[reasonForAdmissionSection].code.coding.code = #312 (exactly)
 * section[structuredSection].section[reasonForAdmissionSection].code.coding.code ^short = "セクション区分のコード値"
 * section[structuredSection].section[reasonForAdmissionSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[reasonForAdmissionSection].code.coding.display = "手術セクション" (exactly)
+* section[structuredSection].section[reasonForAdmissionSection].code.coding.display = "入院理由セクションｓ" (exactly)
 * section[structuredSection].section[reasonForAdmissionSection].code.coding.display ^short = "セクション区分コードの表示名"
 * section[structuredSection].section[reasonForAdmissionSection].code.coding.display ^definition = "セクション区分コードの表示名。"
 * section[structuredSection].section[reasonForAdmissionSection].code.coding.display MS
@@ -509,10 +509,10 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[reasonForAdmissionSection].section ..0
 ////
 //
-* section[structuredSection].section[presentIllnessSection] ^short = "入院時現病歴セクション"
-* section[structuredSection].section[presentIllnessSection] ^definition = "入院時現病歴セクション"
+* section[structuredSection].section[presentIllnessSection] ^short = "現病歴セクション"
+* section[structuredSection].section[presentIllnessSection] ^definition = "現病歴セクション"
 * section[structuredSection].section[presentIllnessSection].title 1.. MS
-* section[structuredSection].section[presentIllnessSection].title = "入院時現病歴"
+* section[structuredSection].section[presentIllnessSection].title = "現病歴"
 * section[structuredSection].section[presentIllnessSection].title ^short = "セクションタイトル"
 * section[structuredSection].section[presentIllnessSection].title ^definition = "セクションタイトル。固定値。"
 * section[structuredSection].section[presentIllnessSection].code 1.. MS
@@ -527,7 +527,7 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[presentIllnessSection].code.coding.code = #362 (exactly)
 * section[structuredSection].section[presentIllnessSection].code.coding.code ^short = "セクション区分のコード値"
 * section[structuredSection].section[presentIllnessSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[presentIllnessSection].code.coding.display = "入院時現病歴セクション" (exactly)
+* section[structuredSection].section[presentIllnessSection].code.coding.display = "現病歴セクション" (exactly)
 * section[structuredSection].section[presentIllnessSection].code.coding.display ^short = "セクション区分コードの表示名"
 * section[structuredSection].section[presentIllnessSection].code.coding.display ^definition = "セクション区分コードの表示名。"
 * section[structuredSection].section[presentIllnessSection].code.coding.display MS
@@ -554,10 +554,10 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[presentIllnessSection].emptyReason ..0
 * section[structuredSection].section[presentIllnessSection].section ..0
 ////
-* section[structuredSection].section[pastIllnessSection] ^short = "入院時既往歴セクション"
-* section[structuredSection].section[pastIllnessSection] ^definition = "入院時既往歴セクション"
+* section[structuredSection].section[pastIllnessSection] ^short = "既往歴セクション"
+* section[structuredSection].section[pastIllnessSection] ^definition = "既往歴セクション"
 * section[structuredSection].section[pastIllnessSection].title 1.. MS
-* section[structuredSection].section[pastIllnessSection].title = "入院時既往歴"
+* section[structuredSection].section[pastIllnessSection].title = "既往歴"
 * section[structuredSection].section[pastIllnessSection].title ^short = "セクションタイトル"
 * section[structuredSection].section[pastIllnessSection].title ^definition = "セクションタイトル。固定値。"
 * section[structuredSection].section[pastIllnessSection].code 1.. MS
@@ -572,7 +572,7 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[pastIllnessSection].code.coding.code = #372 (exactly)
 * section[structuredSection].section[pastIllnessSection].code.coding.code ^short = "セクション区分のコード値"
 * section[structuredSection].section[pastIllnessSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[pastIllnessSection].code.coding.display = "入院時既往歴セクション" (exactly)
+* section[structuredSection].section[pastIllnessSection].code.coding.display = "既往歴セクション" (exactly)
 * section[structuredSection].section[pastIllnessSection].code.coding.display ^short = "セクション区分コードの表示名"
 * section[structuredSection].section[pastIllnessSection].code.coding.display ^definition = "セクション区分コードの表示名。"
 * section[structuredSection].section[pastIllnessSection].code.coding.display MS
@@ -647,10 +647,10 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[medicationsOnAdmissionSection].section ..0
 ////
 ////
-* section[structuredSection].section[socialHistorySection] ^short = "入院時社会歴セクション"
-* section[structuredSection].section[socialHistorySection] ^definition = "入院時社会歴セクション"
+* section[structuredSection].section[socialHistorySection] ^short = 社会歴・生活習慣セクション"
+* section[structuredSection].section[socialHistorySection] ^definition = "社会歴・生活習慣セクション"
 * section[structuredSection].section[socialHistorySection].title 1.. MS
-* section[structuredSection].section[socialHistorySection].title = "入院時社会歴"
+* section[structuredSection].section[socialHistorySection].title = "社会歴・生活習慣"
 * section[structuredSection].section[socialHistorySection].title ^short = "セクションタイトル"
 * section[structuredSection].section[socialHistorySection].title ^definition = "セクションタイトル。固定値。"
 * section[structuredSection].section[socialHistorySection].code 1.. MS
@@ -665,7 +665,7 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[socialHistorySection].code.coding.code = #642 (exactly)
 * section[structuredSection].section[socialHistorySection].code.coding.code ^short = "セクション区分のコード値"
 * section[structuredSection].section[socialHistorySection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[socialHistorySection].code.coding.display = "入院時社会歴セクション" (exactly)
+* section[structuredSection].section[socialHistorySection].code.coding.display = "社会歴・生活習慣セクション" (exactly)
 * section[structuredSection].section[socialHistorySection].code.coding.display ^short = "セクション区分コードの表示名"
 * section[structuredSection].section[socialHistorySection].code.coding.display ^definition = "セクション区分コードの表示名。"
 * section[structuredSection].section[socialHistorySection].code.coding.display MS
@@ -743,10 +743,10 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[physicalStatusOnAdmissionSection].emptyReason ..1
 * section[structuredSection].section[physicalStatusOnAdmissionSection].section ..0
 ////
-* section[structuredSection].section[familiyHistorySection] ^short = "入院時家族歴セクション"
-* section[structuredSection].section[familiyHistorySection] ^definition = "入院時家族歴セクション"
+* section[structuredSection].section[familiyHistorySection] ^short = "家族歴セクション"
+* section[structuredSection].section[familiyHistorySection] ^definition = "家族歴セクション"
 * section[structuredSection].section[familiyHistorySection].title 1.. MS
-* section[structuredSection].section[familiyHistorySection].title = "入院時家族歴"
+* section[structuredSection].section[familiyHistorySection].title = "家族歴"
 * section[structuredSection].section[familiyHistorySection].title ^short = "セクションタイトル"
 * section[structuredSection].section[familiyHistorySection].title ^definition = "セクションタイトル。固定値。"
 * section[structuredSection].section[familiyHistorySection].code 1.. MS
@@ -761,7 +761,7 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[familiyHistorySection].code.coding.code = #552 (exactly)
 * section[structuredSection].section[familiyHistorySection].code.coding.code ^short = "セクション区分のコード値"
 * section[structuredSection].section[familiyHistorySection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[familiyHistorySection].code.coding.display = "入院時家族歴セクション" (exactly)
+* section[structuredSection].section[familiyHistorySection].code.coding.display = "家族歴セクション" (exactly)
 * section[structuredSection].section[familiyHistorySection].code.coding.display ^short = "セクション区分コードの表示名"
 * section[structuredSection].section[familiyHistorySection].code.coding.display ^definition = "セクション区分コードの表示名。"
 * section[structuredSection].section[familiyHistorySection].code.coding.display MS
@@ -945,7 +945,7 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[dischargeMedicationSection].code.coding.code = #444 (exactly)
 * section[structuredSection].section[dischargeMedicationSection].code.coding.code ^short = "セクション区分のコード値"
 * section[structuredSection].section[dischargeMedicationSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[dischargeMedicationSection].code.coding.display = "投薬指示セクション" (exactly)
+* section[structuredSection].section[dischargeMedicationSection].code.coding.display = "退院時投薬指示セクション" (exactly)
 * section[structuredSection].section[dischargeMedicationSection].code.coding.display ^short = "セクション区分コードの表示名"
 * section[structuredSection].section[dischargeMedicationSection].code.coding.display ^definition = "セクション区分コードの表示名。"
 * section[structuredSection].section[dischargeMedicationSection].code.coding.display MS
