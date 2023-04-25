@@ -77,8 +77,8 @@ table th {
 </style>
 {% include markdown-link-references.md %}
 
-日本医療情報学会　2021年10月 Ver. 1.0.2 (2022.2.24) 
-日本HL7協会　2021年10月
+日本医療情報学会　2021年10月承認 
+日本HL7協会　2021年10月承認ｓ
 
 # **退院時サマリー HL7 FHIR記述仕様 第1版**
 
