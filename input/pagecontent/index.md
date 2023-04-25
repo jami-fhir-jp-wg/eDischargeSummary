@@ -226,22 +226,22 @@ Compositionリソースは患者や作成者など文書情報管理用の情報
 |---|---|--------|-----------|---------|-----------|
 |200|CDA参照セクション<br>cdaSection|*注|該当なし|DocumentRefrence<br> (CDA規約文書ファイルに限る)|1..1|
 |300|構造情報セクション<br>compositionSection|*注|該当なし|Composition|1..1|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;322|入院時詳細セクション<br>detailsOnAdmissionSectionadmissionDetailsSection|必須|入院時情報、入院時補足情報、入院時主訴・入院理由|Encounter本表の<br>他のEncounterと<br>同一インスタンスを参照。|1..1|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;342|入院時診断セクション<br>diagnosesOnAdmissionSection|必須|入院時情報|Condition|0..1\*|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;322|入院時詳細セクション<br>detailsOnAdmissionSectionadmissionDetailsSection|必須*注|入院時情報、入院時補足情報、入院時主訴・入院理由|Encounter本表の<br>他のEncounterと<br>同一インスタンスを参照。|1..1|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;342|入院時診断セクション<br>diagnosesOnAdmissionSection|必須*注|入院時情報|Condition|0..1\*|
 |&nbsp;&nbsp;&nbsp;\|&nbsp;510|アレルギー・不耐性反応セクション<br>allergiesIIntoleranceSection|任意|アレルギー・不適応反応|AllergyIntolerance|0..\*|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;352|主訴セクション<br>chiefComplaintsSection|必須|主訴|Condition|0..\*|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;312|入院理由セクション<br>reasonForAdmissionSection|必須|入院理由|Encounter本表の<br>他のEncounterと<br>同一インスタンスを参照。|0..1|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;362|現病歴セクション<br>presentIllnessSection|必須|入院前経過.現病歴|Condition|0..\*|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;352|主訴セクション<br>chiefComplaintsSection|必須*注|主訴|Condition|0..\*|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;312|入院理由セクション<br>reasonForAdmissionSection|必須*注|入院理由|Encounter本表の<br>他のEncounterと<br>同一インスタンスを参照。|0..1|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;362|現病歴セクション<br>presentIllnessSection|必須*注|入院前経過.現病歴|Condition|0..\*|
 |&nbsp;&nbsp;&nbsp;\|&nbsp;372|既往歴セクション<br>pastIllnessSection|任意|入院前経過.既往歴|Condition|0..\*|
 |&nbsp;&nbsp;&nbsp;\|&nbsp;432|入院時服薬セクション<br>medicationsOnAdmissionSection|任意|入院前経過.常用薬|MedicationStatement|0..\*|
 |&nbsp;&nbsp;&nbsp;\|&nbsp;642|社会歴・生活習慣セクション<br>socialHistorySection|任意|入院前経過.社会歴|Observation|0..\*|
 |&nbsp;&nbsp;&nbsp;\|&nbsp;612|入院時身体所見セクション<br>physicalStatusOnAdmissionSection|任意|入院前経過.身体所見|Observation|0..\*|
 |&nbsp;&nbsp;&nbsp;\|&nbsp;552|家族歴セクション<br>familiyHistorySection|任意|入院前経過.家族歴|FamilyMemberHistory|0..\*|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;333|入院中経過セクション<br>hospitalCourseSection|必須|入院経過|DocumentReference|1..\*|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;324|退院時詳細セクション<br>detailsOnDischargeSection|必須|退院時の状態|Encounter本表の<br>他のEncounterと<br>同一インスタンスを参照。|1..1|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;344|退院時診断セクション<br>diagnosesOnDischargeSection|必須|退院時情報|Condition|1..\*|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;444|退院時投薬指示セクション<br>medicationOnDischargeSection|必須|退院時投薬指示|MedicationRequest ｜Bundle(電子処方箋)|0..\*|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;424|退院時方針指示セクション<br>instructionOnDischargeSection|必須|退院時方針|CarePlan|0..\*|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;333|入院中経過セクション<br>hospitalCourseSection|必須*注|入院経過|DocumentReference|1..\*|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;324|退院時詳細セクション<br>detailsOnDischargeSection|必須*注|退院時の状態|Encounter本表の<br>他のEncounterと<br>同一インスタンスを参照。|1..1|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;344|退院時診断セクション<br>diagnosesOnDischargeSection|必須*注|退院時情報|Condition|1..\*|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;444|退院時投薬指示セクション<br>medicationOnDischargeSection|必須*注|退院時投薬指示|MedicationRequest ｜Bundle(電子処方箋)|0..\*|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;424|退院時方針指示セクション<br>instructionOnDischargeSection|必須*注|退院時方針|CarePlan|0..\*|
 |&nbsp;&nbsp;&nbsp;\|&nbsp;614|退院時身体所見セクション<br>physicalStatusOnDischargeSection|任意|―|Observation|0..\*|
 |&nbsp;&nbsp;&nbsp;\|&nbsp;713|入院中治療セクション<br>hospitalProcedureSection|任意|手術・処置・治療|Procedure|0..\*|
 |&nbsp;&nbsp;&nbsp;\|&nbsp;623|入院中検査結果セクション<br>hospitalStudySection|任意|（検体・画像・生理・病理）検査結果|Observation \| <br>ImagingStudy \| <br>DiagnosticReport \| <br>Bundle <br>(報告書)|0..\*|
@@ -252,7 +252,8 @@ Compositionリソースは患者や作成者など文書情報管理用の情報
 |210|添付情報セクション<br>attachmentSection|任意|―|DocumentReference \|<br> Binary|0..\*|
 |230|PDFセクション<br>pdfSection|任意|―|DocumentReference \|<br> Binary|0..\*|
 
-*注：CDA参照セクションと構造情報セクションのどちらか一方だけ存在すること。<br>
+*注：CDA参照セクションと構造情報セクションのどちらか一方だけ存在すること。
+*注：構造情報セクションが存在する場合のみ、当該セクションは必須という意味。<br><br>
 Composition.identifier要素には、その医療機関が発行した退院時サマリーをその医療機関内において一意に識別するID（退院時サマリー番号）を設定する。<br>
 施設固有のID設定方式を用いて構わないが、Identifier型のvalue要素に、保険医療機関番号（10桁）、発行年（4桁）、施設内において発行年内で一意となる番号（8桁）をハイフン("-"：U+002D)で連結した文字列を指定する方法を本仕様では具体的として採用している。
 例："1311234567-2020-00123456"。 <br>
