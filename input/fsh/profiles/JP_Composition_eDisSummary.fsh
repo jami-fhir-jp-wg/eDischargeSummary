@@ -180,7 +180,7 @@ and authorDepartment 0..1 MS
 * section[cdaSection].entry only Reference(DocumentReference)
 * section[cdaSection].entry ^short = "CDA規約文書ファイルへの参照"
 * section[cdaSection].entry ^definition = "CDA規約文書ファイルへの参照"
-* section[cdaSection].emptyReason ..0
+* section[cdaSection].emptyReason ..1
 * section[cdaSection].section ..0
 //
 //
@@ -221,11 +221,11 @@ and authorDepartment 0..1 MS
 * section[attachmentSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
 * section[attachmentSection].mode ..0
 * section[attachmentSection].orderedBy ..0
-* section[attachmentSection].entry 1..1
+* section[attachmentSection].entry 1..*
 * section[attachmentSection].entry only Reference(DocumentReference or Binary)  // あえてJP_を外している
 * section[attachmentSection].entry ^short = "添付情報ファイルへの参照"
 * section[attachmentSection].entry ^definition = "添付情報ファイルへの参照"
-* section[attachmentSection].emptyReason ..0
+* section[attachmentSection].emptyReason ..1
 * section[attachmentSection].section ..0
 //
 //
@@ -256,7 +256,7 @@ and authorDepartment 0..1 MS
 * section[structuredSection].text ..0 
 * section[structuredSection].mode ..0
 * section[structuredSection].orderedBy ..0
-* section[structuredSection].emptyReason ..0  MS
+* section[structuredSection].emptyReason ..1  MS
 //* section[structuredSection].emptyReason.coding    1..1    MS
 //* section[structuredSection].emptyReason.coding.system = "http://terminology.hl7.org/CodeSystem/list-empty-reason"
 //* section[structuredSection].emptyReason.coding.code = #unavilable (exactly)
@@ -267,8 +267,8 @@ and authorDepartment 0..1 MS
 
 * section[structuredSection].section   contains 
         detailsOnAdmissionSection	  1..1    MS  // 入院時詳細セクション
-    and admissionDiagnosesSection    1..1    MS  // 入院時診断セクション
-    and allergiesIIntoleranceSection     0..1    MS  // アレルギー・不耐性反応セクション
+    and diagnosesOnAdmissionSection    1..1    MS  // 入院時診断セクション
+    and allergyIntoleranceSection     0..1    MS  // アレルギー・不耐性反応セクション
     and chiefComplaintsSection    1..1    MS  // 主訴セクション
     and reasonForAdmissionSection      1..1    MS  // 入院理由セクション
     and presentIllnessSection     1..1    MS  // 現病歴セクション
@@ -278,11 +278,11 @@ and authorDepartment 0..1 MS
 	and physicalStatusOnAdmissionSection   0..1    MS  //  入院時身体所見セクション
 	and familiyHistorySection      0..1    MS  //  家族歴セクション
 	and hospitalCourseSection     1..1    MS  //  入院中経過セクション
-	and dischargeDetailsSection     1..1    MS  //  退院時詳細セクション
-	and dischargeDiagnosesSection     1..1    MS  //  退院時診断セクション
-	and dischargeMedicationSection     1..1    MS  //  退院時投薬指示セクション 
-	and dischargeInstructionSection     1..1    MS  //  退院時方針指示セクション
-	and dischargePhysicalStatusSection    0..1    MS  //  退院時身体所見セクション
+	and detailsOnDischargeSection     1..1    MS  //  退院時詳細セクション
+	and diagnosesOnDischargeSection     1..1    MS  //  退院時診断セクション
+	and medicationOnDischargeSection     1..1    MS  //  退院時投薬指示セクション 
+	and instructionOnDischargeSection     1..1    MS  //  退院時方針指示セクション
+	and physicalStatusOnDischargeSection    0..1    MS  //  退院時身体所見セクション
 	and hospitalProcedureSection 0..1 MS // 入院中治療セクション
     and hospitalStudySection   0..1 MS // 入院中検査結果セクション
     and medicalDeviceSection      0..1    MS  //  医療機器セクション
@@ -329,99 +329,99 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[detailsOnAdmissionSection].entry only Reference(JP_Encounter)
 * section[structuredSection].section[detailsOnAdmissionSection].entry ^short = "Encounterリソースを参照"
 * section[structuredSection].section[detailsOnAdmissionSection].entry ^definition = "Encounterリソースを参照"
-* section[structuredSection].section[detailsOnAdmissionSection].emptyReason ..0 MS
+* section[structuredSection].section[detailsOnAdmissionSection].emptyReason ..1 MS
 * section[structuredSection].section[detailsOnAdmissionSection].section ..0
 //
 //
-* section[structuredSection].section[admissionDiagnosesSection] ^short = "入院時診断セクション"
-* section[structuredSection].section[admissionDiagnosesSection] ^definition = "入院時診断セクション"
-* section[structuredSection].section[admissionDiagnosesSection].title 1.. MS
-* section[structuredSection].section[admissionDiagnosesSection].title = "入院時診断"
-* section[structuredSection].section[admissionDiagnosesSection].title ^short = "セクションタイトル"
-* section[structuredSection].section[admissionDiagnosesSection].title ^definition = "セクションタイトル。固定値。"
-* section[structuredSection].section[admissionDiagnosesSection].code 1.. MS
-* section[structuredSection].section[admissionDiagnosesSection].code ^short = "セクション区分コード"
-* section[structuredSection].section[admissionDiagnosesSection].code ^definition = "セクション区分コード"
-* section[structuredSection].section[admissionDiagnosesSection].code.coding 1..1 MS
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.system 1.. MS
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.system ^short = "セクション区分コードのコード体系"
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.code 1.. MS
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.code = #342 (exactly)
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.code ^short = "セクション区分のコード値"
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.display = "入院時診断セクション" (exactly)
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.display ^short = "セクション区分コードの表示名"
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.display ^definition = "セクション区分コードの表示名。"
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.display MS
-* section[structuredSection].section[admissionDiagnosesSection].code.coding.userSelected ..0
-* section[structuredSection].section[admissionDiagnosesSection].code.text ..0
-* section[structuredSection].section[admissionDiagnosesSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
-* section[structuredSection].section[admissionDiagnosesSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
-* section[structuredSection].section[admissionDiagnosesSection].text MS
-* section[structuredSection].section[admissionDiagnosesSection].text.status MS
-* section[structuredSection].section[admissionDiagnosesSection].text.status = #additional (exactly)
-* section[structuredSection].section[admissionDiagnosesSection].text.status ^short = "セクションの内容作成状態コード"
-* section[structuredSection].section[admissionDiagnosesSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
-* section[structuredSection].section[admissionDiagnosesSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
-* section[structuredSection].section[admissionDiagnosesSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
-* section[structuredSection].section[admissionDiagnosesSection].mode ..0
-* section[structuredSection].section[admissionDiagnosesSection].orderedBy ..0
-* section[structuredSection].section[admissionDiagnosesSection].entry 0..* MS
-* section[structuredSection].section[admissionDiagnosesSection].entry only Reference(JP_Condition)
-* section[structuredSection].section[admissionDiagnosesSection].entry ^short = "必須。（入院時の）傷病名・主訴を１個以上必ず記述する。"
-* section[structuredSection].section[admissionDiagnosesSection].entry ^definition = "（入院時の）傷病名"
-* section[structuredSection].section[admissionDiagnosesSection].emptyReason ..1 MS
-* section[structuredSection].section[admissionDiagnosesSection].section ..0
+* section[structuredSection].section[diagnosesOnAdmissionSection] ^short = "入院時診断セクション"
+* section[structuredSection].section[diagnosesOnAdmissionSection] ^definition = "入院時診断セクション"
+* section[structuredSection].section[diagnosesOnAdmissionSection].title 1.. MS
+* section[structuredSection].section[diagnosesOnAdmissionSection].title = "入院時診断"
+* section[structuredSection].section[diagnosesOnAdmissionSection].title ^short = "セクションタイトル"
+* section[structuredSection].section[diagnosesOnAdmissionSection].title ^definition = "セクションタイトル。固定値。"
+* section[structuredSection].section[diagnosesOnAdmissionSection].code 1.. MS
+* section[structuredSection].section[diagnosesOnAdmissionSection].code ^short = "セクション区分コード"
+* section[structuredSection].section[diagnosesOnAdmissionSection].code ^definition = "セクション区分コード"
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding 1..1 MS
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.system 1.. MS
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.system ^short = "セクション区分コードのコード体系"
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.code 1.. MS
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.code = #342 (exactly)
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.code ^short = "セクション区分のコード値"
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.display = "入院時診断セクション" (exactly)
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.display ^short = "セクション区分コードの表示名"
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.display ^definition = "セクション区分コードの表示名。"
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.display MS
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.coding.userSelected ..0
+* section[structuredSection].section[diagnosesOnAdmissionSection].code.text ..0
+* section[structuredSection].section[diagnosesOnAdmissionSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
+* section[structuredSection].section[diagnosesOnAdmissionSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
+* section[structuredSection].section[diagnosesOnAdmissionSection].text MS
+* section[structuredSection].section[diagnosesOnAdmissionSection].text.status MS
+* section[structuredSection].section[diagnosesOnAdmissionSection].text.status = #additional (exactly)
+* section[structuredSection].section[diagnosesOnAdmissionSection].text.status ^short = "セクションの内容作成状態コード"
+* section[structuredSection].section[diagnosesOnAdmissionSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
+* section[structuredSection].section[diagnosesOnAdmissionSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
+* section[structuredSection].section[diagnosesOnAdmissionSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
+* section[structuredSection].section[diagnosesOnAdmissionSection].mode ..0
+* section[structuredSection].section[diagnosesOnAdmissionSection].orderedBy ..0
+* section[structuredSection].section[diagnosesOnAdmissionSection].entry 0..* MS
+* section[structuredSection].section[diagnosesOnAdmissionSection].entry only Reference(JP_Condition)
+* section[structuredSection].section[diagnosesOnAdmissionSection].entry ^short = "必須。（入院時の）傷病名・主訴を１個以上必ず記述する。"
+* section[structuredSection].section[diagnosesOnAdmissionSection].entry ^definition = "（入院時の）傷病名"
+* section[structuredSection].section[diagnosesOnAdmissionSection].emptyReason ..1 MS
+* section[structuredSection].section[diagnosesOnAdmissionSection].section ..0
 //
 //
-* section[structuredSection].section[allergiesIIntoleranceSection] ^short = "アレルギー・不耐性反応セクション"
-* section[structuredSection].section[allergiesIIntoleranceSection] ^definition = "アレルギー・不耐性反応セクション"
-* section[structuredSection].section[allergiesIIntoleranceSection].title 1.. MS
-* section[structuredSection].section[allergiesIIntoleranceSection].title = "アレルギー・不耐性反応"
-* section[structuredSection].section[allergiesIIntoleranceSection].title ^short = "セクションタイトル"
-* section[structuredSection].section[allergiesIIntoleranceSection].title ^definition = "セクションタイトル。固定値。"
-* section[structuredSection].section[allergiesIIntoleranceSection].code 1.. MS
-* section[structuredSection].section[allergiesIIntoleranceSection].code ^short = "セクション区分コード"
-* section[structuredSection].section[allergiesIIntoleranceSection].code ^definition = "セクション区分コード"
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding 1..1 MS
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.system 1.. MS
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.system ^short = "セクション区分コードのコード体系"
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.code 1.. MS
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.code = #510 (exactly)
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.code ^short = "セクション区分のコード値"
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.display = "アレルギー・不耐性反応セクション" (exactly)
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.display ^short = "セクション区分コードの表示名"
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.display ^definition = "セクション区分コードの表示名。"
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.display MS
-* section[structuredSection].section[allergiesIIntoleranceSection].code.coding.userSelected ..0
-* section[structuredSection].section[allergiesIIntoleranceSection].code.text ..0
-* section[structuredSection].section[allergiesIIntoleranceSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
-* section[structuredSection].section[allergiesIIntoleranceSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
-* section[structuredSection].section[allergiesIIntoleranceSection].text MS
-* section[structuredSection].section[allergiesIIntoleranceSection].text.status MS
-* section[structuredSection].section[allergiesIIntoleranceSection].text.status = #additional (exactly)
-* section[structuredSection].section[allergiesIIntoleranceSection].text.status ^short = "セクションの内容作成状態コード"
-* section[structuredSection].section[allergiesIIntoleranceSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
-* section[structuredSection].section[allergiesIIntoleranceSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
-* section[structuredSection].section[allergiesIIntoleranceSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
-* section[structuredSection].section[allergiesIIntoleranceSection].mode ..0
-* section[structuredSection].section[allergiesIIntoleranceSection].orderedBy ..0
-* section[structuredSection].section[allergiesIIntoleranceSection].entry 0..* MS
-* section[structuredSection].section[allergiesIIntoleranceSection].entry only Reference(JP_AllergyIntolerance)
-* section[structuredSection].section[allergiesIIntoleranceSection].entry ^short = "アレルギー・不耐性反応情報を記述したAllergyIntoleranceリソースを参照"
-* section[structuredSection].section[allergiesIIntoleranceSection].entry ^definition = """アレルギー・不耐性反応情報を記述して参照する。
+* section[structuredSection].section[allergyIntoleranceSection] ^short = "アレルギー・不耐性反応セクション"
+* section[structuredSection].section[allergyIntoleranceSection] ^definition = "アレルギー・不耐性反応セクション"
+* section[structuredSection].section[allergyIntoleranceSection].title 1.. MS
+* section[structuredSection].section[allergyIntoleranceSection].title = "アレルギー・不耐性反応"
+* section[structuredSection].section[allergyIntoleranceSection].title ^short = "セクションタイトル"
+* section[structuredSection].section[allergyIntoleranceSection].title ^definition = "セクションタイトル。固定値。"
+* section[structuredSection].section[allergyIntoleranceSection].code 1.. MS
+* section[structuredSection].section[allergyIntoleranceSection].code ^short = "セクション区分コード"
+* section[structuredSection].section[allergyIntoleranceSection].code ^definition = "セクション区分コード"
+* section[structuredSection].section[allergyIntoleranceSection].code.coding 1..1 MS
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.system 1.. MS
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.system ^short = "セクション区分コードのコード体系"
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.code 1.. MS
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.code = #510 (exactly)
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.code ^short = "セクション区分のコード値"
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.display = "アレルギー・不耐性反応セクション" (exactly)
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.display ^short = "セクション区分コードの表示名"
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.display ^definition = "セクション区分コードの表示名。"
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.display MS
+* section[structuredSection].section[allergyIntoleranceSection].code.coding.userSelected ..0
+* section[structuredSection].section[allergyIntoleranceSection].code.text ..0
+* section[structuredSection].section[allergyIntoleranceSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
+* section[structuredSection].section[allergyIntoleranceSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
+* section[structuredSection].section[allergyIntoleranceSection].text MS
+* section[structuredSection].section[allergyIntoleranceSection].text.status MS
+* section[structuredSection].section[allergyIntoleranceSection].text.status = #additional (exactly)
+* section[structuredSection].section[allergyIntoleranceSection].text.status ^short = "セクションの内容作成状態コード"
+* section[structuredSection].section[allergyIntoleranceSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
+* section[structuredSection].section[allergyIntoleranceSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
+* section[structuredSection].section[allergyIntoleranceSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
+* section[structuredSection].section[allergyIntoleranceSection].mode ..0
+* section[structuredSection].section[allergyIntoleranceSection].orderedBy ..0
+* section[structuredSection].section[allergyIntoleranceSection].entry 0..* MS
+* section[structuredSection].section[allergyIntoleranceSection].entry only Reference(JP_AllergyIntolerance)
+* section[structuredSection].section[allergyIntoleranceSection].entry ^short = "アレルギー・不耐性反応情報を記述したAllergyIntoleranceリソースを参照"
+* section[structuredSection].section[allergyIntoleranceSection].entry ^definition = """アレルギー・不耐性反応情報を記述して参照する。
                                                                 1つのアレルギーにつき1つのAllergyIntoleranceリソースで記述されたものを参照する。
                                                                 記述すべきアレルギー・不耐性反応情報が存在しないことを明示的に記述する（「特になし」など）場合にはentry要素は出現せず、emptyReasonに nilknown を記述する。
                                                                 アレルギー・不耐性反応情報を聴取しようとしていない場合でそれを明示的に記述する（「取得せず」など）場合にはentry要素は出現せず、emptyReasonに notasked を記述する。
                                                                 情報が患者やシステムから取得できない状況でそれを明示的に記述する（「取得できず」「不明」など）場合にはentry要素は出現せず、emptyReasonに unavailable を記述する。                                                                
                                                                 """
-* section[structuredSection].section[allergiesIIntoleranceSection].emptyReason ..1
-* section[structuredSection].section[allergiesIIntoleranceSection].section ..0
+* section[structuredSection].section[allergyIntoleranceSection].emptyReason ..1
+* section[structuredSection].section[allergyIntoleranceSection].section ..0
 //
 ////
 * section[structuredSection].section[chiefComplaintsSection] ^short = "主訴セクション"
@@ -551,7 +551,7 @@ and authorDepartment 0..1 MS
                                                                             およびCodition.noteに記述したConditionリソースを参照する。
                                                                             疾患ごとに分けて現病歴を記述できる場合には、それぞれをひとつのConditionリソースで記述して参照する。
                                                                             """
-* section[structuredSection].section[presentIllnessSection].emptyReason ..0
+* section[structuredSection].section[presentIllnessSection].emptyReason ..1
 * section[structuredSection].section[presentIllnessSection].section ..0
 ////
 * section[structuredSection].section[pastIllnessSection] ^short = "既往歴セクション"
@@ -834,240 +834,240 @@ and authorDepartment 0..1 MS
                                                                 1つ以上のDocumentReferenceリソースで記述されたものを参照する。
                                                                 診療情報提供書では臨床経過の記述は常に必要である。
                                                                 """
-* section[structuredSection].section[hospitalCourseSection].emptyReason ..0
+* section[structuredSection].section[hospitalCourseSection].emptyReason ..1
 * section[structuredSection].section[hospitalCourseSection].section ..0
 ////
 ////
-* section[structuredSection].section[dischargeDetailsSection] ^short = "退院時詳細セクション"
-* section[structuredSection].section[dischargeDetailsSection] ^definition = "退院時詳細セクション"
-* section[structuredSection].section[dischargeDetailsSection].title 1.. MS
-* section[structuredSection].section[dischargeDetailsSection].title = "退院時詳細"
-* section[structuredSection].section[dischargeDetailsSection].title ^short = "セクションタイトル"
-* section[structuredSection].section[dischargeDetailsSection].title ^definition = "セクションタイトル。固定値。"
-* section[structuredSection].section[dischargeDetailsSection].code 1.. MS
-* section[structuredSection].section[dischargeDetailsSection].code ^short = "セクション区分コード"
-* section[structuredSection].section[dischargeDetailsSection].code ^definition = "セクション区分コード"
-* section[structuredSection].section[dischargeDetailsSection].code.coding 1..1 MS
-* section[structuredSection].section[dischargeDetailsSection].code.coding.system 1.. MS
-* section[structuredSection].section[dischargeDetailsSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
-* section[structuredSection].section[dischargeDetailsSection].code.coding.system ^short = "セクション区分コードのコード体系"
-* section[structuredSection].section[dischargeDetailsSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
-* section[structuredSection].section[dischargeDetailsSection].code.coding.code 1.. MS
-* section[structuredSection].section[dischargeDetailsSection].code.coding.code = #324 (exactly)
-* section[structuredSection].section[dischargeDetailsSection].code.coding.code ^short = "セクション区分のコード値"
-* section[structuredSection].section[dischargeDetailsSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[dischargeDetailsSection].code.coding.display = "退院時詳細セクション" (exactly)
-* section[structuredSection].section[dischargeDetailsSection].code.coding.display ^short = "セクション区分コードの表示名"
-* section[structuredSection].section[dischargeDetailsSection].code.coding.display ^definition = "セクション区分コードの表示名。"
-* section[structuredSection].section[dischargeDetailsSection].code.coding.display MS
-* section[structuredSection].section[dischargeDetailsSection].code.coding.userSelected ..0
-* section[structuredSection].section[dischargeDetailsSection].code.text ..0
-* section[structuredSection].section[dischargeDetailsSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
-* section[structuredSection].section[dischargeDetailsSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
-* section[structuredSection].section[dischargeDetailsSection].text MS
-* section[structuredSection].section[dischargeDetailsSection].text.status MS
-* section[structuredSection].section[dischargeDetailsSection].text.status = #additional (exactly)
-* section[structuredSection].section[dischargeDetailsSection].text.status ^short = "セクションの内容作成状態コード"
-* section[structuredSection].section[dischargeDetailsSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
-* section[structuredSection].section[dischargeDetailsSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
-* section[structuredSection].section[dischargeDetailsSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
-* section[structuredSection].section[dischargeDetailsSection].mode ..0
-* section[structuredSection].section[dischargeDetailsSection].orderedBy ..0
-* section[structuredSection].section[dischargeDetailsSection].entry 1..1 MS
-* section[structuredSection].section[dischargeDetailsSection].entry only Reference(JP_Encounter)
-* section[structuredSection].section[dischargeDetailsSection].entry ^short = "Encounterへの参照"
-* section[structuredSection].section[dischargeDetailsSection].entry ^definition = "Encounterへの参照"
-* section[structuredSection].section[dischargeDetailsSection].emptyReason ..0
-* section[structuredSection].section[dischargeDetailsSection].section ..0
+* section[structuredSection].section[detailsOnDischargeSection] ^short = "退院時詳細セクション"
+* section[structuredSection].section[detailsOnDischargeSection] ^definition = "退院時詳細セクション"
+* section[structuredSection].section[detailsOnDischargeSection].title 1.. MS
+* section[structuredSection].section[detailsOnDischargeSection].title = "退院時詳細"
+* section[structuredSection].section[detailsOnDischargeSection].title ^short = "セクションタイトル"
+* section[structuredSection].section[detailsOnDischargeSection].title ^definition = "セクションタイトル。固定値。"
+* section[structuredSection].section[detailsOnDischargeSection].code 1.. MS
+* section[structuredSection].section[detailsOnDischargeSection].code ^short = "セクション区分コード"
+* section[structuredSection].section[detailsOnDischargeSection].code ^definition = "セクション区分コード"
+* section[structuredSection].section[detailsOnDischargeSection].code.coding 1..1 MS
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.system 1.. MS
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.system ^short = "セクション区分コードのコード体系"
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.code 1.. MS
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.code = #324 (exactly)
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.code ^short = "セクション区分のコード値"
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.display = "退院時詳細セクション" (exactly)
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.display ^short = "セクション区分コードの表示名"
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.display ^definition = "セクション区分コードの表示名。"
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.display MS
+* section[structuredSection].section[detailsOnDischargeSection].code.coding.userSelected ..0
+* section[structuredSection].section[detailsOnDischargeSection].code.text ..0
+* section[structuredSection].section[detailsOnDischargeSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
+* section[structuredSection].section[detailsOnDischargeSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
+* section[structuredSection].section[detailsOnDischargeSection].text MS
+* section[structuredSection].section[detailsOnDischargeSection].text.status MS
+* section[structuredSection].section[detailsOnDischargeSection].text.status = #additional (exactly)
+* section[structuredSection].section[detailsOnDischargeSection].text.status ^short = "セクションの内容作成状態コード"
+* section[structuredSection].section[detailsOnDischargeSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
+* section[structuredSection].section[detailsOnDischargeSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
+* section[structuredSection].section[detailsOnDischargeSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
+* section[structuredSection].section[detailsOnDischargeSection].mode ..0
+* section[structuredSection].section[detailsOnDischargeSection].orderedBy ..0
+* section[structuredSection].section[detailsOnDischargeSection].entry 1..1 MS
+* section[structuredSection].section[detailsOnDischargeSection].entry only Reference(JP_Encounter)
+* section[structuredSection].section[detailsOnDischargeSection].entry ^short = "Encounterへの参照"
+* section[structuredSection].section[detailsOnDischargeSection].entry ^definition = "Encounterへの参照"
+* section[structuredSection].section[detailsOnDischargeSection].emptyReason ..1
+* section[structuredSection].section[detailsOnDischargeSection].section ..0
 //
 //
-* section[structuredSection].section[dischargeDiagnosesSection] ^short = "退院時診断セクション"
-* section[structuredSection].section[dischargeDiagnosesSection] ^definition = "退院時診断セクション"
-* section[structuredSection].section[dischargeDiagnosesSection].title 1.. MS
-* section[structuredSection].section[dischargeDiagnosesSection].title = "退院時診断"
-* section[structuredSection].section[dischargeDiagnosesSection].title ^short = "セクションタイトル"
-* section[structuredSection].section[dischargeDiagnosesSection].title ^definition = "セクションタイトル。固定値。"
-* section[structuredSection].section[dischargeDiagnosesSection].code 1.. MS
-* section[structuredSection].section[dischargeDiagnosesSection].code ^short = "セクション区分コード"
-* section[structuredSection].section[dischargeDiagnosesSection].code ^definition = "セクション区分コード"
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding 1..1 MS
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.system 1.. MS
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.system ^short = "セクション区分コードのコード体系"
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.code 1.. MS
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.code = #344 (exactly)
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.code ^short = "セクション区分のコード値"
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.display = "退院時診断セクション" (exactly)
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.display ^short = "セクション区分コードの表示名"
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.display ^definition = "セクション区分コードの表示名。"
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.display MS
-* section[structuredSection].section[dischargeDiagnosesSection].code.coding.userSelected ..0
-* section[structuredSection].section[dischargeDiagnosesSection].code.text ..0
-* section[structuredSection].section[dischargeDiagnosesSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
-* section[structuredSection].section[dischargeDiagnosesSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
-* section[structuredSection].section[dischargeDiagnosesSection].text MS
-* section[structuredSection].section[dischargeDiagnosesSection].text.status MS
-* section[structuredSection].section[dischargeDiagnosesSection].text.status = #additional (exactly)
-* section[structuredSection].section[dischargeDiagnosesSection].text.status ^short = "セクションの内容作成状態コード"
-* section[structuredSection].section[dischargeDiagnosesSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
-* section[structuredSection].section[dischargeDiagnosesSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
-* section[structuredSection].section[dischargeDiagnosesSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
-* section[structuredSection].section[dischargeDiagnosesSection].mode ..0
-* section[structuredSection].section[dischargeDiagnosesSection].orderedBy ..0
-* section[structuredSection].section[dischargeDiagnosesSection].entry 1..* MS
-* section[structuredSection].section[dischargeDiagnosesSection].entry only Reference(JP_Condition)
-* section[structuredSection].section[dischargeDiagnosesSection].entry ^short = "必須。傷病名・主訴を１個以上必ず記述する。"
-* section[structuredSection].section[dischargeDiagnosesSection].entry ^definition = """傷病名・主訴を１個以上必ず記述する。1つにつき1つのConditionで記述されたものを参照する。
+* section[structuredSection].section[diagnosesOnDischargeSection] ^short = "退院時診断セクション"
+* section[structuredSection].section[diagnosesOnDischargeSection] ^definition = "退院時診断セクション"
+* section[structuredSection].section[diagnosesOnDischargeSection].title 1.. MS
+* section[structuredSection].section[diagnosesOnDischargeSection].title = "退院時診断"
+* section[structuredSection].section[diagnosesOnDischargeSection].title ^short = "セクションタイトル"
+* section[structuredSection].section[diagnosesOnDischargeSection].title ^definition = "セクションタイトル。固定値。"
+* section[structuredSection].section[diagnosesOnDischargeSection].code 1.. MS
+* section[structuredSection].section[diagnosesOnDischargeSection].code ^short = "セクション区分コード"
+* section[structuredSection].section[diagnosesOnDischargeSection].code ^definition = "セクション区分コード"
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding 1..1 MS
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.system 1.. MS
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.system ^short = "セクション区分コードのコード体系"
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.code 1.. MS
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.code = #344 (exactly)
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.code ^short = "セクション区分のコード値"
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.display = "退院時診断セクション" (exactly)
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.display ^short = "セクション区分コードの表示名"
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.display ^definition = "セクション区分コードの表示名。"
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.display MS
+* section[structuredSection].section[diagnosesOnDischargeSection].code.coding.userSelected ..0
+* section[structuredSection].section[diagnosesOnDischargeSection].code.text ..0
+* section[structuredSection].section[diagnosesOnDischargeSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
+* section[structuredSection].section[diagnosesOnDischargeSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
+* section[structuredSection].section[diagnosesOnDischargeSection].text MS
+* section[structuredSection].section[diagnosesOnDischargeSection].text.status MS
+* section[structuredSection].section[diagnosesOnDischargeSection].text.status = #additional (exactly)
+* section[structuredSection].section[diagnosesOnDischargeSection].text.status ^short = "セクションの内容作成状態コード"
+* section[structuredSection].section[diagnosesOnDischargeSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
+* section[structuredSection].section[diagnosesOnDischargeSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
+* section[structuredSection].section[diagnosesOnDischargeSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
+* section[structuredSection].section[diagnosesOnDischargeSection].mode ..0
+* section[structuredSection].section[diagnosesOnDischargeSection].orderedBy ..0
+* section[structuredSection].section[diagnosesOnDischargeSection].entry 1..* MS
+* section[structuredSection].section[diagnosesOnDischargeSection].entry only Reference(JP_Condition)
+* section[structuredSection].section[diagnosesOnDischargeSection].entry ^short = "必須。傷病名・主訴を１個以上必ず記述する。"
+* section[structuredSection].section[diagnosesOnDischargeSection].entry ^definition = """傷病名・主訴を１個以上必ず記述する。1つにつき1つのConditionで記述されたものを参照する。
     フリーテキストでしか記述できない場合には、Condition.code.text に記述する。
     """
-* section[structuredSection].section[dischargeDiagnosesSection].emptyReason ..1 MS
-* section[structuredSection].section[dischargeDiagnosesSection].section ..0
+* section[structuredSection].section[diagnosesOnDischargeSection].emptyReason ..1 MS
+* section[structuredSection].section[diagnosesOnDischargeSection].section ..0
 ////
 //
 
-* section[structuredSection].section[dischargeMedicationSection] ^short = "退院時投薬指示セクション"
-* section[structuredSection].section[dischargeMedicationSection] ^definition = "退院時投薬指示セクション"
-* section[structuredSection].section[dischargeMedicationSection].title 1.. MS
-* section[structuredSection].section[dischargeMedicationSection].title = "退院時投薬指示"
-* section[structuredSection].section[dischargeMedicationSection].title ^short = "セクションタイトル"
-* section[structuredSection].section[dischargeMedicationSection].title ^definition = "セクションタイトル。固定値。"
-* section[structuredSection].section[dischargeMedicationSection].code 1.. MS
-* section[structuredSection].section[dischargeMedicationSection].code ^short = "セクション区分コード"
-* section[structuredSection].section[dischargeMedicationSection].code ^definition = "セクション区分コード"
-* section[structuredSection].section[dischargeMedicationSection].code.coding 1..1 MS
-* section[structuredSection].section[dischargeMedicationSection].code.coding.system 1.. MS
-* section[structuredSection].section[dischargeMedicationSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
-* section[structuredSection].section[dischargeMedicationSection].code.coding.system ^short = "セクション区分コードのコード体系"
-* section[structuredSection].section[dischargeMedicationSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
-* section[structuredSection].section[dischargeMedicationSection].code.coding.code 1.. MS
-* section[structuredSection].section[dischargeMedicationSection].code.coding.code = #444 (exactly)
-* section[structuredSection].section[dischargeMedicationSection].code.coding.code ^short = "セクション区分のコード値"
-* section[structuredSection].section[dischargeMedicationSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[dischargeMedicationSection].code.coding.display = "退院時投薬指示セクション" (exactly)
-* section[structuredSection].section[dischargeMedicationSection].code.coding.display ^short = "セクション区分コードの表示名"
-* section[structuredSection].section[dischargeMedicationSection].code.coding.display ^definition = "セクション区分コードの表示名。"
-* section[structuredSection].section[dischargeMedicationSection].code.coding.display MS
-* section[structuredSection].section[dischargeMedicationSection].code.coding.userSelected ..0
-* section[structuredSection].section[dischargeMedicationSection].code.text ..0
-* section[structuredSection].section[dischargeMedicationSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
-* section[structuredSection].section[dischargeMedicationSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
-* section[structuredSection].section[dischargeMedicationSection].text MS
-* section[structuredSection].section[dischargeMedicationSection].text.status MS
-* section[structuredSection].section[dischargeMedicationSection].text.status = #additional (exactly)
-* section[structuredSection].section[dischargeMedicationSection].text.status ^short = "セクションの内容作成状態コード"
-* section[structuredSection].section[dischargeMedicationSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
-* section[structuredSection].section[dischargeMedicationSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
-* section[structuredSection].section[dischargeMedicationSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
-* section[structuredSection].section[dischargeMedicationSection].mode ..0
-* section[structuredSection].section[dischargeMedicationSection].orderedBy ..0
-* section[structuredSection].section[dischargeMedicationSection].entry 0..* MS
-* section[structuredSection].section[dischargeMedicationSection].entry only Reference(JP_MedicationRequest_ePrescriptionData)
-* section[structuredSection].section[dischargeMedicationSection].entry ^short = "退院時の投薬指示情報を記述したMedicationRequestリソースを参照"
-* section[structuredSection].section[dischargeMedicationSection].entry ^definition = """投薬指示情報を記述して参照する。
+* section[structuredSection].section[medicationOnDischargeSection] ^short = "退院時投薬指示セクション"
+* section[structuredSection].section[medicationOnDischargeSection] ^definition = "退院時投薬指示セクション"
+* section[structuredSection].section[medicationOnDischargeSection].title 1.. MS
+* section[structuredSection].section[medicationOnDischargeSection].title = "退院時投薬指示"
+* section[structuredSection].section[medicationOnDischargeSection].title ^short = "セクションタイトル"
+* section[structuredSection].section[medicationOnDischargeSection].title ^definition = "セクションタイトル。固定値。"
+* section[structuredSection].section[medicationOnDischargeSection].code 1.. MS
+* section[structuredSection].section[medicationOnDischargeSection].code ^short = "セクション区分コード"
+* section[structuredSection].section[medicationOnDischargeSection].code ^definition = "セクション区分コード"
+* section[structuredSection].section[medicationOnDischargeSection].code.coding 1..1 MS
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.system 1.. MS
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.system ^short = "セクション区分コードのコード体系"
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.code 1.. MS
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.code = #444 (exactly)
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.code ^short = "セクション区分のコード値"
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.display = "退院時投薬指示セクション" (exactly)
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.display ^short = "セクション区分コードの表示名"
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.display ^definition = "セクション区分コードの表示名。"
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.display MS
+* section[structuredSection].section[medicationOnDischargeSection].code.coding.userSelected ..0
+* section[structuredSection].section[medicationOnDischargeSection].code.text ..0
+* section[structuredSection].section[medicationOnDischargeSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
+* section[structuredSection].section[medicationOnDischargeSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
+* section[structuredSection].section[medicationOnDischargeSection].text MS
+* section[structuredSection].section[medicationOnDischargeSection].text.status MS
+* section[structuredSection].section[medicationOnDischargeSection].text.status = #additional (exactly)
+* section[structuredSection].section[medicationOnDischargeSection].text.status ^short = "セクションの内容作成状態コード"
+* section[structuredSection].section[medicationOnDischargeSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
+* section[structuredSection].section[medicationOnDischargeSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
+* section[structuredSection].section[medicationOnDischargeSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
+* section[structuredSection].section[medicationOnDischargeSection].mode ..0
+* section[structuredSection].section[medicationOnDischargeSection].orderedBy ..0
+* section[structuredSection].section[medicationOnDischargeSection].entry 0..* MS
+* section[structuredSection].section[medicationOnDischargeSection].entry only Reference(JP_MedicationRequest_ePrescriptionData)
+* section[structuredSection].section[medicationOnDischargeSection].entry ^short = "退院時の投薬指示情報を記述したMedicationRequestリソースを参照"
+* section[structuredSection].section[medicationOnDischargeSection].entry ^definition = """投薬指示情報を記述して参照する。
                                                                 1つの投薬指示情報につき1つのMedicationRequestリソースで記述されたものを参照する。
                                                                 記述すべき投薬指示情報が存在しないことを明示的に記述する（「特になし」など）場合にはentry要素は出現せず、emptyReasonに nilknown を記述する。
                                                                 投薬指示情報を聴取しようとしていない場合でそれを明示的に記述する（「取得せず」など）場合にはentry要素は出現せず、emptyReasonに notasked を記述する。
                                                                 情報が患者やシステムから取得できない状況でそれを明示的に記述する（「取得できず」「不明」など）場合にはentry要素は出現せず、emptyReasonに unavailable を記述する。
                                                                 記述すべき情報が特にない場合であって、そのことを明示的に記述する必要もない場合には、このサブセクションを出現させない。
                                                                 """
-* section[structuredSection].section[dischargeMedicationSection].emptyReason ..1
-* section[structuredSection].section[dischargeMedicationSection].section ..0
+* section[structuredSection].section[medicationOnDischargeSection].emptyReason ..1
+* section[structuredSection].section[medicationOnDischargeSection].section ..0
 ////
-* section[structuredSection].section[dischargeInstructionSection] ^short = "退院時方針指示セクション"
-* section[structuredSection].section[dischargeInstructionSection] ^definition = "退院時方針指示セクション"
-* section[structuredSection].section[dischargeInstructionSection].title 1.. MS
-* section[structuredSection].section[dischargeInstructionSection].title = "退院時方針指示"
-* section[structuredSection].section[dischargeInstructionSection].title ^short = "セクションタイトル"
-* section[structuredSection].section[dischargeInstructionSection].title ^definition = "セクションタイトル。固定値。"
-* section[structuredSection].section[dischargeInstructionSection].code 1.. MS
-* section[structuredSection].section[dischargeInstructionSection].code ^short = "セクション区分コード"
-* section[structuredSection].section[dischargeInstructionSection].code ^definition = "セクション区分コード"
-* section[structuredSection].section[dischargeInstructionSection].code.coding 1..1 MS
-* section[structuredSection].section[dischargeInstructionSection].code.coding.system 1.. MS
-* section[structuredSection].section[dischargeInstructionSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
-* section[structuredSection].section[dischargeInstructionSection].code.coding.system ^short = "セクション区分コードのコード体系"
-* section[structuredSection].section[dischargeInstructionSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
-* section[structuredSection].section[dischargeInstructionSection].code.coding.code 1.. MS
-* section[structuredSection].section[dischargeInstructionSection].code.coding.code = #424 (exactly)
-* section[structuredSection].section[dischargeInstructionSection].code.coding.code ^short = "セクション区分のコード値"
-* section[structuredSection].section[dischargeInstructionSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[dischargeInstructionSection].code.coding.display = "退院時方針指示セクション" (exactly)
-* section[structuredSection].section[dischargeInstructionSection].code.coding.display ^short = "セクション区分コードの表示名"
-* section[structuredSection].section[dischargeInstructionSection].code.coding.display ^definition = "セクション区分コードの表示名。"
-* section[structuredSection].section[dischargeInstructionSection].code.coding.display MS
-* section[structuredSection].section[dischargeInstructionSection].code.coding.userSelected ..0
-* section[structuredSection].section[dischargeInstructionSection].code.text ..0
-* section[structuredSection].section[dischargeInstructionSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
-* section[structuredSection].section[dischargeInstructionSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
-* section[structuredSection].section[dischargeInstructionSection].text MS
-* section[structuredSection].section[dischargeInstructionSection].text.status MS
-* section[structuredSection].section[dischargeInstructionSection].text.status = #additional (exactly)
-* section[structuredSection].section[dischargeInstructionSection].text.status ^short = "セクションの内容作成状態コード"
-* section[structuredSection].section[dischargeInstructionSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
-* section[structuredSection].section[dischargeInstructionSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
-* section[structuredSection].section[dischargeInstructionSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
-* section[structuredSection].section[dischargeInstructionSection].mode ..0
-* section[structuredSection].section[dischargeInstructionSection].orderedBy ..0
-* section[structuredSection].section[dischargeInstructionSection].entry 0..* MS
-* section[structuredSection].section[dischargeInstructionSection].entry only Reference(JP_CarePlan)
-* section[structuredSection].section[dischargeInstructionSection].entry ^short = "退院時方針指示を記述したCarePlanリソースを参照"
-* section[structuredSection].section[dischargeInstructionSection].entry ^definition = """診療方針指示を記述して参照する。
+* section[structuredSection].section[instructionOnDischargeSection] ^short = "退院時方針指示セクション"
+* section[structuredSection].section[instructionOnDischargeSection] ^definition = "退院時方針指示セクション"
+* section[structuredSection].section[instructionOnDischargeSection].title 1.. MS
+* section[structuredSection].section[instructionOnDischargeSection].title = "退院時方針指示"
+* section[structuredSection].section[instructionOnDischargeSection].title ^short = "セクションタイトル"
+* section[structuredSection].section[instructionOnDischargeSection].title ^definition = "セクションタイトル。固定値。"
+* section[structuredSection].section[instructionOnDischargeSection].code 1.. MS
+* section[structuredSection].section[instructionOnDischargeSection].code ^short = "セクション区分コード"
+* section[structuredSection].section[instructionOnDischargeSection].code ^definition = "セクション区分コード"
+* section[structuredSection].section[instructionOnDischargeSection].code.coding 1..1 MS
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.system 1.. MS
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.system ^short = "セクション区分コードのコード体系"
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.code 1.. MS
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.code = #424 (exactly)
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.code ^short = "セクション区分のコード値"
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.display = "退院時方針指示セクション" (exactly)
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.display ^short = "セクション区分コードの表示名"
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.display ^definition = "セクション区分コードの表示名。"
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.display MS
+* section[structuredSection].section[instructionOnDischargeSection].code.coding.userSelected ..0
+* section[structuredSection].section[instructionOnDischargeSection].code.text ..0
+* section[structuredSection].section[instructionOnDischargeSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
+* section[structuredSection].section[instructionOnDischargeSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
+* section[structuredSection].section[instructionOnDischargeSection].text MS
+* section[structuredSection].section[instructionOnDischargeSection].text.status MS
+* section[structuredSection].section[instructionOnDischargeSection].text.status = #additional (exactly)
+* section[structuredSection].section[instructionOnDischargeSection].text.status ^short = "セクションの内容作成状態コード"
+* section[structuredSection].section[instructionOnDischargeSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
+* section[structuredSection].section[instructionOnDischargeSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
+* section[structuredSection].section[instructionOnDischargeSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
+* section[structuredSection].section[instructionOnDischargeSection].mode ..0
+* section[structuredSection].section[instructionOnDischargeSection].orderedBy ..0
+* section[structuredSection].section[instructionOnDischargeSection].entry 0..* MS
+* section[structuredSection].section[instructionOnDischargeSection].entry only Reference(JP_CarePlan)
+* section[structuredSection].section[instructionOnDischargeSection].entry ^short = "退院時方針指示を記述したCarePlanリソースを参照"
+* section[structuredSection].section[instructionOnDischargeSection].entry ^definition = """診療方針指示を記述して参照する。
                                                                 1つの指示をひとつのCarePlanリソースで記述されたものを参照する。
                                                                 記述すべき診療方針指示が特にないことを明示的に記述する（「特になし」など）場合にはentry要素は出現せず、emptyReasonに nilknown を記述する。
                                                                 記述すべき情報が特にない場合であって、そのことを明示的に記述する必要もない場合には、このサブセクションを出現させない。
                                                                 """
-* section[structuredSection].section[dischargeInstructionSection].emptyReason ..1
-* section[structuredSection].section[dischargeInstructionSection].section ..0
+* section[structuredSection].section[instructionOnDischargeSection].emptyReason ..1
+* section[structuredSection].section[instructionOnDischargeSection].section ..0
 ////
 //
-* section[structuredSection].section[dischargePhysicalStatusSection] ^short = "退院時身体所見セクション"
-* section[structuredSection].section[dischargePhysicalStatusSection] ^definition = "退院時身体所見セクション"
-* section[structuredSection].section[dischargePhysicalStatusSection].title 1.. MS
-* section[structuredSection].section[dischargePhysicalStatusSection].title = "退院時身体所見"
-* section[structuredSection].section[dischargePhysicalStatusSection].title ^short = "セクションタイトル"
-* section[structuredSection].section[dischargePhysicalStatusSection].title ^definition = "セクションタイトル。固定値。"
-* section[structuredSection].section[dischargePhysicalStatusSection].code 1.. MS
-* section[structuredSection].section[dischargePhysicalStatusSection].code ^short = "セクション区分コード"
-* section[structuredSection].section[dischargePhysicalStatusSection].code ^definition = "セクション区分コード"
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding 1..1 MS
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.system 1.. MS
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.system ^short = "セクション区分コードのコード体系"
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.code 1.. MS
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.code = #614 (exactly)
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.code ^short = "セクション区分のコード値"
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.display = "退院時身体所見セクション" (exactly)
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.display ^short = "セクション区分コードの表示名"
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.display ^definition = "セクション区分コードの表示名。"
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.display MS
-* section[structuredSection].section[dischargePhysicalStatusSection].code.coding.userSelected ..0
-* section[structuredSection].section[dischargePhysicalStatusSection].code.text ..0
-* section[structuredSection].section[dischargePhysicalStatusSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
-* section[structuredSection].section[dischargePhysicalStatusSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
-* section[structuredSection].section[dischargePhysicalStatusSection].text MS
-* section[structuredSection].section[dischargePhysicalStatusSection].text.status MS
-* section[structuredSection].section[dischargePhysicalStatusSection].text.status = #additional (exactly)
-* section[structuredSection].section[dischargePhysicalStatusSection].text.status ^short = "セクションの内容作成状態コード"
-* section[structuredSection].section[dischargePhysicalStatusSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
-* section[structuredSection].section[dischargePhysicalStatusSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
-* section[structuredSection].section[dischargePhysicalStatusSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
-* section[structuredSection].section[dischargePhysicalStatusSection].mode ..0
-* section[structuredSection].section[dischargePhysicalStatusSection].orderedBy ..0
-* section[structuredSection].section[dischargePhysicalStatusSection].entry 0..* MS
-* section[structuredSection].section[dischargePhysicalStatusSection].entry only Reference(JP_Observation_Common)
-* section[structuredSection].section[dischargePhysicalStatusSection].entry ^short = "退院時の身体所見を記述したObservationリソースを参照"
-* section[structuredSection].section[dischargePhysicalStatusSection].entry ^definition = """退院時の身体所見を記述して参照する。
+* section[structuredSection].section[physicalStatusOnDischargeSection] ^short = "退院時身体所見セクション"
+* section[structuredSection].section[physicalStatusOnDischargeSection] ^definition = "退院時身体所見セクション"
+* section[structuredSection].section[physicalStatusOnDischargeSection].title 1.. MS
+* section[structuredSection].section[physicalStatusOnDischargeSection].title = "退院時身体所見"
+* section[structuredSection].section[physicalStatusOnDischargeSection].title ^short = "セクションタイトル"
+* section[structuredSection].section[physicalStatusOnDischargeSection].title ^definition = "セクションタイトル。固定値。"
+* section[structuredSection].section[physicalStatusOnDischargeSection].code 1.. MS
+* section[structuredSection].section[physicalStatusOnDischargeSection].code ^short = "セクション区分コード"
+* section[structuredSection].section[physicalStatusOnDischargeSection].code ^definition = "セクション区分コード"
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding 1..1 MS
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.system 1.. MS
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.system ^short = "セクション区分コードのコード体系"
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.code 1.. MS
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.code = #614 (exactly)
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.code ^short = "セクション区分のコード値"
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.display = "退院時身体所見セクション" (exactly)
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.display ^short = "セクション区分コードの表示名"
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.display ^definition = "セクション区分コードの表示名。"
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.display MS
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.coding.userSelected ..0
+* section[structuredSection].section[physicalStatusOnDischargeSection].code.text ..0
+* section[structuredSection].section[physicalStatusOnDischargeSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
+* section[structuredSection].section[physicalStatusOnDischargeSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
+* section[structuredSection].section[physicalStatusOnDischargeSection].text MS
+* section[structuredSection].section[physicalStatusOnDischargeSection].text.status MS
+* section[structuredSection].section[physicalStatusOnDischargeSection].text.status = #additional (exactly)
+* section[structuredSection].section[physicalStatusOnDischargeSection].text.status ^short = "セクションの内容作成状態コード"
+* section[structuredSection].section[physicalStatusOnDischargeSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
+* section[structuredSection].section[physicalStatusOnDischargeSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
+* section[structuredSection].section[physicalStatusOnDischargeSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
+* section[structuredSection].section[physicalStatusOnDischargeSection].mode ..0
+* section[structuredSection].section[physicalStatusOnDischargeSection].orderedBy ..0
+* section[structuredSection].section[physicalStatusOnDischargeSection].entry 0..* MS
+* section[structuredSection].section[physicalStatusOnDischargeSection].entry only Reference(JP_Observation_Common)
+* section[structuredSection].section[physicalStatusOnDischargeSection].entry ^short = "退院時の身体所見を記述したObservationリソースを参照"
+* section[structuredSection].section[physicalStatusOnDischargeSection].entry ^definition = """退院時の身体所見を記述して参照する。
                                                                 1つの身体所見につき1つのObservationリソースで記述されたものを参照する。
                                                                 記述すべき身体所見が存在しないことを明示的に記述する（「特になし」など）場合にはentry要素は出現せず、emptyReasonに nilknown を記述する。
                                                                 身体所見を聴取しようとしていない場合でそれを明示的に記述する（「取得せず」など）場合にはentry要素は出現せず、emptyReasonに notasked を記述する。
                                                                 情報が患者やシステムから取得できない状況でそれを明示的に記述する（「取得できず」「不明」など）場合にはentry要素は出現せず、emptyReasonに unavailable を記述する。
                                                                 """
-* section[structuredSection].section[dischargePhysicalStatusSection].emptyReason ..1
-* section[structuredSection].section[dischargePhysicalStatusSection].section ..0
+* section[structuredSection].section[physicalStatusOnDischargeSection].emptyReason ..1
+* section[structuredSection].section[physicalStatusOnDischargeSection].section ..0
 
 ////
 * section[structuredSection].section[hospitalProcedureSection] ^short = "入院中治療セクション"

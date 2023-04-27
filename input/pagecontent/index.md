@@ -225,10 +225,10 @@ Compositionリソースは患者や作成者など文書情報管理用の情報
 |セクション<br>コード|セクション名（日本語）セクション名（英語）|必須/任意|対応するCDA退院時<br>サマリー規約の要素名|section.entry<br>参照先のFHIR<br>リソース種別|section.&emsp;entryの<br>多重度|
 |---|---|--------|-----------|---------|-----------|
 |200|CDA参照セクション<br>cdaSection|*注|該当なし|DocumentRefrence<br> (CDA規約文書ファイルに限る)|1..1|
-|300|構造情報セクション<br>compositionSection|*注|該当なし|Composition|1..1|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;322|入院時詳細セクション<br>detailsOnAdmissionSectionadmissionDetailsSection|必須*注|入院時情報、入院時補足情報、入院時主訴・入院理由|Encounter本表の<br>他のEncounterと<br>同一インスタンスを参照。|1..1|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;342|入院時診断セクション<br>diagnosesOnAdmissionSection|必須*注|入院時情報|Condition|0..1\*|
-|&nbsp;&nbsp;&nbsp;\|&nbsp;510|アレルギー・不耐性反応セクション<br>allergiesIIntoleranceSection|任意|アレルギー・不適応反応|AllergyIntolerance|0..\*|
+|300|構造情報セクション<br>structuredSection|*注|該当なし|Composition|1..1|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;322|入院時詳細セクション<br>detailsOnAdmissionSection|必須*注|入院時情報、入院時補足情報、入院時主訴・入院理由|Encounter本表の<br>他のEncounterと<br>同一インスタンスを参照。|1..1|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;342|入院時診断セクション<br>diagnosesOnAdmissionSection|必須*注|入院時情報|Condition|0..\*|
+|&nbsp;&nbsp;&nbsp;\|&nbsp;510|アレルギー・不耐性反応セクション<br>allergyIntoleranceSection|任意|アレルギー・不適応反応|AllergyIntolerance|0..\*|
 |&nbsp;&nbsp;&nbsp;\|&nbsp;352|主訴セクション<br>chiefComplaintsSection|必須*注|主訴|Condition|0..\*|
 |&nbsp;&nbsp;&nbsp;\|&nbsp;312|入院理由セクション<br>reasonForAdmissionSection|必須*注|入院理由|Encounter本表の<br>他のEncounterと<br>同一インスタンスを参照。|0..1|
 |&nbsp;&nbsp;&nbsp;\|&nbsp;362|現病歴セクション<br>presentIllnessSection|必須*注|入院前経過.現病歴|Condition|0..\*|

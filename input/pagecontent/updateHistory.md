@@ -77,6 +77,11 @@ table th {
 </style>
 
 # 改訂履歴　（新しい順）
+## 2023.04.27	Ver.1.1.4
+  - セクション510 allergiesIIntoleranceSectio　→ allergyIntoleranceSection　（スペルミス修正）
+  - 表5-1、表5-2も同じ修正。
+## 2023.04.27	IGpackage 0.9.5 -> 0.9.6
+  - slice nameを仕様書のセクション英語名に合わせる（内部的な変更なので影響はない）
 ## 2023.04.25	Ver.1.1.3	
   - 4.3　Compositionリソースを構成するセクションの表：　構造セクションの配下の必須セクションにおいて、必須記載に注意書きを追加。
   - 表３ Bundleリソース：　Bundle.signature の説明を補足。
