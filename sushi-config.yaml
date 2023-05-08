@@ -7,7 +7,7 @@
 id: eDischargeSummary
 canonical: http://jpfhir.jp/fhir/eDischargeSummary
 name: "HL7Japan-JAMIeDischargeSummaryImplementationGuide"
-title: "HL7 Japan-JAMI eDischargeSummary ImplementationGuide"
+title: "退院時サマリー　HL7 Japan-JAMI eDischargeSummary ImplementationGuide"
 description: "0.9.7 (2023.05.09)"
 status: active # draft | active | retired | unknown 
 version: 1.1.4
