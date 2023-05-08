@@ -80,7 +80,7 @@ table th {
 ## 2023.05.09	IGpackage 0.9.6 -> 0.9.7
   - PDFセクションの定義がCompositionリソース定義に不足していたのを修正。
   - Compositionリソース定義中のセクション名とタイトルに誤字等があったのを修正。
-
+  - Compositionリソース定義中のセクションのdisplay要素の値からexactlyを削除して、厳密一致でなくてもよいように変更した。
 ## 2023.04.27	Ver.1.1.4
   - セクション510 allergiesIIntoleranceSection　→ allergyIntoleranceSection　（スペルミス修正）
   - 表5-1、表5-2も同じ修正。
