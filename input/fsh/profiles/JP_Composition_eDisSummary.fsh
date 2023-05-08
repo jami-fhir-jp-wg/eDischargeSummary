@@ -229,6 +229,48 @@ and authorDepartment 0..1 MS
 * section[attachmentSection].section ..0
 //
 //
+* section[pdfSection] ^short = "PDFセクション"
+* section[pdfSection] ^definition = "PDFセクション"
+* section[pdfSection].title 1.. MS
+* section[pdfSection].title = "PDF" (exactly)
+* section[pdfSection].title ^short = "セクションタイトル"
+* section[pdfSection].title ^definition = "セクションタイトル。固定値。"
+* section[pdfSection].code 1.. MS
+* section[pdfSection].code ^short = "セクション区分コード"
+* section[pdfSection].code ^definition = "セクション区分コード"
+* section[pdfSection].code.coding 1..1 MS
+* section[pdfSection].code.coding.system 1.. MS
+* section[pdfSection].code.coding.system = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section" (exactly)
+* section[pdfSection].code.coding.system ^short = "セクション区分コードのコード体系"
+* section[pdfSection].code.coding.system ^definition = "セクション区分コードのコード体系を識別するURI。固定値。"
+* section[pdfSection].code.coding.code 1.. MS
+* section[pdfSection].code.coding.code = #230 (exactly)
+* section[pdfSection].code.coding.code ^short = "セクション区分のコード値"
+* section[pdfSection].code.coding.code ^definition = "セクション区分のコード値。\r\n固定値。"
+* section[pdfSection].code.coding.display = "PDFセクション" (exactly)
+* section[pdfSection].code.coding.display ^short = "セクション区分コードの表示名"
+* section[pdfSection].code.coding.display ^definition = "セクション区分コードの表示名。"
+* section[pdfSection].code.coding.display MS
+* section[pdfSection].code.coding.userSelected ..0
+* section[pdfSection].code.text ..0
+* section[pdfSection].text ^short = "このセクションに含められるすべてのテキスト（叙述的記述）表現"
+* section[pdfSection].text ^definition = "本セクションの内容をテキストで表現した文字列。内容を省略しても構わない。 このデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。"
+* section[pdfSection].text MS
+* section[pdfSection].text.status MS
+* section[pdfSection].text.status = #additional (exactly)
+* section[pdfSection].text.status ^short = "セクションの内容作成状態コード"
+* section[pdfSection].text.status ^definition = "generated | extensions | additional | empty　から　\"additional\" の固定値。このセクションに含められるすべてのentry要素による情報に加えて、それらで表現し尽くせていない情報も含めた完全な叙述表現であることを示す。"
+* section[pdfSection].text.div ^short = "xhtml簡略形式に従った叙述記述データ"
+* section[pdfSection].text.div ^definition = "本セクションの内容を xhtml 形式のテキストで表現した文字列。内容を省略しても構わない。 \r\nこのデータは人がこのセクションの内容の概略をひと目で把握するためだけに使われるものであり、データ処理対象としてはならない。\r\nテキストは構造化された情報から自動的にシステムが生成したものとし、それ以上に情報を追加してはならない。"
+* section[pdfSection].mode ..0
+* section[pdfSection].orderedBy ..0
+* section[pdfSection].entry 1..*
+* section[pdfSection].entry only Reference(DocumentReference or Binary)
+* section[pdfSection].entry ^short = "PDFファイルへの参照"
+* section[pdfSection].entry ^definition = "PDFファイルへの参照"
+* section[pdfSection].emptyReason ..1
+* section[pdfSection].section ..0
+////
 * section[structuredSection] ^short = "構造情報セクション"
 * section[structuredSection] ^definition = "構造情報セクション"
 * section[structuredSection].title 1.. MS
@@ -647,7 +689,7 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[medicationsOnAdmissionSection].section ..0
 ////
 ////
-* section[structuredSection].section[socialHistorySection] ^short = 社会歴・生活習慣セクション"
+* section[structuredSection].section[socialHistorySection] ^short = "社会歴・生活習慣セクション"
 * section[structuredSection].section[socialHistorySection] ^definition = "社会歴・生活習慣セクション"
 * section[structuredSection].section[socialHistorySection].title 1.. MS
 * section[structuredSection].section[socialHistorySection].title = "社会歴・生活習慣"
