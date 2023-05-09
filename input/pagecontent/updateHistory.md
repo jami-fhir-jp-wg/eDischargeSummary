@@ -81,6 +81,8 @@ table th {
   - PDFセクションの定義がCompositionリソース定義に不足していたのを修正。
   - Compositionリソース定義中のセクション名とタイトルに誤字等があったのを修正。
   - Compositionリソース定義中のセクションのdisplay要素の値からexactlyを削除して、厳密一致でなくてもよいように変更した。
+  - CodeSystemとしてdocument-section、admit-Source、discharge-dispositionをパッケージに追加。
+  - Bundleリソース定義に未定義であったLocation、Condition、MedicationRequest、MedicationStatement、Encounterを追加定義。
 ## 2023.04.27	Ver.1.1.4
   - セクション510 allergiesIIntoleranceSection　→ allergyIntoleranceSection　（スペルミス修正）
   - 表5-1、表5-2も同じ修正。

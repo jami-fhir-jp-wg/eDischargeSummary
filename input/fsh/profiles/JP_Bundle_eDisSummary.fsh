@@ -150,7 +150,7 @@ and binaryData 0..* MS  // その他の添付バイナリーデータ
 * entry[procedure] ^definition = "手術処置/輸血歴情報/処置等を記述して参照する。"
 
 * entry[medicationRequest].resource only  JP_MedicationRequest
-* entry[medicationRequest] ^short = "処方情報を記述したMedicationStatementリソースを参照"
+* entry[medicationRequest] ^short = "処方情報を記述したMedicationRequestリソースを参照"
 * entry[medicationRequest] ^definition = "処方情報を記述して参照する。"
 
 * entry[documentReference].resource only  JP_DocumentReference_eClinicalSummary
@@ -161,11 +161,11 @@ and binaryData 0..* MS  // その他の添付バイナリーデータ
 * entry[carePlan] ^short = "診療方針指示を記述したCarePlanリソースを参照"
 * entry[carePlan] ^definition = "診療方針指示を記述して参照する。"
 
-* entry[medicalDeviceUse].resource only  JP_DeviceUseStatement
+* entry[medicalDeviceUse].resource only  JP_DeviceUseStatement_eClinicalSummary
 * entry[medicalDeviceUse] ^short = "医療機器の使用状況を記述したDeviceUseStatementリソースを参照"
 * entry[medicalDeviceUse] ^definition = "医療機器の使用状況を記述したDeviceUseStatementリソースを参照する。"
 
-* entry[medicalDevice].resource only  JP_Device
+* entry[medicalDevice].resource only  JP_Device_eClinicalSummary
 * entry[medicalDevice] ^short = "医療機器情報を記述したDeviceリソースを参照"
 * entry[medicalDevice] ^definition = "医療機器情報を記述したDeviceリソースを参照する。"
 
@@ -193,3 +193,14 @@ and binaryData 0..* MS  // その他の添付バイナリーデータ
 * entry[binaryData].resource only  JP_Binary
 * entry[binaryData] ^short = "各種備考参照情報を記述したBinaryリソースを参照"
 * entry[binaryData] ^definition = "各種備考参照情報を記述して参照する。"
+
+* entry[condition].resource only  JP_Condition
+
+* entry[encounter].resource only  JP_Encounter
+//http://jpfhir.jp/fhir/core/StructureDefinition/JP_Encounter
+* entry[location].resource only  JP_Location
+
+* entry[medicationBundle].resource only  JP_MedicationRequest
+
+* entry[medicationStatement].resource only  JP_MedicationStatement_eClinicalSummary
+

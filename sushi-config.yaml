@@ -210,6 +210,9 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
     - http://jpfhir.jp/fhir/ePrescription/CodeSystem/communication-category
     - http://jpfhir.jp/fhir/ePrescription/CodeSystem/prescription-section
     - http://jpfhir.jp/fhir/eReferral/CodeSystem/document-section
+    - http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section
+    - http://jpfhir.jp/fhir/Common/CodeSystem/discharge-disposition
+    - http://jpfhir.jp/fhir/Common/CodeSystem/admit-Source
     - urn:ietf:bcp:13
     - urn:oid:1.2.392.100495.20.3.61
     - http://jpfhir.jp/fhir/core/CodeSystem/practitioner-certificate-category
