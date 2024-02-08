@@ -1,10 +1,10 @@
 {
-    "name": "ePrescriptionData.ig-template",
+    "name": "eDischargeSummary.ig-template",
     "type": "fhir.template",
     "license": "CC0-1.0",
-    "description": "jp.fhir.ePrescriptionData IG Template",
+    "description": "jp.fhir.eDischargeSummary IG Template",
     "author": "https://jpfhir.jp",
-    "canonical": "https://jpfhir.jp/fhir/ePrescriptionData/templates/ePrescriptionData.ig-template",
+    "canonical": "https://jpfhir.jp/fhir/eDischargeSummary/templates/eDischargeSummary.ig-template",
     "base": "fhir.base.template",
     "dependencies": {
         "fhir.base.template": "current"

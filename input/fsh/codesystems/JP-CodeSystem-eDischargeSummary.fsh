@@ -1,8 +1,25 @@
+// 医療文書区分コード
+CodeSystem:  JP_codeSystem_documentTypeCode
+Id:   jp-codeSystem-documentTypeCode
+Description: "FHIR文書の文書区分（医療文書全般）"
+* ^url = "http://jpfhir.jp/fhir/Common/CodeSystem/doc-typecodes"
+// * ^valueSet = "http://jpfhir.jp/fhir/Common/ValueSet/doc-typecodes"
+* ^title = "FHIR文書の文書区分（医療文書全般）"
+* ^status = #active
+* ^experimental = false
+* ^content = #complete
+* ^caseSensitive = false
+* #JPGCHKUP01 "健診結果報告書"
+* #JPMCHKUP01 "自治体検診結果報告書"
+* #18842-5 "退院時サマリー"
+* #57133-1 "診療情報提供書"
+* #57833-6 "処方箋"
+
 // 退院時サマリーセクション区分コード
-CodeSystem: JP_codeSystem_eClinicalSummary_document_section
-Id: jp-codeSystem-eClinicalSummary-document-section
+CodeSystem: JP_codeSystem_eDischargeSummary_document_section
+Id: jp-codeSystem-eDischargeSummary-document-section
 Description: "サマリー情報用セクション区分コード　診療情報用を含む"
-* ^url = "http://jpfhir.jp/fhir/eClinicalSummary/CodeSystem/document-section"
+* ^url = "http://jpfhir.jp/fhir/eDischargeSummary/CodeSystem/document-section"
 * ^title = "サマリー情報用セクション区分コード"
 * ^status = #active
 * ^experimental = false
@@ -55,8 +72,8 @@ Description: "サマリー情報用セクション区分コード　診療情報
 * #950	"紹介目的セクション"    //  referralPurposeSection
 
 // 退院時サマリー 入院経路
-CodeSystem: JP_codeSystem_eClinicalSummary_admitSource
-Id: jp-codeSystem-eClinicalSummary-admitSource
+CodeSystem: JP_codeSystem_eDischargeSummary_admitSource
+Id: jp-codeSystem-eDischargeSummary-admitSource
 Description: "入院経路コード　出典：厚労省DPC導入影響評価調査）"
 * ^url = "http://jpfhir.jp/fhir/Common/CodeSystem/admit-Source"
 * ^title = "入院経路コード　出典：厚労省DPC導入影響評価調査）"
@@ -72,8 +89,8 @@ Description: "入院経路コード　出典：厚労省DPC導入影響評価調
 * #9    "その他"
 
 // 退院時サマリー 退院時転帰コード情報
-CodeSystem: JP_codeSystem_eClinicalSummary_dischargeDisposition
-Id: jp-codeSystem-eClinicalSummary-dischargeDisposition
+CodeSystem: JP_codeSystem_eDischargeSummary_dischargeDisposition
+Id: jp-codeSystem-eDischargeSummary-dischargeDisposition
 Description: "退院時転帰コード情報　出典：厚労省DPC導入影響評価調査"
 * ^url = "http://jpfhir.jp/fhir/Common/CodeSystem/discharge-disposition"
 * ^title = "退院時転帰コード情報　出典：厚労省DPC導入影響評価調査）"

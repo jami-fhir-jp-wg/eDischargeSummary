@@ -1,3 +1,11 @@
+Profile:        JP_Bundle
+Parent:			Bundle
+Id:             JP-Bundle
+Description:    "Derived Profile from JP-Core"
+* ^url = "http://jpfhir.jp/fhir/eRegerral/StructureDefinition/JP_Bundle"
+* ^date = "2023-03-31"
+* meta.lastUpdated 0.. MS
+
 Profile: JP_Bundle_eDischargeSummary
 Parent: Bundle
 Id: JP-Bundle-eDischargeSummary
@@ -6,6 +14,8 @@ Description: "退院時サマリーのための文書 Bundleリソース"
 * ^status = #active
 * . ^short = "退院時サマリーのための文書 Bundleリソース"
 * . ^definition = "退院時サマリーのための文書 Bundleリソース"
+* meta.lastUpdated 1.. MS
+* meta.profile 1.. MS
 
 * identifier 1.. MS
 * identifier ^short = "この文書Bundleの固定識別番号。Bundle作成時にシステムが設定し、サーバ間で移動、コピーされても変更されないID。"
@@ -27,9 +37,9 @@ Description: "退院時サマリーのための文書 Bundleリソース"
 * entry contains
     composition 1..1 MS  // 文書構成情報
 and patient 1..1 MS  //  患者情報
-and practitioners 1..2 MS
-and organization 1..3 MS
-and department 0..1 MS
+and practitioners 1.. MS
+and organization 2.. MS
+
 and encounter 1..1 MS
 and location 0..* MS
 and condition 0..* MS
@@ -38,7 +48,7 @@ and familyHistory 0..* MS
 and observation 0..* MS
 and immunization 0..* MS
 and procedure 0..* MS
-and medicationStatement 0..* MS
+
 and medicationRequest 0..* MS
 and medicationBundle 0..* MS
 and documentReference 0..* MS
@@ -50,6 +60,8 @@ and diagReport 0..* MS
 and advancedDirective 0..* MS
 and researchSubject 0..* MS   // 臨床研究情報
 and researchStudy 0..* MS   // 臨床研究参加情報
+and relatedPerson 0..* MS   // 関係者情報                       
+
 and binaryData 0..* MS  // その他の添付バイナリーデータ
 
 * entry[composition] ^short = "documentタイプのBundleリソースの先頭entryはCompositionリソース。"
@@ -71,7 +83,7 @@ and binaryData 0..* MS  // その他の添付バイナリーデータ
 * entry[patient].fullUrl ^short = "埋め込まれているPatientリソースを一意に識別するためのUUID"
 * entry[patient].fullUrl ^definition = "埋め込まれているPatientリソースを一意に識別するためのUUID。"
 * entry[patient].resource 1.. MS
-* entry[patient].resource only JP_Patient_eClinicalSummary  // 患者情報エントリ Composition.subject
+* entry[patient].resource only JP_Patient_eCS  // 患者情報エントリ Composition.subject
 * entry[patient].resource ^short = "Patientリソースのインスタンス本体"
 * entry[patient].resource ^definition = "Patientリソースのインスタンス本体。"
 * entry[patient].search ..0
@@ -84,52 +96,62 @@ and binaryData 0..* MS  // その他の添付バイナリーデータ
 * entry[practitioners].fullUrl ^short = "埋め込まれているPractitionerリソースを一意に識別するためのUUID"
 * entry[practitioners].fullUrl ^definition = "埋め込まれているPractitionerリソースを一意に識別するためのUUID。"
 * entry[practitioners].resource 1.. MS
-* entry[practitioners].resource only JP_Practitioner_eClinicalSummary
+* entry[practitioners].resource only JP_Practitioner_eCS
 * entry[practitioners].resource ^short = "Practitionerリソースのインスタンス本体"
 * entry[practitioners].resource ^definition = "Practitionerリソースのインスタンス本体。"
 * entry[practitioners].search ..0
 * entry[practitioners].request ..0
 * entry[practitioners].response ..0
 
-* entry[organization].resource only JP_Organization_eClinicalSummary
-* entry[organization] ^short = "紹介先／元医療機関／文書作成機関／文書管理機関"
-* entry[organization] ^definition = "紹介先／元医療機関"
+* entry[organization].resource only JP_Organization_eCS
+* entry[organization] ^short = "文書作成機関／文書管理機関"
+* entry[organization] ^definition = "文書作成機関／文書管理機関"
 * entry[organization].search ..0
 * entry[organization].request ..0
 * entry[organization].response ..0
 
-//* entry[organizationFrom].resource only JP_Organization_eClinicalSummary_issuer
-//* entry[organizationFrom] ^short = "紹介元医療機関／文書作成機関／文書管理機関"
-//* entry[organizationFrom] ^definition = "紹介元医療機関"
-//* entry[organizationFrom].search ..0
-//* entry[organizationFrom].request ..0
-//* entry[organizationFrom].response ..0
-
-* entry[department].resource only JP_Organization_eClinicalSummary_department
-* entry[department] ^short = "紹介先／元医療機関／文書作成機関の診療科"
-* entry[department] ^definition = "紹介先／元医療機関／文書作成機関の診療科"
-* entry[department].search ..0
-* entry[department].request ..0
-* entry[department].response ..0
-
-/*
-* entry[departmentOfissuer].resource only  JP-Organization-eClinicalSummary-departmentOfissuer
-* entry[departmentOfissuer] ^short = "紹介元文書作成機関の診療科"
-* entry[departmentOfissuer] ^definition = "紹介元文書作成機関の診療科"
-* entry[departmentOfissuer].search ..0
-* entry[departmentOfissuer].request ..0
-* entry[departmentOfissuer].response ..0
-*/
-//* entry[referralDoctor].resource only  JP_Practitioner_eClinicalSummary
-//* entry[referralDoctor] ^short = "紹介先／元医師"
-//* entry[referralDoctor] ^definition = "紹介先／元医師"
-
-//* entry[cdaDocument].resource only  JP_DocumentReference_CDAdocument
-//* entry[cdaDocument] ^short = "CDA規約文書ファイルへの参照"
-//* entry[cdaDocument] ^definition = "CDA規約文書ファイルへの参照"
 
 
-* entry[allergy].resource only  JP_AllergyIntolerance_eClinicalSummary
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* entry[condition].resource only  JP_Condition_eCS
+* entry[condition] ^short = "患者状態(入院時、退院時など）診断病名、主訴など。"
+* entry[condition] ^definition = "必須。"患者状態(入院時、退院時など）診断病名、主訴などを記述する。1つにつき1つのConditionで記述されたものを参照する。"
+
+* entry[allergy].resource only  JP_AllergyIntolerance_eCS
 * entry[allergy] ^short = "アレルギー・不耐性反応情報を記述したAllergyIntoleranceリソースを参照"
 * entry[allergy] ^definition = "アレルギー・不耐性反応情報を記述して参照する。"
 
@@ -137,15 +159,15 @@ and binaryData 0..* MS  // その他の添付バイナリーデータ
 * entry[familyHistory] ^short = "家族歴情報を記述したFamilyMemberHistoryリソースを参照"
 * entry[familyHistory] ^definition = "家族歴情報情報を記述して参照する。"
 
-* entry[observation].resource only  JP_Observation_Common_eClinicalSummary
+* entry[observation].resource only  JP_Observation_Common_eCS
 * entry[observation] ^short = "身体所見／感染症情報／社会歴・生活習慣情報／検査結果を記述したObservationリソースを参照"
 * entry[observation] ^definition = "身体所見／感染症情報／社会歴・生活習慣情報／検査結果を記述して参照する。"
 
-* entry[immunization].resource only  JP_Immunization_eClinicalSummary
+* entry[immunization].resource only  JP_Immunization_eCS
 * entry[immunization] ^short = "予防接種歴情報を記述したImmunizationリソースを参照"
 * entry[immunization] ^definition = "予防接種歴情報を記述して参照する。"
 
-* entry[procedure].resource only  JP_Procedure_eClinicalSummary
+* entry[procedure].resource only  JP_Procedure_eCS
 * entry[procedure] ^short = "手術処置/輸血歴情報/処置等を記述したProcedureリソースを参照"
 * entry[procedure] ^definition = "手術処置/輸血歴情報/処置等を記述して参照する。"
 
@@ -153,19 +175,19 @@ and binaryData 0..* MS  // その他の添付バイナリーデータ
 * entry[medicationRequest] ^short = "処方情報を記述したMedicationRequestリソースを参照"
 * entry[medicationRequest] ^definition = "処方情報を記述して参照する。"
 
-* entry[documentReference].resource only  JP_DocumentReference_eClinicalSummary
+* entry[documentReference].resource only  JP_DocumentReference_eCS
 * entry[documentReference] ^short = "DocumentReferenceリソースを参照"
 * entry[documentReference] ^definition = "臨床経過を記述して参照する。"
 
-* entry[carePlan].resource only  JP_CarePlan_eClinicalSummary
+* entry[carePlan].resource only  JP_CarePlan_eCS
 * entry[carePlan] ^short = "診療方針指示を記述したCarePlanリソースを参照"
 * entry[carePlan] ^definition = "診療方針指示を記述して参照する。"
 
-* entry[medicalDeviceUse].resource only  JP_DeviceUseStatement_eClinicalSummary
+* entry[medicalDeviceUse].resource only  JP_DeviceUseStatement
 * entry[medicalDeviceUse] ^short = "医療機器の使用状況を記述したDeviceUseStatementリソースを参照"
 * entry[medicalDeviceUse] ^definition = "医療機器の使用状況を記述したDeviceUseStatementリソースを参照する。"
 
-* entry[medicalDevice].resource only  JP_Device_eClinicalSummary
+* entry[medicalDevice].resource only  JP_Device
 * entry[medicalDevice] ^short = "医療機器情報を記述したDeviceリソースを参照"
 * entry[medicalDevice] ^definition = "医療機器情報を記述したDeviceリソースを参照する。"
 
@@ -190,17 +212,21 @@ and binaryData 0..* MS  // その他の添付バイナリーデータ
 * entry[researchStudy] ^short = "臨床研究情報を記述したResearchStudyリソースを参照"
 * entry[researchStudy] ^definition = "臨床研究情報を記述して参照する。"
 
+* entry[relatedPerson].resource only  JP_RelatedPerson
+* entry[relatedPerson] ^short = "親族情報を記述したRelatedPersonリソースを参照"
+* entry[relatedPerson] ^definition = "親族情報を記述して参照する。"
+
 * entry[binaryData].resource only  JP_Binary
 * entry[binaryData] ^short = "各種備考参照情報を記述したBinaryリソースを参照"
-* entry[binaryData] ^definition = "各種備考参照情報を記述して参照する。"
-
-* entry[condition].resource only  JP_Condition
-
-* entry[encounter].resource only  JP_Encounter
-//http://jpfhir.jp/fhir/core/StructureDefinition/JP_Encounter
-* entry[location].resource only  JP_Location
+* entry[binaryData] ^definition = "各種備考参照情報をBinaryリソースで記述して参照する。"
 
 * entry[medicationBundle].resource only  JP_MedicationRequest
+* entry[medicationBundle] ^short = "処方箋のBudle文書"
+* entry[medicationBundle] ^definition = "処方箋のBudle文書を参照する。"
 
-* entry[medicationStatement].resource only  JP_MedicationStatement_eClinicalSummary
+* entry[encounter].resource only JP_Encounter_eCS
+* entry[encounter] ^short = "入院期間中や退院時の詳細情報のEncounterリソースを参照"
+* entry[encounter] ^definition = "入院期間中や退院時の詳細情報のEncounterリソースを参照。"
+
+* entry[location].resource only  JP_Location
 
