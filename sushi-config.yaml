@@ -39,8 +39,6 @@ dependencies:
 pages:
   index.md:
     title: 退院時サマリーHL7&reg; FHIR&reg;記述仕様第1.1版　実装ガイド
-  eClinicalSummaryTables.md:
-    title: リソース表
   validationGuide.md:
     title: Validationガイド
   history.md:
