@@ -1,8 +1,8 @@
 
 
-### 診療情報提供書Bundleリソースデータとその構成リソースデータのValidation方法について
+### 退院時サマリーBundleリソースデータとその構成リソースデータのValidation方法について
 
-ここでの Validationとは、本仕様(JP eReferral IG)にもとづいて作成されたデータファイル（JSON形式）が、仕様の各Profile に準拠しているかをFHIR公式Validatorを使用して検証することである。診療情報提供書Bundleリソースデータ全体の１ファイルを検証することもできるが、Bundleリソースに埋め込まれるこ個々の構成リソースデータ（たとえば、ひとつのObservationリソースデータ）のファイルだけを検証することもできる。
+ここでの Validationとは、本仕様(JP eDischargeSummary IG)にもとづいて作成されたデータファイル（JSON形式）が、仕様の各Profile に準拠しているかをFHIR公式Validatorを使用して検証することである。退院時サマリーBundleリソースデータ全体の１ファイルを検証することもできるが、Bundleリソースに埋め込まれるこ個々の構成リソースデータ（たとえば、ひとつのObservationリソースデータ）のファイルだけを検証することもできる。
 
 Validationの具体的手順と、出力の解釈方法について説明する。ただし、対象となるデータにあるさまざまなエラーや多様な記述方法によって、出力されるメッセージは多岐にわたるため、ここではその一部の例を示すに過ぎない。
 
@@ -72,9 +72,9 @@ Validationの具体的手順と、出力の解釈方法について説明する�
       
     - tgz形式 : [https://jpfhir.jp/fhir/core/terminology/jpfhir-terminology.r4-1.1.1.tgz](https://jpfhir.jp/fhir/core/terminology/jpfhir-terminology.r4-1.1.1.tgz)
  　 
-  - jp-eReferral.r4　パッケージ
+  - jp-eDischargeSummary.r4　パッケージ
       
-    - tgz形式 : [https://jpfhir.jp/fhir/eReferral/jp-eReferral.r4-1.1.2.tgz](https://jpfhir.jp/fhir/eReferral/jp-eReferral.r4-1.1.2.tgz)
+    - tgz形式 : [https://jpfhir.jp/fhir/eDischargeSummary/jp-eDischargeSummary.r4-1.1.2.tgz](https://jpfhir.jp/fhir/eDischargeSummary/jp-eDischargeSummary.r4-1.1.2.tgz)
 
 #####  検証対象となる json形式のファイルをひとつ以上、[targets] 直下に配置する。
 
@@ -130,7 +130,7 @@ Validation の実行
       -tx n/a  \
       -ig [pkgJp]/jp-core.r4-1.1.2.tgz  \
       -ig [pkgJp]/jpfhir-terminology.r4-1.1.1.tgz  \
-      -ig [pkgJp]/jp-eReferral.r4-1.1.2.tgz  
+      -ig [pkgJp]/jp-eDischargeSummary.r4-1.1.2.tgz  
         
 ```
 
@@ -156,7 +156,7 @@ Validationコマンドのパラメータ説明
   - -tx n/a ：　外部のTerminologyServer を参照しないよう設定するオプション。ここでの手順では、パッケージ [jpfhir-terminology-1.1.1]をロードしてローカルに配置しているので、外部のTerminologyServerへの参照は必要がない。また異なるバージョンのものが自動的に利用されないようにこのオプションは必須。
   - -ig [pkgJp]/jp-core.r4-1.1.2.tgz : jp-core.r4 v1.1.2 のパッケージ。必須。これがないとjp-coreを参照する際にエラーになる。
   - -ig [pkgJp]/jpfhir-terminology-1.1.1.tgz ： jp-core.r4、jp-clinsから参照されるterminologyのパッケージ。必須。これがないと日本版CodeSystemやValueSetを参照する際にエラーになる。このパッケージには、JLAC10、医薬品マスター、標準病名マスター、ICD10分類コード表なども含まれるので、定期的に適切なバージョンへのアプデートが必要である。
-  - -ig [pkgJp]/jp-eReferral.r4-1.1.2.tgz : ３文書のひとつである、診療情報提供書仕様に従ったBundleリソースのValidationのためのプロファイル等を格納したパッケージ。必須。
+  - -ig [pkgJp]/jp-eDischargeSummary.r4-1.1.2.tgz : ３文書のひとつである、退院時サマリー仕様に従ったBundleリソースのValidationのためのプロファイル等を格納したパッケージ。必須。
 
 ####  Validationの出力例の解説
 
