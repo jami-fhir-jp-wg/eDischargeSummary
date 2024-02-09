@@ -7,7 +7,7 @@
 # =======================================================
 require "json"
 # リソース格納フォルダ
-genenareted = "./fsh-generated/resources/"
+genenareted = "./fsh-generated/package/"
 # sushi-configパス
 sushiconfigPath="sushi-config.yaml"
 
@@ -50,6 +50,8 @@ fillUrl("StructureDefinition", sb)
 fillUrl("StructureDefinition", sb, true)
 fillUrl("CapabilityStatement", sb)
 fillUrl("SearchParameter", sb)
+fillUrl("CodeSystem", sb)
+fillUrl("ValueSet", sb)
 
 Dir.chdir('../..')  ##カレントディレクトリ移動(project配下)
 
