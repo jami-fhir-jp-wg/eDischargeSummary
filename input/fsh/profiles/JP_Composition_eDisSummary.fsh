@@ -101,9 +101,9 @@ Description:  "処方情報のリソース構成情報と文書日付に関す�
     authorPractitioner 1..1 MS 
 and authorOrganization 1..1 MS
 and authorDepartment 0..1 MS
-* author[authorPractitioner] only  Reference(JP_Practitioner_eClinicalSummary)
-* author[authorOrganization] only  Reference(JP_Organization_eClinicalSummary)
-* author[authorDepartment] only  Reference(JP_Organization_eClinicalSummary_department)
+* author[authorPractitioner] only  Reference(JP_Practitioner_eCS)
+* author[authorOrganization] only  Reference(JP_Organization_eCS)
+* author[authorDepartment] only  Reference(JP_Organization_eCS_department)
 
 * title 1..1 MS
 * title = "退院時サマリー" (exactly)
@@ -111,7 +111,7 @@ and authorDepartment 0..1 MS
 * custodian 1..1 MS
 * custodian ^short = "文書の作成・修正を行い、文書の管理責任を持つ医療機関（Organizationリソース）への参照"
 * custodian ^definition = "文書作成機関と同一の組織の場合、custodian要素からは文書作成機関を表すOrganizationリソースへの参照となる。文書作成機関とは異なる組織である場合は、文書作成機関とは別のOrganizationリソースで表現し、custodian要素からはそのOrganizationリソースを参照する。"
-* custodian only Reference(JP_Organization_eClinicalSummary)
+* custodian only Reference(JP_Organization_eCS)
 * custodian.reference 1..1
 * custodian.reference ^short = "custodianに対応するOrganizationリソースのfullUrl要素に指定されるUUIDを指定。"
 * custodian.reference ^definition = "custodianに対応するOrganizationリソースのfullUrl要素に指定されるUUIDを指定。\r\n例：\"urn:uuid:179f9f7f_e546_04c2_6888_a9e0b24e5720\""

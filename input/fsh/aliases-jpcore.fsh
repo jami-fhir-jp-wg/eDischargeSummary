@@ -3,13 +3,15 @@
 Alias: $FHIRJPCoreImplementationGuide = http://jpfhir.jp/fhir/core/ImplementationGuide/hl7.fhir.jp.core
 
 // StructureDefinition: Profile, DataType
+Alias: $composition-clinicaldocument-versionNumber = http://hl7.org/fhir/StructureDefinition/composition-clinicaldocument-versionNumber
+
 Alias: $JP_AllergyIntolerance = http://jpfhir.jp/fhir/core/StructureDefinition/JP_AllergyIntolerance
 Alias: $JP_Condition = http://jpfhir.jp/fhir/core/StructureDefinition/JP_Condition
 Alias: $JP_Coverage = http://jpfhir.jp/fhir/core/StructureDefinition/JP_Coverage
 Alias: $JP_DiagnosticReport_Common = http://jpfhir.jp/fhir/core/StructureDefinition/JP_DiagnosticReport_Common
 Alias: $JP_DiagnosticReport_LabResult = http://jpfhir.jp/fhir/core/StructureDefinition/JP_DiagnosticReport_LabResult
 Alias: $JP_DiagnosticReport_Radiology = http://jpfhir.jp/fhir/core/StructureDefinition/JP_DiagnosticReport_Radiology
-Alias: $JP_Encounter = http://jpfhir.jp/fhir/core/StructureDefinition/JP_++
+//Alias: $JP_Encounter = http://jpfhir.jp/fhir/core/StructureDefinition/JP_++
 Alias: $JP_FamilyMemberHistory = http://jpfhir.jp/fhir/core/StructureDefinition/JP_FamilyMemberHistory
 Alias: $JP_HumanName = http://jpfhir.jp/fhir/core/StructureDefinition/JP_HumanName
 Alias: $JP_ImagingStudy_Radiology = http://jpfhir.jp/fhir/core/StructureDefinition/JP_ImagingStudy_Radiology

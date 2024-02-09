@@ -1,0 +1,27 @@
+#!/bin/bash
+rm -r ~/.fhir
+cp -r ~/.fhir_sushiVersion ~/.fhir
+
+mkdir -p input/fsh/eClinicalSummary/
+rm -rf input/fsh/eClinicalSummary/
+mkdir -p input/fsh/eClinicalSummary/
+cp -r eClinicalSummary/input/fsh/* input/fsh/eClinicalSummary/
+
+sushi -s .
+cd fsh-generated
+mv resources package
+cp ../forPackageRelease/package-diff.json package/package.json
+mkdir -p ../ExampleJson
+rm -rf ../ExampleJson
+mkdir ../ExampleJson
+mv package/Bundle* ../ExampleJson/
+gtar czf jp-eDischargeSummary.r4.tgz package
+rm ../packages_snapshot/jp-eDischargeSummary.r4.tgz
+rm ../pkgValidation/jp-eDischargeSummary.r4.tgz
+cp jp-eDischargeSummary.r4.tgz ../packages_snapshot
+cp jp-eDischargeSummary.r4.tgz ../pkgValidation
+cd ..
+rm -r ~/.fhir
+cp -r ~/.fhir.validation ~/.fhir
+rm -rf input/fsh/eClinicalSummary/
+#rm -rf fsh-generated
