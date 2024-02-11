@@ -39,26 +39,27 @@ Description: "退院時サマリーのための文書 Bundleリソース"
     composition 1..1 MS  // 文書構成情報
 and patient 1..1 MS  //  患者情報
 and practitioners 1.. MS
-and organization 2.. MS
+and organization 2.. MS // 文書作成機関1..1、文書管理責任機関1..1、入院前の所在施設0..*、退院後の所在施設0..*
 
-and encounter 1..1 MS
-and location 0..* MS
-and condition 0..* MS
-and allergy 0..* MS
-and familyHistory 0..* MS
-and observation 0..* MS
-and immunization 0..* MS
-and procedure 0..* MS
+and encounter 1..1 MS   // 入院詳細情報エントリ(退院時詳細情報、入院理由、入院時診断、退院時診断を含む)
+and location 0..* MS    // 入院前の所在場所0..*、退院後の所在場所0..*、入院中の所在場所0..*
+and condition 1..* MS   //入院期間中の診断情報エントリ（入院詳細情報エントリから参照される）1..*、入院時主訴情報エントリ0..*、現病歴情報エントリ0..*、既往歴0..*
+and allergy 0..* MS //  アレルギー・不耐性反応情報エントリ
+and familyHistory 0..* MS   // 入院時家族歴0..*
+and observation 0..* MS // 入院時社会歴0..*、入院時身体所見0..*、退院時身体所見0..*、入院中検査結果0..*
+and immunization 0..* MS    // 予防接種歴0..*
+and procedure 0..* MS   // 入院中治療情報0..*
 
-and medicationRequest 0..* MS
-and medicationBundle 0..* MS
-and documentReference 0..* MS
-and carePlan 0..* MS
-and medicalDeviceUse 0..* MS
+and medicationRequest 0..* MS   // 退院時処方0..*
+and medicationBundle 0..* MS   // 退院時処方箋0..*
+and documentReference 0..* MS   //入院中経過0..*、PDF情報エントリー0..*
+and carePlan 0..* MS    //退院時方針0..*
+and medicalDeviceUse 0..* MS   // 医療機器情報0..*
 and medicalDevice 0..* MS
-and imageStudy 0..* MS
-and diagReport 0..* MS
-and advancedDirective 0..* MS
+and imageStudy 0..* MS  // 入院中検査結果情報0..*
+and diagReport 0..* MS  // 入院中検査結果情報0..*
+and advancedDirective 0..* MS // 事前指示情報0..*
+
 and researchSubject 0..* MS   // 臨床研究情報
 and researchStudy 0..* MS   // 臨床研究参加情報
 and relatedPerson 0..* MS   // 関係者情報                       
