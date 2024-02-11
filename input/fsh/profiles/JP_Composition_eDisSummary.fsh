@@ -681,7 +681,7 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[medicationsOnAdmissionSection].mode ..0
 * section[structuredSection].section[medicationsOnAdmissionSection].orderedBy ..0
 * section[structuredSection].section[medicationsOnAdmissionSection].entry 0..* MS
-* section[structuredSection].section[medicationsOnAdmissionSection].entry only Reference(JP_MedicationStatement)
+* section[structuredSection].section[medicationsOnAdmissionSection].entry only Reference(JP_MedicationRequest_eCS)
 * section[structuredSection].section[medicationsOnAdmissionSection].entry ^short = "投薬情報を記述したMedicationStatementを参照"
 * section[structuredSection].section[medicationsOnAdmissionSection].entry ^definition = """入院時の服薬情報（正確には入院直前までの服薬情報）は、1医薬品ごとに1つのMedicationStatementリソースを使用して記述する。
     MedicationStatementでは、1医薬品ごとに用法を記述することができ、
@@ -1006,7 +1006,7 @@ and authorDepartment 0..1 MS
 * section[structuredSection].section[medicationOnDischargeSection].mode ..0
 * section[structuredSection].section[medicationOnDischargeSection].orderedBy ..0
 * section[structuredSection].section[medicationOnDischargeSection].entry 0..* MS
-* section[structuredSection].section[medicationOnDischargeSection].entry only Reference(JP_MedicationRequest_ePrescriptionData)
+* section[structuredSection].section[medicationOnDischargeSection].entry only Reference(JP_MedicationRequest_eCS)
 * section[structuredSection].section[medicationOnDischargeSection].entry ^short = "退院時の投薬指示情報を記述したMedicationRequestリソースを参照"
 * section[structuredSection].section[medicationOnDischargeSection].entry ^definition = """投薬指示情報を記述して参照する。
                                                                 1つの投薬指示情報につき1つのMedicationRequestリソースで記述されたものを参照する。
