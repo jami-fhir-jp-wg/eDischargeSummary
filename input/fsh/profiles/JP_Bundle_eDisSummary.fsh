@@ -2,8 +2,8 @@ Profile:        JP_Bundle
 Parent:			Bundle
 Id:             JP-Bundle
 Description:    "Derived Profile from JP-Core"
-* ^url = "http://jpfhir.jp/fhir/eRegerral/StructureDefinition/JP_Bundle"
-* ^date = "2023-03-31"
+* ^url = "http://jpfhir.jp/fhir/Common/StructureDefinition/JP_Bundle"
+* ^date = "2024-02-07"
 * meta.lastUpdated 0.. MS
 
 Profile: JP_Bundle_eDischargeSummary
@@ -16,6 +16,7 @@ Description: "退院時サマリーのための文書 Bundleリソース"
 * . ^definition = "退院時サマリーのための文書 Bundleリソース"
 * meta.lastUpdated 1.. MS
 * meta.profile 1.. MS
+//* meta.profile = "http://jpfhir.jp/fhir/eDischargeSummary/StructureDefinition/JP_Bundle_eDischargeSummary"
 
 * identifier 1.. MS
 * identifier ^short = "この文書Bundleの固定識別番号。Bundle作成時にシステムが設定し、サーバ間で移動、コピーされても変更されないID。"
