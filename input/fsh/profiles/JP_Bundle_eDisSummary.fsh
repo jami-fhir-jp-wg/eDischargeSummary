@@ -222,7 +222,7 @@ and binaryData 0..* MS  // その他の添付バイナリーデータ
 * entry[binaryData] ^short = "各種備考参照情報を記述したBinaryリソースを参照"
 * entry[binaryData] ^definition = "各種備考参照情報をBinaryリソースで記述して参照する。"
 
-* entry[medicationBundle].resource only  JP_MedicationRequest
+* entry[medicationBundle].resource only  JP_Bundle
 * entry[medicationBundle] ^short = "処方箋のBudle文書"
 * entry[medicationBundle] ^definition = "処方箋のBudle文書を参照する。"
 
