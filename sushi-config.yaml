@@ -12,7 +12,7 @@ title: "退院時サマリーFHIR記述仕様　実装ガイド"
 description: "退院時サマリーFHIR記述仕様　実装ガイド　eDischargeSummary Implementation　Guide"
 status: active # draft | active | retired | unknown 
 version: 1.0.0-temp
-date: 2024-02-12
+date: 2024-02-29
 fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html 
 copyrightYear: 2022+
 releaseLabel: release # ci-build | draft | qa-preview | ballot | trial-use | release | update | normative+trial-use
@@ -62,8 +62,8 @@ menu:
   Validationガイド:
     Validationガイド: validationGuide.html
   パッケージDownload:
-    標準(diff)版: https://jpfhir.jp/fhir/eDischargeSummary/jp-eDischargeSummary.r4-1.1.5.tgz 
-    snapshot版: https://jpfhir.jp/fhir/eDischargeSummary/jp-eDischargeSummary.r4-1.1.5-snap.tgz
+    標準(diff)版: https://jpfhir.jp/fhir/eDischargeSummary/jp-eDischargeSummary.r4-1.1.6.tgz 
+    snapshot版: https://jpfhir.jp/fhir/eDischargeSummary/jp-eDischargeSummary.r4-1.1.6-snap.tgz
     
 #-----------------------------------------
 # IG 外部パラメータ設定
@@ -101,9 +101,8 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
     - http://jpfhir.jp/fhir/clins/StructureDefinition/JP_AllergyIntolerance_eCS
     - http://jpfhir.jp/fhir/eCS/StructureDefinition/JP_AllergyIntolerance_eCS
     - http://jpfhir.jp/fhir/core/StructureDefinition/JP_Binary
-    - http://jpfhir.jp/fhir/clins/StructureDefinition/JP_Bundle_CLINS
     - http://jpfhir.jp/fhir/eDischargeSummary/StructureDefinition/JP_Bundle_eDischargeSummary
-    - http://jpfhir.jp/fhir/eRegerral/StructureDefinition/JP_Bundle
+    - http://jpfhir.jp/fhir/Common/StructureDefinition/JP_Bundle
     - http://jpfhir.jp/fhir/eCS/StructureDefinition/JP_CarePlan_eCS
     - http://jpfhir.jp/fhir/core/StructureDefinition/JP_CarePlan
     - http://jpfhir.jp/fhir/eDischargeSummary/StructureDefinition/JP_Composition_eDischargeSummary
@@ -126,9 +125,6 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
     - http://jpfhir.jp/fhir/core/StructureDefinition/JP_Immunization
     - http://jpfhir.jp/fhir/clins/StructureDefinition/JP_MedicationRequest_CLINS_eCS
     - http://jpfhir.jp/fhir/eCS/StructureDefinition/JP_MedicationRequest_eCS
-    - http://jpfhir.jp/fhir/ePrescription/StructureDefinition/JP_MedicationRequest_ePrescriptionData
-    - http://jpfhir.jp/fhir/eCS/StructureDefinition/JP_MedicationStatement_eCS
-    - http://jpfhir.jp/fhir/core/StructureDefinition/JP_MedicationStatement
     - http://jpfhir.jp/fhir/clins/StructureDefinition/JP_Observation_LabResult_eCS
     - http://jpfhir.jp/fhir/eCS/StructureDefinition/JP_Observation_LabResult_eCS
     - http://jpfhir.jp/fhir/eCS/StructureDefinition/JP_Observation_Common_eCS
@@ -151,6 +147,8 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
     - http://jpfhir.jp/fhir/core/StructureDefinition/JP_Specimen
     - http://jpfhir.jp/fhir/core/StructureDefinition/JP_MedicationDosage_eCS
     - http://jpfhir.jp/fhir/eDischargeSummary/Extension/StructureDefinition/JP_Communication_CommunicationContent
+    - http://jpfhir.jp/fhir/core/Extension/StructureDefinition/JP_Condition_DiseasePostfixModifier
+    - http://jpfhir.jp/fhir/core/Extension/StructureDefinition/JP_Condition_DiseasePrefixModifier
     - http://jpfhir.jp/fhir/eCS/Extension/StructureDefinition/JP_eCS_Department
     - http://jpfhir.jp/fhir/clins/Extension/StructureDefinition/JP_eCS_InstitutionNumber
     - http://jpfhir.jp/fhir/core/Extension/StructureDefinition/JP_MedicationRequest_DispenseRequest_InstructionForDispense
@@ -161,10 +159,9 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
     - http://jpfhir.jp/fhir/clins/CodeSystem/JP_CLINS_ObsLabResult_InfectionLabo_CS
     - http://jpfhir.jp/fhir/clins/ValueSet/JP_ObservationLabResultLocalUncoded_CS
     - http://jpfhir.jp/fhir/clins/CodeSystem/JP_CLINS_ObsLabResult_Uncoded_CS
+    - http://jpfhir.jp/fhir/Common/CodeSystem/discharge-disposition
     - http://jpfhir.jp/fhir/Common/CodeSystem/doc-typecodes
     - http://loinc.org
-    - http://jpfhir.jp/fhir/Common/CodeSystem/admit-Source
-    - http://jpfhir.jp/fhir/Common/CodeSystem/discharge-disposition
     - http://jpfhir.jp/fhir/eDischargeSummary/CodeSystem/document-section
     - http://jpfhir.jp/fhir/eCS/CodeSystem/MedicationCodeNocoded_CS
     - http://jpfhir.jp/fhir/clins/CodeSystem/JP_ehrshrs_indication
@@ -280,11 +277,8 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
     - http://jpfhir.jp/fhir/clins/ValueSet/JP_CLINS_ObsLabResult_InfectionLabo_TPQUANTCOI_VS
     - http://jpfhir.jp/fhir/clins/ValueSet/JP_CLINS_ObsLabResult_InfectionLabo_TPQUANTRESULT_VS
     - http://jpfhir.jp/fhir/clins/ValueSet/JP_CLINS_ObsLabResult_InfectionLabo_TPRESULT_VS
+    - http://jpfhir.jp/fhir/eDischargeSummary/ValueSet/document-section
+    - http://jpfhir.jp/fhir/Common/ValueSet/discharge-disposition
     - http://jpfhir.jp/fhir/eCS/CodeSystem/MedicationCodeNocoded_VS
     - http://jpfhir.jp/fhir/eCS/ValueSet/JP_eCS_ObservationLabResultCode_VS
     - http://jpfhir.jp/fhir/Common/ValueSet/doc-typecodes
-    - http://jpfhir.jp/fhir/eDischargeSummary/ValueSet/document-section
-    - http://jpfhir.jp/fhir/Common/CodeSystem/discharge-disposition
-    - http://jpfhir.jp/fhir/Common/ValueSet/discharge-disposition
-    - http://jpfhir.jp/fhir/Common/StructureDefinition/JP_Bundle
-    - http://jpfhir.jp/fhir/eReferral/ValueSet/document-section

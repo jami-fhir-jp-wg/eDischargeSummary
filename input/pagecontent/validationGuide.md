@@ -74,7 +74,7 @@ Validationの具体的手順と、出力の解釈方法について説明する�
  　 
   - jp-eDischargeSummary.r4　パッケージ
       
-    - tgz形式 : [https://jpfhir.jp/fhir/eDischargeSummary/jp-eDischargeSummary.r4-1.1.2.tgz](https://jpfhir.jp/fhir/eDischargeSummary/jp-eDischargeSummary.r4-1.1.2.tgz)
+    - tgz形式 : [https://jpfhir.jp/fhir/eDischargeSummary/jp-eDischargeSummary.r4-1.1.6.tgz](https://jpfhir.jp/fhir/eDischargeSummary/jp-eDischargeSummary.r4-1.1.6.tgz)
 
 #####  検証対象となる json形式のファイルをひとつ以上、[targets] 直下に配置する。
 
